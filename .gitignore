@@ -1,0 +1,47 @@
+# Neovim
+.netrwhist
+*.swp
+*.swo
+*~
+.cache/
+
+# Plugin directories (managed by lazy.nvim)
+lazy-lock.json.backup
+plugin/
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE/Editor
+.vscode/
+.idea/
+*.iml
+.vim/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Development
+node_modules/
+*.o
+*.so
+*.a
+*.dylib
+*.exe
+*.out
+
+# Notes
+notes/
