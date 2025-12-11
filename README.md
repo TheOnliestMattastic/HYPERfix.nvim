@@ -2,6 +2,10 @@
 
 ![welcome](assets/welcome.png)
 
+<a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/plugins?style=for-the-badge" /></a>
+<a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/leaderkey?style=for-the-badge" /></a>
+<a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/plugin-manager?style=for-the-badge" /></a>
+
 > **A universally designed Neovim template for neurodivergent developers.** Built for brains that work differently—and think that's awesome.
 
 🚨 **WORK IN PROGRESS** — This project is actively evolving. Expect breaking changes, new features, and the occasional debug session.
@@ -52,18 +56,18 @@ We're building something that honors these projects while adding **neurodivergen
 
 ## What's Inside?
 
-- **mini.nvim** — The "brain" of HYPERfix. Modules for alignment, surround, AI text objects, files, and more
-- **snacks.nvim** — Dashboard, picker, and developer utilities
-- **flash.nvim** — Lightning-fast motion with `f`/`t` and Treesitter integration
-- **which-key.nvim** — Discoverable keymaps with helpful descriptions
-- **trouble.nvim** — Beautiful diagnostic and search results viewer
-- **grug-far.nvim** — Find and replace with previews
-- **render-markdown.nvim** — Markdown rendered beautifully
-- **nvim-treesitter** — Syntax highlighting and text objects
-- **blink.cmp** — Lightning-fast completion engine
-- **nvim-lspconfig** — Language server setup
-- **nvim-dap** — Debugging support
-- **conform.nvim** — Code formatting
++ [echasnovski/mini.nvim](https://dotfyle.com/plugins/echasnovski/mini.nvim) — The "brain" of HYPERfix. Modules for alignment, surround, AI text objects, files, and more
++ [folke/snacks.nvim](https://dotfyle.com/plugins/folke/snacks.nvim) — Dashboard, picker, and developer utilities
++ [folke/flash.nvim](https://dotfyle.com/plugins/folke/flash.nvim) — Lightning-fast motion with `f`/`t` and Treesitter integration
++ [folke/which-key.nvim](https://dotfyle.com/plugins/folke/which-key.nvim) — Discoverable keymaps with helpful descriptions
++ [folke/trouble.nvim](https://dotfyle.com/plugins/folke/trouble.nvim) — Beautiful diagnostic and search results viewer
++ [MagicDuck/grug-far.nvim](https://dotfyle.com/plugins/MagicDuck/grug-far.nvim) — Find and replace with previews
++ [MeanderingProgrammer/render-markdown.nvim](https://dotfyle.com/plugins/MeanderingProgrammer/render-markdown.nvim) — Markdown rendered beautifully
++ [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter) — Syntax highlighting and text objects
++ [saghen/blink.cmp](https://dotfyle.com/plugins/saghen/blink.cmp) — Lightning-fast completion engine
++ [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig) — Language server setup
++ [mfussenegger/nvim-dap](https://dotfyle.com/plugins/mfussenegger/nvim-dap) — Debugging support
++ [stevearc/conform.nvim](https://dotfyle.com/plugins/stevearc/conform.nvim) — Code formatting
 
 ## Install Guide
 
