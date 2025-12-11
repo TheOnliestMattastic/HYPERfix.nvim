@@ -6,9 +6,22 @@ return {
     version = false,
     lazy = true,
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      "nvim-treesitter/nvim-treesitter-textobjects", -- for mini.ai
     },
     config = function()
+      require("mini.align").setup()
+      require("mini.basics").setup()
+      require("mini.bracketed").setup()
+      require("mini.colors").setup()
+      require("mini.icons").setup()
+      require("mini.surround").setup()
+      require("mini.operators").setup()
+      require("mini.move").setup()
+      require("mini.pairs").setup()
+      require("mini.splitjoin").setup()
+      require("mini.statusline").setup()
+      require("mini.tabline").setup()
+      require("mini.visits").setup()
 
       -- ======================================================================
       -- mini.ai
@@ -44,7 +57,7 @@ return {
           d = { "%f[%d]%d+" },
 
           -- Word with case
-          e = {{                               
+          e = {{
             "%u[%l%d]+%f[^%l%d]",
             "%f[%S][%l%d]+%f[^%l%d]",
             "%f[%P][%l%d]+%f[^%l%d]",
@@ -54,11 +67,33 @@ return {
         },
       })
 
-      require("mini.bracketed").setup()
-      require("mini.colors").setup()
+      -- =======================================================================
+      -- mini.files
+      -- -----------------------------------------------------------------------
       require("mini.files").setup({
         windows = { preview = true },
       })
+      -- keymap
+      vim.keymap.set("n", "<leader>e", function()
+        if not require("mini.files").close() then require("mini.files").open() end
+      end, { desc = "Mini Fil[e]s" })
+
+      -- =======================================================================
+      -- mini.keymap
+      -- -----------------------------------------------------------------------
+      require("mini.keymap").setup()
+      local map_combo = require('mini.keymap').map_combo
+      -- Support most common modes. This can also contain 't', but would
+      -- only mean to press `<Esc>` inside terminal.
+      local mode = { 'i', 'c', 'x', 's' }
+      map_combo(mode, 'jk', '<BS><BS><Esc>')
+
+      -- To not have to worry about the order of keys, also map "kj"
+      map_combo(mode, 'kj', '<BS><BS><Esc>')
+
+      -- Escape into Normal mode from Terminal mode
+      map_combo('t', 'jk', '<BS><BS><C-\\><C-n>')
+      map_combo('t', 'kj', '<BS><BS><C-\\><C-n>')
 
       -- ======================================================================
       -- mini.hues: useful for generating colorschemes
@@ -69,20 +104,6 @@ return {
       --   saturation = 'mediumhigh',
       --   accent = 'bg',
       -- })
-
-      require("mini.icons").setup()
-      require("mini.surround").setup()
-      require("mini.operators").setup()
-      require("mini.move").setup()
-      require("mini.pairs").setup()
-      require("mini.visits").setup()
-
-      -- ======================================================================
-      -- Mini Files Keymap
-      -- ----------------------------------------------------------------------
-      vim.keymap.set("n", "<leader>e", function()
-        if not require("mini.files").close() then require("mini.files").open() end
-      end, { desc = "Toggle Mini Files" })
-    end,
+   end,
   },
 }
