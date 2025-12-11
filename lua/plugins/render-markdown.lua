@@ -6,11 +6,9 @@ return {
     event = { "BufRead", "BufNewFile", "VeryLazy" },
     dependencies = {
       { 'nvim-treesitter/nvim-treesitter', lazy = true },
-      { 'nvim-mini/mini.nvim', lazy = true }
+      -- { 'nvim-mini/mini.nvim', lazy = true }
     },
 
-    ---@module 'render-markdown'
-    ---@type render.md.UserConfig
     opts = {
       debounce = 75,
       render_modes = true,

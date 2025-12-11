@@ -4,7 +4,7 @@ return {
   {
     "echasnovski/mini.nvim",
     version = false,
-    lazy = true,
+    event = "VeryLazy",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects", -- for mini.ai
     },

@@ -75,6 +75,8 @@ We're building something that honors these projects while adding **neurodivergen
 
 You'll need a few things on your system. This should take ~5 minutes to install:
 
+ > Install requires Neovim 0.9+. Always review the code before installing a configuration.
+
 ```bash
 # macOS (Homebrew)
 brew install neovim git ripgrep fd
@@ -82,11 +84,11 @@ brew install atkinson-mono-font  # Optional, for optimal readability
 
 # Ubuntu/Debian
 sudo apt install neovim git ripgrep fd-find
-# Font: Download Atkinson Mono from https://fontsource.org (optional)
+# Font: Download Atkinson Mono from https://www.nerdfonts.com (optional)
 
 # Fedora/RHEL
 sudo dnf install neovim git ripgrep fd
-# Font: Download Atkinson Mono from https://fontsource.org (optional)
+# Font: Download Atkinson Mono from https://www.nerdfonts.com (optional)
 
 # Arch
 sudo pacman -S neovim git ripgrep fd
@@ -94,7 +96,7 @@ sudo pacman -S neovim git ripgrep fd
 
 # Windows (with Chocolatey)
 choco install neovim git ripgrep fd
-# Font: Download Atkinson Mono from https://fontsource.org (optional)
+# Font: Download Atkinson Mono from https://www.nerdfonts.com (optional)
 ```
 
 ### Quick Install (Copy & Paste)
