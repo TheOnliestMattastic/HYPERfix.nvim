@@ -1,6 +1,7 @@
+-- RESOURCE: https://
 return {
   "sourcegraph/amp.nvim",
-  lazy = true,
+  -- lazy = true,
   branch = "main",
   opts = { auto_start = true, log_level = "info" },
 
