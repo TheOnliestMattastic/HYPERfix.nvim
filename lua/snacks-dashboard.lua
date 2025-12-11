@@ -5,9 +5,10 @@
 
 return {
   header = [[
-▄ ██  ██ ██  ██ █████▄ ██████ █████▄  ▄▄▄▄▄ ▄▄ ▄▄ ▄▄      
-  ██████  ▀██▀  ██▄▄█▀ ██▄▄   ██▄▄██▄ ██▄▄  ██ ▀█▄█▀      
-▀ ██  ██   ██   ██     ██▄▄▄▄ ██   ██ ██    ██ ██ ██ ▄▄▄▄▄]],
+    ▄ ▄                                                            ▄ ▄    
+  █ ▀ ▀ █   ██  ██ ██  ██ █████▄ ██████ █████▄  ▄▄▄▄▄ ▄▄ ▄▄ ▄▄   █ ▀ ▀ █  
+ █       █  ██████  ▀██▀  ██▄▄█▀ ██▄▄   ██▄▄██▄ ██▄▄  ██ ▀█▄█▀  █       █ 
+█  ▄▄▄▄▄  █ ██  ██   ██   ██     ██▄▄▄▄ ██   ██ ██    ██ ██ ██ █  ▄▄▄▄▄  █]],
 
   -- WHAT: Dashboard sections with tiered terminal animation support
   -- WHY: Gracefully handle optional dependencies (cbonsai, fortune, cowsay, bat, lolcat)
@@ -18,7 +19,7 @@ return {
 
     -- PRIORITY 1: Include cbonsai animation (best visual experience)
     if vim.fn.executable("cbonsai") == 1 then
-      table.insert(sections, { section = "terminal", cmd = "cbonsai -li -t 0.6 -b 3 -M 3 -L 16", height = 12 })
+      table.insert(sections, { section = "terminal", cmd = "cbonsai -li -t .25 -b 3 -M 3 -L 16", height = 12 })
     else
       -- PRIORITY 2: Fall back to alternative terminal commands (fortune + cowsay/bat/lolcat)
       -- WHAT: Build a command based on available utilities
