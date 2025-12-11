@@ -5,6 +5,9 @@ return {
     "echasnovski/mini.nvim",
     version = false,
     lazy = true,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
     config = function()
 
       -- ======================================================================
@@ -14,7 +17,6 @@ return {
       ai.setup({
         n_lines = 500,
         custom_textobjects = {
-
           -- code block
           o = ai.gen_spec.treesitter({
             a = { "@block.outer", "@conditional.outer", "@loop.outer" },
@@ -54,7 +56,9 @@ return {
 
       require("mini.bracketed").setup()
       require("mini.colors").setup()
-      require("mini.files").setup()
+      require("mini.files").setup({
+        windows = { preview = true },
+      })
 
       -- ======================================================================
       -- mini.hues: useful for generating colorschemes
@@ -66,6 +70,7 @@ return {
       --   accent = 'bg',
       -- })
 
+      require("mini.icons").setup()
       require("mini.surround").setup()
       require("mini.operators").setup()
       require("mini.move").setup()
