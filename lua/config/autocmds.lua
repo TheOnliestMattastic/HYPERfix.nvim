@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 })
 
 -- ============================================================================
--- go to last loc when opening a buffer
+-- go to last location when opening a buffer
 -- ----------------------------------------------------------------------------
 vim.api.nvim_create_autocmd("BufReadPost", {
   group = augroup("last_loc"),

@@ -19,10 +19,16 @@ return {
       terminal =            { enabled = true },
       words =               { enabled = true },
 
+      -- =======================================================================
+      -- dashboard
+      -- -- --------------------------------------------------------------------
       dashboard =           { enabled = true,
         preset =            { header = dashboard.header },
         sections =            dashboard.sections, },
 
+      -- =======================================================================
+      -- picker
+      -- -----------------------------------------------------------------------
       picker =              { enabled = true,
         sources =
         { explorer =        { enabled = false } } },
