@@ -57,7 +57,7 @@ opt.pumblend = 10 -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
 opt.relativenumber = true -- Relative line numbers
 opt.ruler = false -- Disable the default ruler
-opt.scrolloff = 8 -- keep 8 lines above/below cursor
+opt.scrolloff = 999 -- keep cursor in the middle of the screen
 opt.sessionoptions = {
   "buffers",
   "curdir",
