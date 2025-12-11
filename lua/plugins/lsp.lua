@@ -1,6 +1,7 @@
 return {
   {
     'folke/lazydev.nvim',
+    lazy = true,
     ft = 'lua',
     opts = {
       library = {
@@ -16,14 +17,16 @@ return {
   -- --------------------------------------------------------------------------
   {
     'neovim/nvim-lspconfig',
+    lazy = true,
     dependencies = {
       -- ======================================================================
       -- MASON.NVIM
       -- ----------------------------------------------------------------------
       {
         "mason-org/mason.nvim",
+        lazy = true,
         cmd = "Mason",
-        -- keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+        keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
         build = ":MasonUpdate",
         opts_extend = { "ensure_installed" },
         opts = { ensure_installed = { "stylua" } },
@@ -62,20 +65,20 @@ return {
           -- ==================================================================
           -- keymaps
           -- ------------------------------------------------------------------
-          -- local map = function(keys, func, desc, mode)
-          --   mode = mode or 'n'
-          --   vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
-          -- end
+          local map = function(keys, func, desc, mode)
+            mode = mode or 'n'
+            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+          end
 
-          -- map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
-          -- map('gra', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
-          -- map('grr', require('Snacks.picker').lsp_references, '[G]oto [R]eferences')
-          -- map('gri', require('Snacks.picker').lsp_implementations, '[G]oto [I]mplementation')
-          -- map('grd', require('Snacks.picker').lsp_definitions, '[G]oto [D]efinition')
-          -- map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-          -- map('gO', require('Snacks.picker').lsp_document_symbols, 'Open Document Symbols')
-          -- map('gW', require('Snacks.picker').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
-          -- map('grt', require('Snacks.picker').lsp_type_definitions, '[G]oto [T]ype Definition')
+          map('<leader>cr', vim.lsp.buf.rename,                                '[R]ename')
+          map('<leader>ca', vim.lsp.buf.code_action,                           'Code [A]ction', { 'n', 'x' })
+          map('glr', require('Snacks.picker').lsp_references,                  '[R]eferences')
+          map('gli', require('Snacks.picker').lsp_implementations,             '[I]mplementation')
+          map('gld', require('Snacks.picker').lsp_definitions,                 '[D]efinition')
+          map('glD', vim.lsp.buf.declaration,                                  '[D]eclaration')
+          map('gls', require('Snacks.picker').lsp_document_symbols,            'Document [S]ymbols')
+          map('glS', require('Snacks.picker').lsp_dynamic_workspace_symbols,   'Workspace [S]ymbols')
+          map('glt', require('Snacks.picker').lsp_type_definitions,            '[T]ype Definition')
 
           local function client_supports_method(client, method, bufnr)
             if vim.fn.has 'nvim-0.11' == 1 then
@@ -112,11 +115,11 @@ return {
           -- ==================================================================
           -- toggle keymap
           -- ------------------------------------------------------------------
-          -- if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-          --   map('<leader>th', function()
-          --     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-          --   end, '[T]oggle Inlay [H]ints')
-          -- end
+          if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
+            map('<leader>\\H', function()
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+            end, 'Toggle Inlay [H]ints')
+          end
         end,
       })
       -- ======================================================================
@@ -189,6 +192,7 @@ return {
   -- --------------------------------------------------------------------------
   {
     'stevearc/conform.nvim',
+    lazy = true,
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     -- keys = {
@@ -215,6 +219,7 @@ return {
   -- --------------------------------------------------------------------------
   {
     'saghen/blink.cmp',
+    lazy = true,
     event = { 'InsertEnter', "CmdLineEnter" },
     version = '1.*',
     build = "cargo build --release",
