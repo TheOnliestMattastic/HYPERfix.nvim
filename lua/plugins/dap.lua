@@ -1,6 +1,7 @@
 return {
   {
     "mfussenegger/nvim-dap",
+    lazy = true,
     dependencies = {
       "rcarriga/nvim-dap-ui",
       "nvim-neotest/nvim-nio",
@@ -25,11 +26,11 @@ return {
       dap.listeners.before.event_exited.dapui_config = function() ui.close() end
 
       -- Keymaps
-      vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "[B]reakpoint" })
-      vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "[C]ontinue" })
-      vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "Step [I]nto" })
-      vim.keymap.set("n", "<leader>do", dap.step_over, { desc = "Step [O]ver" })
-      vim.keymap.set("n", "<leader>du", ui.toggle, { desc = "DAP [U]I" })
+      vim.keymap.set("n",   "<leader>db",   dap.toggle_breakpoint,  { desc = "[B]reakpoint" })
+      vim.keymap.set("n",   "<leader>dc",   dap.continue,           { desc = "[C]ontinue" })
+      vim.keymap.set("n",   "<leader>di",   dap.step_into,          { desc = "Step [I]nto" })
+      vim.keymap.set("n",   "<leader>do",   dap.step_over,          { desc = "Step [O]ver" })
+      vim.keymap.set("n",   "<leader>du",   ui.toggle,              { desc = "DAP [U]I" })
     end,
   },
 }

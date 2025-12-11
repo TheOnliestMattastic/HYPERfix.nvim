@@ -1,7 +1,7 @@
 return {
   "sourcegraph/amp.nvim",
-  branch = "main",
   lazy = true,
+  branch = "main",
   opts = { auto_start = true, log_level = "info" },
 
   -- WHAT: Configure amp and create user commands after plugin loads

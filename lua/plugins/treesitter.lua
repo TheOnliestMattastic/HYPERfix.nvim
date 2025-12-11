@@ -4,6 +4,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy = true,
     branch = "main",
     version = false,
     build = ":TSUpdate",
@@ -63,12 +64,12 @@ return {
       auto_install = true,
       incremental_selection = {
         enable = true,
-        -- keymaps = {
-        --   init_selection = "gnn",
-        --   node_incremental = "grn",
-        --   scope_incremental = "grc",
-        --   node_decremental = "grm",
-        -- },
+        keymaps = {
+          init_selection = "gvv",
+          node_incremental = "gvn",
+          scope_incremental = "gvs",
+          node_decremental = "gvp",
+        },
       },
       ensure_installed = {
         "bash",
@@ -104,13 +105,6 @@ return {
         select = {
           enable = true,
           lookahead = true,
-          -- keymaps = {
-          --   ["af"] = "@function.outer",
-          --   ["if"] = "@function.inner",
-          --   ["ac"] = "@class.outer",
-          --   ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
-          --   ["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
-          -- },
           selection_modes = {
             ['@parameter.outer'] = 'v', -- charwise
             ['@function.outer'] = 'V', -- linewise
