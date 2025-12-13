@@ -1,5 +1,5 @@
 -- MINI.NVIM: The "Brain"
--- RESOURCE: https://github.com/echasnovski/mini.nvim
+-- REFERENCE: https://github.com/echasnovski/mini.nvim
 return {
   {
     "echasnovski/mini.nvim",
