@@ -12,12 +12,11 @@ return {
       },
     },
     keys = {
-      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
-      { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
-      { "<leader>cs", "<cmd>Trouble symbols toggle<cr>", desc = "Symbols (Trouble)" },
-      { "<leader>cS", "<cmd>Trouble lsp toggle<cr>", desc = "LSP references/definitions/... (Trouble)" },
-      { "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)" },
-      { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)" },
+      { "<leader>xd", "<cmd>Trouble diagnostics toggle<cr>", desc = "[D]iagnostics" },
+      { "<leader>xD", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer [D]iagnostics" },
+      { "<leader>xs", "<cmd>Trouble symbols toggle<cr>", desc = "[S]ymbols" },
+      { "<leader>xl", "<cmd>Trouble loclist toggle<cr>", desc = "[L]ocation List" },
+      { "<leader>xq", "<cmd>Trouble qflist toggle<cr>", desc = "[Q]uickfix List" },
       {
         "[q",
         function()
@@ -30,7 +29,7 @@ return {
             end
           end
         end,
-        desc = "Previous Trouble/Quickfix Item",
+        desc = "Prev Quickfix Item",
       },
       {
         "]q",
@@ -44,7 +43,7 @@ return {
             end
           end
         end,
-        desc = "Next Trouble/Quickfix Item",
+        desc = "Next Quickfix Item",
       },
     },
   }
