@@ -2,67 +2,70 @@
 -- REFERENCE: https://github.com/echasnovski/mini.nvim
 return {
   {
-    "echasnovski/mini.nvim",
+    'echasnovski/mini.nvim',
     version = false,
-    event = "VeryLazy",
+    event = 'VeryLazy',
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects", -- for mini.ai
+      'nvim-treesitter/nvim-treesitter-textobjects', -- for mini.ai
     },
     config = function()
-      require("mini.align").setup()
-      require("mini.basics").setup()
-      require("mini.bracketed").setup()
-      require("mini.colors").setup()
-      require("mini.icons").setup()
-      require("mini.surround").setup()
-      require("mini.operators").setup()
-      require("mini.move").setup()
-      require("mini.pairs").setup()
-      require("mini.splitjoin").setup()
-      require("mini.statusline").setup()
-      require("mini.tabline").setup()
-      require("mini.visits").setup()
+      require('mini.align').setup()
+      require('mini.basics').setup()
+      require('mini.bracketed').setup()
+      require('mini.colors').setup()
+      require('mini.icons').setup()
+      require('mini.surround').setup()
+      require('mini.operators').setup()
+      require('mini.move').setup()
+      require('mini.pairs').setup()
+      require('mini.splitjoin').setup()
+      require('mini.statusline').setup()
+      require('mini.tabline').setup()
+      require('mini.visits').setup()
 
       -- ======================================================================
       -- mini.ai
       -- ----------------------------------------------------------------------
-      local ai = require("mini.ai")
+      local ai = require('mini.ai')
       ai.setup({
         n_lines = 500,
         custom_textobjects = {
           -- code block
           o = ai.gen_spec.treesitter({
-            a = { "@block.outer", "@conditional.outer", "@loop.outer" },
-            i = { "@block.inner", "@conditional.inner", "@loop.inner" },
+            a = { '@block.outer', '@conditional.outer', '@loop.outer' },
+            i = { '@block.inner', '@conditional.inner', '@loop.inner' },
           }),
 
           -- function
           f = ai.gen_spec.treesitter({
-            a = "@function.outer",
-            i = "@function.inner"
+            a = '@function.outer',
+            i = '@function.inner',
           }),
 
           -- class
           c = ai.gen_spec.treesitter({
-            a = "@class.outer",
-            i = "@class.inner"
+            a = '@class.outer',
+            i = '@class.inner',
           }),
 
           -- tags
-          t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>",
-            "^<.->().*()</[^/]->$"
+          t = {
+            '<([%p%w]-)%f[^<%w][^<>]->.-</%1>',
+            '^<.->().*()</[^/]->$',
           },
 
           -- digits
-          d = { "%f[%d]%d+" },
+          d = { '%f[%d]%d+' },
 
           -- Word with case
-          e = {{
-            "%u[%l%d]+%f[^%l%d]",
-            "%f[%S][%l%d]+%f[^%l%d]",
-            "%f[%P][%l%d]+%f[^%l%d]",
-            "^[%l%d]+%f[^%l%d]"},
-            "^().*()$",
+          e = {
+            {
+              '%u[%l%d]+%f[^%l%d]',
+              '%f[%S][%l%d]+%f[^%l%d]',
+              '%f[%P][%l%d]+%f[^%l%d]',
+              '^[%l%d]+%f[^%l%d]',
+            },
+            '^().*()$',
           },
         },
       })
@@ -70,18 +73,26 @@ return {
       -- =======================================================================
       -- mini.files
       -- -----------------------------------------------------------------------
-      require("mini.files").setup({
+      require('mini.files').setup({
         windows = { preview = true },
       })
       -- keymap
-      vim.keymap.set("n", "<leader>e", function()
-        if not require("mini.files").close() then require("mini.files").open() end
-      end, { desc = "Mini Fil[e]s" })
+      vim.keymap.set('n', '<leader>e', function()
+        if not require('mini.files').close() then
+          require('mini.files').open()
+        end
+      end, { desc = 'Mini Fil[e]s' })
 
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'MiniFilesActionRename',
+        callback = function(event)
+          Snacks.rename.on_rename_file(event.data.from, event.data.to)
+        end,
+      })
       -- =======================================================================
       -- mini.keymap
       -- -----------------------------------------------------------------------
-      require("mini.keymap").setup()
+      require('mini.keymap').setup()
       local map_combo = require('mini.keymap').map_combo
       -- Support most common modes. This can also contain 't', but would
       -- only mean to press `<Esc>` inside terminal.
@@ -104,6 +115,6 @@ return {
       --   saturation = 'mediumhigh',
       --   accent = 'bg',
       -- })
-   end,
+    end,
   },
 }
