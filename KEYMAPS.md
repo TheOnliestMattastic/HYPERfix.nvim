@@ -1,323 +1,386 @@
-# Keymaps
+# Keymaps Reference
 
-```lua
+## Core Navigation
 
--- DAP
--- -------------------------------------------------------------------
-vim.keymap.set("n",   "<leader>db",   dap.toggle_breakpoint,  { desc = "[B]reakpoint" })
-vim.keymap.set("n",   "<leader>dc",   dap.continue,           { desc = "[C]ontinue" })
-vim.keymap.set("n",   "<leader>di",   dap.step_into,          { desc = "Step [I]nto" })
-vim.keymap.set("n",   "<leader>do",   dap.step_over,          { desc = "Step [O]ver" })
-vim.keymap.set("n",   "<leader>du",   ui.toggle,              { desc = "DAP [U]I" })
+### Window Navigation
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<C-h>` | Normal | Move to left window |
+| `<C-j>` | Normal | Move to bottom window |
+| `<C-k>` | Normal | Move to top window |
+| `<C-l>` | Normal | Move to right window |
 
--- Flash
--- ---------------------------------------------------------------
-{ "<CR>", mode = { "n", "x", "o" }, function()
-  require("flash").jump() 
-end, desc = "Flash" },
+### Line Navigation (Respects Line Wrapping)
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `j` | Normal, Visual | Move down (respects wrapped lines) |
+| `k` | Normal, Visual | Move up (respects wrapped lines) |
+| `<Down>` | Normal, Visual | Move down (respects wrapped lines) |
+| `<Up>` | Normal, Visual | Move up (respects wrapped lines) |
 
-{ "<SHIFT><CR>", mode = { "n", "x", "o" }, function()
-  require("flash").treesitter()
-end, desc = "Flash Treesitter" },
+### Smart Search Navigation
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `n` | Normal, Visual, Operator | Next search result (intelligent direction) |
+| `N` | Normal, Visual, Operator | Previous search result (intelligent direction) |
 
-{ "r", mode = "o", function()
-  require("flash").remote()
-end, desc = "Remote Flash" },
+---
 
-{ "R", mode = { "o", "x" }, function()
-  require("flash").treesitter_search()
-end, desc = "Treesitter Search" },
+## Tab Management
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader><tab><tab>` | Normal | New tab |
+| `<leader><tab>n` | Normal | Next tab |
+| `<leader><tab>p` | Normal | Previous tab |
+| `<leader><tab>f` | Normal | First tab |
+| `<leader><tab>l` | Normal | Last tab |
+| `<leader><tab>q` | Normal | Close current tab |
+| `<leader><tab>o` | Normal | Close all other tabs |
 
-{ "<c-x>", mode = { "c" }, function()
-  require("flash").toggle()
-end, desc = "Toggle Flash Search" },
+---
 
--- Grug-far
--- -------------------------------------------------------------
-{
-  "<leader>sr",
-  function()
-    local grug = require("grug-far")
-    local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
-    grug.open({
-      transient = true,
-      prefills = {
-        filesFilter = ext and ext ~= "" and "*." .. ext or nil,
-      },
-    })
-  end,
-  mode = { "n", "x" },
-  desc = "Search and Replace",
-},
+## File Management
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<C-s>` | Normal, Insert, Visual, Select | Save file |
+| `<leader>fn` | Normal | Create new file |
+| `<leader>nl` | Normal | Open Lazy (plugin manager) |
 
--- LSP
--- -----------------------------------------------------
-{ "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" }
+---
 
-map('<leader>cr', vim.lsp.buf.rename,                                '[R]ename')
-map('<leader>ca', vim.lsp.buf.code_action,                           'Code [A]ction', { 'n', 'x' })
-map('glr', require('Snacks.picker').lsp_references,                  '[R]eferences')
-map('gli', require('Snacks.picker').lsp_implementations,             '[I]mplementation')
-map('gld', require('Snacks.picker').lsp_definitions,                 '[D]efinition')
-map('glD', vim.lsp.buf.declaration,                                  '[D]eclaration')
-map('gls', require('Snacks.picker').lsp_document_symbols,            'Document [S]ymbols')
-map('glS', require('Snacks.picker').lsp_dynamic_workspace_symbols,   'Workspace [S]ymbols')
-map('glt', require('Snacks.picker').lsp_type_definitions,            '[T]ype Definition')
+## Text Editing
 
-if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-  map('<leader>\\H', function()
-    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-  end, 'Toggle Inlay [H]ints')
-end
+### Undo Break-points (Insert Mode)
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `,` | Insert | Comma + undo break-point |
+| `.` | Insert | Period + undo break-point |
+| `;` | Insert | Semicolon + undo break-point |
 
-{
-  '<leader>cf',
-  function()
-    require('conform').format { async = true, lsp_format = 'fallback' }
-  end,
-  mode = '',
-  desc = '[F]ormat buffer',
-},
+### Visual Mode Indentation
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<` | Visual | Unindent and reselect |
+| `>` | Visual | Indent and reselect |
 
--- Mini.nvim
--- -------------------------------------------------------
-o = ai.gen_spec.treesitter({
-  a = { "@block.outer", "@conditional.outer", "@loop.outer" },
-  i = { "@block.inner", "@conditional.inner", "@loop.inner" },
-}),
+---
 
--- function
-f = ai.gen_spec.treesitter({
-  a = "@function.outer",
-  i = "@function.inner"
-}),
+## Escape Sequences
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `jk` | Insert, Command, Visual, Select | Exit to Normal mode |
+| `kj` | Insert, Command, Visual, Select | Exit to Normal mode |
+| `jk` | Terminal | Exit to Normal mode |
+| `kj` | Terminal | Exit to Normal mode |
+| `<Esc>` | Normal | Clear search, refresh screen |
 
--- class
-c = ai.gen_spec.treesitter({
-  a = "@class.outer",
-  i = "@class.inner"
-}),
+---
 
--- tags
-t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>",
-  "^<.->().*()</[^/]->$"
-},
+## Screen Control
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<Esc>` | Normal | Clear hlsearch, update diff, refresh screen |
+| `<leader>qq` | Normal | Quit all |
 
--- digits
-d = { "%f[%d]%d+" },
+---
 
--- Word with case
-e = {{
-  "%u[%l%d]+%f[^%l%d]",
-  "%f[%S][%l%d]+%f[^%l%d]",
-  "%f[%P][%l%d]+%f[^%l%d]",
-  "^[%l%d]+%f[^%l%d]"},
-  "^().*()$",
-},
+## DAP (Debugging)
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader>db` | Normal | Toggle breakpoint |
+| `<leader>dc` | Normal | Continue execution |
+| `<leader>di` | Normal | Step into |
+| `<leader>do` | Normal | Step over |
+| `<leader>du` | Normal | Toggle DAP UI |
 
-vim.keymap.set("n", "<leader>e", function()
-  if not require("mini.files").close() then require("mini.files").open() end
-end, { desc = "Mini Fil[e]s" })
+---
 
--- Render-markdown
--- ---------------------------------------------------------------
-Snacks.toggle({
-  name = "Render Markdown",
-  get = require("render-markdown").get,
-  set = require("render-markdown").set,
-}):map("\\m")
+## Flash (Smart Navigation)
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<CR>` | Normal, Visual, Operator | Jump to location with labels |
+| `<Shift><CR>` | Normal, Visual, Operator | Jump to Treesitter node |
+| `r` | Operator | Remote flash (perform motion at different location) |
+| `R` | Operator, Visual | Treesitter search |
+| `<C-x>` | Command | Toggle Flash search |
 
--- Snacks
--- -----------------------------------------------------------------
-{ "<leader><space>",  function() Snacks.picker.smart() end,           desc = "Smart Find" },
-{ "<leader>.",        function() Snacks.scratch() end,                desc = "Scratch Buffer" },
-{ "<leader>,",        function() Snacks.picker.buffers() end,         desc = "Buffers" },
-{ "<leader>/",        function() Snacks.picker.grep() end,            desc = "Grep" },
-{ "<leader>:",        function() Snacks.picker.command_history() end, desc = "Cmd History" },
-{ "<leader>gg",       function() Snacks.lazygit() end,                desc = "Lazygit" },
-{ "<c-/>",            function() Snacks.terminal() end,               desc = "Terminal" },
+---
 
--- todo-comments
--- ---------------------------------------------------------------------
-{
-  "]t",
-  function()require("todo-comments").jump_next()end,
-  desc = "Next Todo Comment"
-},
-{
-  "[t",
-  function()require("todo-comments").jump_prev()end,
-  desc = "Previous Todo Comment"
-},
-{
-  "<leader>xt",
-  "<cmd>Trouble todo toggle<cr>",
-  desc = "Todo (Trouble)"
-},
-{
-  "<leader>xT",
-  "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>",
-  desc = "Todo/Fix/Fixme (Trouble)"
-},
-{
-  "<leader>st",
-  "<cmd>TodoTelescope<cr>",
-  desc = "Todo"
-},
-{
-  "<leader>sT",
-  "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",
-  desc = "Todo/Fix/Fixme"
-},
+## Grug-far (Search & Replace)
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader>sr` | Normal, Visual | Open search & replace dialog |
+| `<localleader>r` | Grug-far Buffer | Perform replace |
+| `<localleader>c` | Grug-far Buffer | Close grug-far |
+| `<Enter>` | Grug-far Buffer | Go to result location |
+| `<Up>` | Grug-far Buffer | Open previous result |
+| `<Down>` | Grug-far Buffer | Open next result |
 
--- treesitter
--- -----------------------------------------------------------
-Snacks.toggle({
-  name = "[T]reesitter Context",
-  get = tsc.enabled,
-  set = function(state)
-    if state then
-      tsc.enable()
-    else
-      tsc.disable()
-    end
-  end,
-}):map("<leader>ut")
+---
 
+## LSP (Language Server Protocol)
 
-init_selection = "gvv",
-node_incremental = "gvn",
-scope_incremental = "gvs",
-node_decremental = "gvp",
+### General LSP
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader>cm` | Normal | Open Mason (LSP manager) |
 
-['@parameter.outer'] = 'v', -- charwise
-['@function.outer'] = 'V', -- linewise
-['@class.outer'] = '<c-v>', -- blockwise
+### Code Navigation
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `gld` | Normal | Go to definition |
+| `glD` | Normal | Go to declaration |
+| `glr` | Normal | Find references |
+| `gli` | Normal | Find implementations |
+| `glt` | Normal | Go to type definition |
+| `gls` | Normal | Document symbols |
+| `glS` | Normal | Workspace symbols |
 
--- trouble
--- ------------------------------------------------------------
-{ "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
-{ "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
-{ "<leader>cs", "<cmd>Trouble symbols toggle<cr>", desc = "Symbols (Trouble)" },
-{ "<leader>cS", "<cmd>Trouble lsp toggle<cr>", desc = "LSP references/definitions/... (Trouble)" },
-{ "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)" },
-{ "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)" },
-{
-  "[q",
-  function()
-    if require("trouble").is_open() then
-      require("trouble").prev({ skip_groups = true, jump = true })
-    else
-      local ok, err = pcall(vim.cmd.cprev)
-      if not ok then
-        vim.notify(err, vim.log.levels.ERROR)
-      end
-    end
-  end,
-  desc = "Previous Trouble/Quickfix Item",
-},
-{
-  "]q",
-  function()
-    if require("trouble").is_open() then
-      require("trouble").next({ skip_groups = true, jump = true })
-    else
-      local ok, err = pcall(vim.cmd.cnext)
-      if not ok then
-        vim.notify(err, vim.log.levels.ERROR)
-      end
-    end
-  end,
-  desc = "Next Trouble/Quickfix Item",
-},
+### Code Actions
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader>cr` | Normal | Rename symbol |
+| `<leader>ca` | Normal, Visual | Code action |
+| `<leader>cf` | Normal, Visual, Select | Format buffer |
+| `<leader>\H` | Normal | Toggle inlay hints |
 
--- which-key
--- ------------------------------------------------------------------
-{
-  "<leader>?",
-  function()
-    require("which-key").show({ global = false })
-  end,
-  desc = "Keymaps",
-},
+---
 
--- ============================================================================
--- Window navigation
--- ----------------------------------------------------------------------------
-map("n",    "<C-h>",                "<C-w>h",                 { desc = "Window Left" })
-map("n",    "<C-j>",                "<C-w>j",                 { desc = "Window Down" })
-map("n",    "<C-k>",                "<C-w>k",                 { desc = "Window Up" })
-map("n",    "<C-l>",                "<C-w>l",                 { desc = "Window Right" })
+## Treesitter
 
--- ============================================================================
--- TAB MANAGEMENT
--- ----------------------------------------------------------------------------
-map("n",    "<leader><tab><tab>",   "<cmd>tabnew<cr>",        { desc = "New" })
-map("n",    "<leader><tab>n",       "<cmd>tabnext<cr>",       { desc = "Next" })
-map("n",    "<leader><tab>p",       "<cmd>tabprevious<cr>",   { desc = "Previous" })
-map("n",    "<leader><tab>f",       "<cmd>tabfirst<cr>",      { desc = "First" })
-map("n",    "<leader><tab>l",       "<cmd>tablast<cr>",       { desc = "Last" })
-map("n",    "<leader><tab>q",       "<cmd>tabclose<cr>",      { desc = "Close" })
-map("n",    "<leader><tab>o",       "<cmd>tabonly<cr>",       { desc = "Close Others" })
+### Incremental Selection
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `gvv` | Normal | Initialize selection |
+| `gvn` | Normal | Expand to next node |
+| `gvs` | Normal | Expand to scope |
+| `gvp` | Normal | Shrink to previous node |
 
--- ============================================================================
--- MOVEMENT - Enhanced up/down navigation
--- WHAT: Smart j/k movement (respects wrapped lines)
--- WHY: Lines that wrap shouldn't count as multiple "down" presses (gj/gk)
--- HOW: Uses expression mapping to choose between j/gj based on count
--- ----------------------------------------------------------------------------
-map({ "n", "x" },   "j",        "v:count == 0 ? 'gj' : 'j'",  { desc = "Down", expr = true, silent = true })
-map({ "n", "x" },   "<Down>",   "v:count == 0 ? 'gj' : 'j'",  { desc = "Down", expr = true, silent = true })
-map({ "n", "x" },   "k",        "v:count == 0 ? 'gk' : 'k'",  { desc = "Up", expr = true, silent = true })
-map({ "n", "x" },   "<Up>",     "v:count == 0 ? 'gk' : 'k'",  { desc = "Up", expr = true, silent = true })
+### Treesitter Context
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `\t` | Normal | Toggle treesitter context panel |
 
--- ============================================================================
--- SEARCH NAVIGATION
--- WHAT: Smart n/N search navigation (always goes forward/backward)
--- WHY: Default Vim n/N behavior reverses if you started search with '/' then used '?'
--- HOW: Uses expression mapping to intelligently choose forward or backward based on context
--- SOURCE: https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
--- NOTE: 'zv' in normal mode opens folds to show matched line
--- ----------------------------------------------------------------------------
-map("n",    "n",    "'Nn'[v:searchforward].'zv'",   { expr = true, desc = "Next Search Result" })
-map("x",    "n",    "'Nn'[v:searchforward]",        { expr = true, desc = "Next Search Result" })
-map("o",    "n",    "'Nn'[v:searchforward]",        { expr = true, desc = "Next Search Result" })
-map("n",    "N",    "'nN'[v:searchforward].'zv'",   { expr = true, desc = "Prev Search Result" })
-map("x",    "N",    "'nN'[v:searchforward]",        { expr = true, desc = "Prev Search Result" })
-map("o",    "N",    "'nN'[v:searchforward]",        { expr = true, desc = "Prev Search Result" })
+---
 
--- ============================================================================
--- UNDO BREAK-POINTS
--- WHAT: Create undo boundaries after punctuation in insert mode
--- WHY: Allows undoing text after specific punctuation without losing everything
--- HOW: <c-g>u creates an undo point without moving cursor
--- ----------------------------------------------------------------------------
-map("i",    ",",    ",<c-g>u")
-map("i",    ".",    ".<c-g>u")
-map("i",    ";",    ";<c-g>u")
+## Mini.nvim
 
--- ============================================================================
--- FILE MANAGEMENT
--- ----------------------------------------------------------------------------
-map({ "i", "x", "n", "s" },   "<C-s>",    "<cmd>w<cr><esc>",    { desc = "Save File" })
-map("n",                  "<leader>fn",   "<cmd>enew<cr>",      { desc = "New File" })
+### Mini.files (File Navigator)
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader>e` | Normal | Toggle file explorer |
 
--- ============================================================================
--- INDENTATION
--- WHAT: Re-indent selection when using < or > in visual mode
--- HOW: gv reselects previous visual selection after the indent
--- ----------------------------------------------------------------------------
-map("x",    "<",    "<gv")
-map("x",    ">",    ">gv")
+### Mini.surround (Surrounds)
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `sa` | Normal, Visual | Add surrounding |
+| `sd` | Normal | Delete surrounding |
+| `sr` | Normal | Replace surrounding |
+| `sf` | Normal | Find surrounding (cursor right) |
+| `sF` | Normal | Find surrounding (cursor left) |
+| `sh` | Normal | Highlight surrounding |
+| `sa` suffix | Normal | Add with last/next modifier |
+| `sd` suffix | Normal | Delete with last/next modifier |
 
--- ============================================================================
--- PLUGIN MANAGEMENT
--- ----------------------------------------------------------------------------
-map("n", "<leader>nl", "<cmd>Lazy<cr>", { desc = "Lazy" })
+### Mini.comment (Commenting)
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `gc` | Normal, Visual | Toggle comment (line) |
+| `gb` | Normal, Visual | Toggle comment (block) |
 
--- ============================================================================
--- APPLICATION MANAGEMENT
--- ----------------------------------------------------------------------------
-map("n",    "<leader>qq",   "<cmd>qa<cr>",                                          { desc = "Quit All" })
-map("n",    "<Esc>",        "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>", { desc = "Refresh Screen" })
-```
+### Mini.bracketed (Navigation)
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `[b` / `]b` | Normal, Visual, Operator | Previous/next buffer |
+| `[B` / `]B` | Normal, Visual, Operator | First/last buffer |
+| `[c` / `]c` | Normal, Visual, Operator | Previous/next comment |
+| `[C` / `]C` | Normal, Visual, Operator | First/last comment |
+| `[d` / `]d` | Normal, Visual, Operator | Previous/next diagnostic |
+| `[D` / `]D` | Normal, Visual, Operator | First/last diagnostic |
+| `[f` / `]f` | Normal, Visual, Operator | Previous/next file on disk |
+| `[F` / `]F` | Normal, Visual, Operator | First/last file on disk |
+| `[i` / `]i` | Normal, Visual, Operator | Previous/next indent change |
+| `[I` / `]I` | Normal, Visual, Operator | First/last indent change |
+| `[j` / `]j` | Normal, Visual, Operator | Previous/next jump in buffer |
+| `[J` / `]J` | Normal, Visual, Operator | First/last jump in buffer |
+| `[l` / `]l` | Normal, Visual, Operator | Previous/next location |
+| `[L` / `]L` | Normal, Visual, Operator | First/last location |
+| `[o` / `]o` | Normal, Visual, Operator | Previous/next old file |
+| `[O` / `]O` | Normal, Visual, Operator | First/last old file |
+| `[q` / `]q` | Normal, Visual, Operator | Previous/next quickfix entry |
+| `[Q` / `]Q` | Normal, Visual, Operator | First/last quickfix entry |
+| `[t` / `]t` | Normal, Visual, Operator | Previous/next treesitter node |
+| `[T` / `]T` | Normal, Visual, Operator | First/last treesitter node |
+| `[u` / `]u` | Normal, Visual, Operator | Previous/next undo state |
+| `[U` / `]U` | Normal, Visual, Operator | First/last undo state |
+| `[w` / `]w` | Normal, Visual, Operator | Previous/next window |
+| `[W` / `]W` | Normal, Visual, Operator | First/last window |
+| `[y` / `]y` | Normal, Visual, Operator | Previous/next yank |
+| `[Y` / `]Y` | Normal, Visual, Operator | First/last yank |
+
+### Mini.move (Move Text)
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<M-h>` | Normal, Visual, Insert | Move selection left |
+| `<M-j>` | Normal, Visual, Insert | Move selection down |
+| `<M-k>` | Normal, Visual, Insert | Move selection up |
+| `<M-l>` | Normal, Visual, Insert | Move selection right |
+
+### Mini.operators (Text Operators)
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `gx` | Normal, Visual | Exchange text (swap) |
+
+---
+
+## Snacks.nvim
+
+### Picker (Smart Finder)
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader><space>` | Normal | Smart find (smart picker) |
+| `<leader>` | Normal | Smart find |
+
+### Buffers & Files
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader>,` | Normal | Open buffer picker |
+| `<leader>.` | Normal | Open scratch buffer |
+
+### Search & History
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader>/` | Normal | Grep search |
+| `<leader>:` | Normal | Command history |
+
+### Terminal
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<C-/>` | Normal | Toggle terminal |
+
+### Git Integration
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader>gg` | Normal | Open Lazygit |
+
+### Markdown Rendering
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `\m` | Normal | Toggle render markdown |
+
+---
+
+## Todo-Comments
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `]t` | Normal | Jump to next todo comment |
+| `[t` | Normal | Jump to previous todo comment |
+| `<leader>st` | Normal | Open Todo picker |
+| `<leader>sT` | Normal | Open Todo/Fix/Fixme picker |
+| `<leader>xt` | Normal | Show todos in Trouble |
+| `<leader>xT` | Normal | Show Todo/Fix/Fixme in Trouble |
+
+---
+
+## Trouble (Diagnostics & References)
+
+### Diagnostics
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader>xx` | Normal | Toggle all diagnostics |
+| `<leader>xX` | Normal | Toggle buffer diagnostics |
+
+### Symbols & References
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader>cs` | Normal | Toggle document symbols |
+| `<leader>cS` | Normal | Toggle LSP references/definitions |
+
+### Lists
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader>xL` | Normal | Toggle location list |
+| `<leader>xQ` | Normal | Toggle quickfix list |
+| `[q` | Normal | Previous quickfix/trouble item |
+| `]q` | Normal | Next quickfix/trouble item |
+
+---
+
+## Which-key
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader>?` | Normal | Show keymaps (which-key) |
+
+---
+
+## Blink.cmp (Completion)
+
+### Completion Menu Navigation
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<C-space>` | Insert | Show completion menu |
+| `<C-e>` | Insert | Hide completion menu |
+| `<C-y>` | Insert | Accept selected completion |
+| `<C-n>` | Insert | Select next completion |
+| `<C-p>` | Insert | Select previous completion |
+| `<C-f>` | Insert | Scroll completion docs forward |
+| `<C-b>` | Insert | Scroll completion docs backward |
+| `<C-l>` | Insert | Accept snippet |
+| `<C-j>` | Insert | Jump to next snippet placeholder |
+| `<C-k>` | Insert | Jump to previous snippet placeholder |
+
+---
+
+## Standard Vim Navigation (Built-in)
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `gd` | Normal | Go to definition (LSP) |
+| `gr` | Normal | Find references (LSP) |
+| `K` | Normal | Hover (LSP documentation) |
+| `<C-k>` | Insert | Signature help (LSP) |
+| `[q` | Normal | Previous quickfix item |
+| `]q` | Normal | Next quickfix item |
+| `.` | Normal | Repeat last command |
+| `u` | Normal | Undo |
+| `<C-r>` | Normal | Redo |
+
+---
+
+## Custom Text Objects (Mini.ai)
+
+Custom text objects for working with code:
+
+| Object | Modes | Description |
+|--------|-------|-------------|
+| `ao` | a/i | Code block (outer/inner) |
+| `af` | a/i | Function (outer/inner) |
+| `ac` | a/i | Class (outer/inner) |
+| `at` | a/i | HTML tag (outer/inner) |
+| `ad` | a/i | Digit (outer/inner) |
+| `ae` | a/i | Word with case (outer/inner) |
+
+Usage: Combine with operators like `d` (delete), `c` (change), `y` (yank)
+- `dio` - Delete inner code block
+- `caf` - Change outer function
+- `yac` - Yank outer class
+
+---
+
+## Notes
+
+- **Leader Key**: `<leader>` is typically mapped to space
+- **LocalLeader Key**: `<localleader>` is used for buffer-local keybindings (especially in grug-far)
+- **Mode Abbreviations**:
+  - `n` = Normal mode
+  - `i` = Insert mode
+  - `c` = Command mode
+  - `v` = Visual mode
+  - `x` = Visual mode (alias)
+  - `s` = Select mode
+  - `o` = Operator-pending mode
+  - `t` = Terminal mode
+
+- **Keybinding Strategy**:
+  - Mnemonic leader keys: `<leader>f` = find, `<leader>g` = git, `<leader>x` = diagnostics
+  - Bracketed navigation: `[x`/`]x` for previous/next, `[X`/`]X` for first/last
+  - LSP operations: `gl` prefix for language navigation
