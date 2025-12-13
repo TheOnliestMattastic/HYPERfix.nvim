@@ -16,6 +16,8 @@
 
 Think of it as **Neovim for humans** — especially humans whose brains are wired a little differently.
 
+**Bonus**: HYPERfix works seamlessly with **[AMP](https://ampcode.com/)**, an AI assistant that helps you configure, learn, and troubleshoot your setup without the overwhelm.
+
 ### Core Philosophy: KISSME
 
 - **Keep It Stupidly Simple** — Code that's explicit and easy to understand. No magic.
@@ -180,6 +182,61 @@ Every file has comments explaining the WHAT/WHY/HOW. If something feels opiniona
 
 ---
 
+## AI-Assisted Development with AMP
+
+HYPERfix is designed to work with **[AMP](https://ampcode.com/)**, an AI coding assistant that understands your codebase and helps you configure, learn, and maintain your Neovim setup.
+
+### Why AI for Config?
+
+Configuring Neovim can feel **overwhelming** — especially if you're neurodivergent or managing cognitive load. AMP helps by:
+
+- **Reducing decision paralysis** — Ask questions, explore options together
+- **Automating repetitive tasks** — Plugin installation, boilerplate config, documentation updates
+- **Explaining the "why"** — Understand design decisions instead of blindly copying code
+- **Learning at your pace** — AMP acts as a mentor, not a magic box
+
+### Why AMP (and Not Copilot/Windsurf/Codeium)?
+
+HYPERfix intentionally uses **[AMP](https://ampcode.com/)** instead of inline AI assistants (Copilot, Windsurf, Codeium) because:
+
+- **Non-intrusive** — AMP doesn't push constant suggestions or promote AI over-reliance. You ask; it answers
+- **Intentional usage** — Unlike always-on autocomplete, AMP requires explicit interaction (you control when to ask)
+- **Respects autonomy** — The extensive code snippets and LSP server configuration in HYPERfix provide a good balance between assistance and independence
+- **Transparent approach** — AMP's design philosophy aligns with KISSME: explicit, understandable, and non-magical
+
+**This means:** You use AI as a *tool when you need it*, not a constant presence nudging you toward lazy coding. You stay engaged with your config, not dependent on autocomplete.
+
+The balance HYPERfix strikes is intentional: enough scaffolding that you can explore independently, plus optional AI assistance when things get complex.
+
+*If you do want in-editor AI suggestions, **[Sidekick.nvim](https://github.com/folke/Sidekick.nvim)** works well with HYPERfix.*
+
+### AGENTS.md: AI Configuration Guidelines
+
+The included `AGENTS.md` file contains detailed instructions for AI agents helping with HYPERfix. It covers:
+
+- **Verification & transparency** — AI sources its answers and provides links so you can verify
+- **Default-first configuration** — Plugins are set up with sensible defaults before customizations
+- **Permission before changes** — You review and approve all modifications before they're applied
+- **Mentorship approach** — AI helps you understand your config, not just manipulate it
+
+This ensures AI is a **transparent, educational tool** — not a black box.
+
+### Using AMP with HYPERfix
+
+To use AMP with HYPERfix:
+
+1. Open HYPERfix in AMP (paste your repo URL or open the project locally)
+2. AMP reads the `AGENTS.md` file automatically
+3. Ask questions like:
+   - "How do I add telescope.nvim?"
+   - "Explain how the keymaps work"
+   - "Help me debug why X isn't working"
+4. AMP will guide you through changes, show you diffs, and wait for your approval
+
+**AI is a tool for learning and automation — use it intentionally.**
+
+---
+
 ## Philosophy & Design
 
 ### Why KISSME?
@@ -291,4 +348,3 @@ GNU
 **Made with ⚔️ and 💚 by someone who understands that neurodivergent brains are a feature, not a bug.**
 
 *Now go forth and edit. Your editor is waiting. 🏰*
-
