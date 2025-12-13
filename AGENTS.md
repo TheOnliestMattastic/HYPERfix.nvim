@@ -9,12 +9,24 @@ HYPERfix.nvim follows **KISSME** principles:
 - **Keep It Stupidly Simple** — Code is explicit and easy to understand. No unnecessary complexity.
 - **Modularize Everything** — Each concern has its own file.
 
-Every code block follows a **WHAT/WHY/HOW/NOTE** pattern (pick at least two):
+Every code block follows a **WHAT/WHY/HOW/NOTE** pattern—pick 1-3 keywords that add value:
 
-- **WHAT:** What does this code do?
-- **WHY:** Why is it needed and who benefits?
-- **HOW:** How does it work technically?
-- **NOTE:** Any gotchas, alternatives, or reminders
+```lua
+-- =============================================================================
+-- PLUGIN_NAME
+-- -----------------------------------------------------------------------------
+-- WHAT: Brief description of what this does
+-- WHY:  Brief explanation of why it's needed
+-- HOW:  Brief technical explanation of how it works
+-- NOTE: Any gotchas, alternatives, or reminders
+-- -----------------------------------------------------------------------------
+```
+
+Guidelines:
+- Pick only keywords that add non-redundant information (1-3 typically)
+- Keep comments brief (1-2 lines per section)
+- Use section headers with dashes for visual breaks
+- Avoid explanations that merely repeat the code itself
 
 ## Design Principles
 
