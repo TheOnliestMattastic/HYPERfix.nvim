@@ -1,14 +1,18 @@
--- RESOURCE: https://
+-- =============================================================================
+-- REFERENCE: https://github.com/sourcegraph/amp.nvim
+-- -----------------------------------------------------------------------------
 return {
   "sourcegraph/amp.nvim",
   -- lazy = true,
   branch = "main",
   opts = { auto_start = true, log_level = "info" },
 
+  -- ===========================================================================
   -- WHAT: Configure amp and create user commands after plugin loads
   -- WHY: Lua files must `return` the plugin spec; runtime setup must run in `config`
   -- HOW: `config` receives opts; we call require('amp').setup(opts) and create commands
   -- NOTE: Placing commands here avoids code after `return` which causes the EOF error
+  -- ---------------------------------------------------------------------------
   config = function(_, opts)
     -- apply plugin options safely
     local ok, amp = pcall(require, "amp")
@@ -19,8 +23,6 @@ return {
     local amp_message = require("amp.message")
 
     -- WHAT: Send a quick message to the agent
-    -- WHY: Quick way to send a short prompt without opening other UI
-    -- HOW: Creates :AmpSend <message>
     -- NOTE: nargs="*" lets the command accept multi-word arguments
     vim.api.nvim_create_user_command("AmpSend", function(cmdopts)
       local message = cmdopts.args or ""
@@ -34,10 +36,10 @@ return {
       desc = "Send a message to Amp",
     })
 
+    -- =========================================================================
     -- WHAT: Send entire buffer contents
-    -- WHY: Useful for sending the whole file to the agent for analysis/refactor
-    -- HOW: Reads current buffer then sends it
     -- NOTE: We use nargs="?" because no args are required
+    -- -------------------------------------------------------------------------
     vim.api.nvim_create_user_command("AmpSendBuffer", function()
       local buf = vim.api.nvim_get_current_buf()
       local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
@@ -48,10 +50,12 @@ return {
       desc = "Send current buffer contents to Amp",
     })
 
+    -- =========================================================================
     -- WHAT: Add selected text directly to prompt
     -- WHY: Lets you highlight a range and send only that selection
     -- HOW: Use a range command (range = true) so opts.line1/line2 are populated
     -- NOTE: Use <line1-1> because lua index is 0-based for buf_get_lines start
+    -- -------------------------------------------------------------------------
     vim.api.nvim_create_user_command("AmpPromptSelection", function(cmdopts)
       local start_line = cmdopts.line1
       local end_line = cmdopts.line2

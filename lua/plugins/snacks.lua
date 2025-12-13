@@ -1,5 +1,7 @@
+-- =============================================================================
 -- SNACKS.NVIM: The "Face"
--- RESOURCE: https://github.com/folke/snacks.nvim
+-- REFERENCE: https://github.com/folke/snacks.nvim
+-- -----------------------------------------------------------------------------
 local dashboard = require("snacks-dashboard")
 return {
   {
@@ -7,21 +9,31 @@ return {
     priority = 1000,
     lazy = false,
     opts = {
+      animate =             { enabled = true },
       bigfile =             { enabled = true },
+      bufdelete =           { enabled = true },
+      debug =               { enabled = true },
+      dim =               { enabled = true },
       image =               { enabled = true },
       indent =              { enabled = true },
       input =               { enabled = true },
       lazygit =             { enabled = true },
       notifier =            { enabled = true },
       quickfile =           { enabled = true },
+      rename =              { enabled = true },
+      scope =               { enabled = true },
+      scratch =             { enabled = true },
       scroll =              { enabled = true },
       statuscolumn =        { enabled = true },
       terminal =            { enabled = true },
+      toggle =              { enabled = true },
+      util =                { enabled = true },
       words =               { enabled = true },
+      zen =                 { enabled = true },
 
       -- =======================================================================
       -- dashboard
-      -- -- --------------------------------------------------------------------
+      -- -----------------------------------------------------------------------
       dashboard =           { enabled = true,
         preset =            { header = dashboard.header },
         sections =            dashboard.sections, },
@@ -34,9 +46,9 @@ return {
         { explorer =        { enabled = false } } },
     },
 
-    -- ========================================================================
+    -- =========================================================================
     -- keymaps
-    -- ------------------------------------------------------------------------
+    -- -------------------------------------------------------------------------
     keys = {
       { "<leader><space>",  function() Snacks.picker.smart() end,           desc = "Smart Find" },
       { "<leader>.",        function() Snacks.scratch() end,                desc = "Scratch Buffer" },

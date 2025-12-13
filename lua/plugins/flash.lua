@@ -1,3 +1,7 @@
+-- =============================================================================
+-- WHAT: Fast navigation with intelligent character labels
+-- REFERENCE: https://github.com/folke/flash.nvim
+-- -----------------------------------------------------------------------------
 return {
   {
     'folke/flash.nvim',
@@ -12,7 +16,7 @@ return {
       },
 
       {
-        '<SHIFT><CR>',
+        '<C-CR>',
         mode = { 'n', 'x', 'o' },
         function() require('flash').treesitter() end,
         desc = 'Flash Treesitter',
@@ -33,7 +37,7 @@ return {
       },
 
       {
-        '<c-x>',
+        '<c-h>',
         mode = { 'c' },
         function() require('flash').toggle() end,
         desc = 'Toggle Flash Search',
