@@ -49,28 +49,24 @@ return {
         function() require('flash').jump() end,
         desc = 'Flash [S]earch',
       },
-
       {
         'S',
         mode = { 'n', 'x', 'o' },
         function() require('flash').treesitter() end,
         desc = 'Flash Tree[s]itter',
       },
-
       {
         'r',
         mode = 'o',
         function() require('flash').remote() end,
         desc = '[R]emote Flash',
       },
-
       {
         'R',
         mode = { 'o', 'x' },
         function() require('flash').treesitter_search() end,
         desc = 'T[r]eesitter Search',
       },
-
       {
         '<c-s>',
         mode = { 'c' },
