@@ -22,8 +22,10 @@ return {
 
     local amp_message = require("amp.message")
 
+    -- =========================================================================
     -- WHAT: Send a quick message to the agent
     -- NOTE: nargs="*" lets the command accept multi-word arguments
+    -- -------------------------------------------------------------------------
     vim.api.nvim_create_user_command("AmpSend", function(cmdopts)
       local message = cmdopts.args or ""
       if message == "" then
