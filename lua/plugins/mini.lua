@@ -1,5 +1,7 @@
+-- =============================================================================
 -- MINI.NVIM: The "Brain"
 -- REFERENCE: https://github.com/echasnovski/mini.nvim
+-- -----------------------------------------------------------------------------
 return {
   {
     'echasnovski/mini.nvim',
@@ -9,23 +11,9 @@ return {
       'nvim-treesitter/nvim-treesitter-textobjects', -- for mini.ai
     },
     config = function()
-      require('mini.align').setup()
-      require('mini.basics').setup()
-      require('mini.bracketed').setup()
-      require('mini.colors').setup()
-      require('mini.icons').setup()
-      require('mini.surround').setup()
-      require('mini.operators').setup()
-      require('mini.move').setup()
-      require('mini.pairs').setup()
-      require('mini.splitjoin').setup()
-      require('mini.statusline').setup()
-      require('mini.tabline').setup()
-      require('mini.visits').setup()
-
-      -- ======================================================================
+      -- =======================================================================
       -- mini.ai
-      -- ----------------------------------------------------------------------
+      -- -----------------------------------------------------------------------
       local ai = require('mini.ai')
       ai.setup({
         n_lines = 500,
@@ -89,6 +77,7 @@ return {
           Snacks.rename.on_rename_file(event.data.from, event.data.to)
         end,
       })
+
       -- =======================================================================
       -- mini.keymap
       -- -----------------------------------------------------------------------
@@ -106,15 +95,29 @@ return {
       map_combo('t', 'jk', '<BS><BS><C-\\><C-n>')
       map_combo('t', 'kj', '<BS><BS><C-\\><C-n>')
 
-      -- ======================================================================
+      -- =======================================================================
       -- mini.hues: useful for generating colorschemes
-      -- ----------------------------------------------------------------------
+      -- -----------------------------------------------------------------------
       -- require("mini.hues").setup({
       --   background = '#122030',
       --   foreground = '#A2FAA2',
       --   saturation = 'mediumhigh',
       --   accent = 'bg',
       -- })
+
+      require('mini.align').setup()
+      require('mini.basics').setup()
+      require('mini.bracketed').setup()
+      require('mini.colors').setup()
+      require('mini.icons').setup()
+      require('mini.surround').setup()
+      require('mini.operators').setup()
+      require('mini.move').setup()
+      require('mini.pairs').setup()
+      require('mini.splitjoin').setup()
+      require('mini.statusline').setup()
+      require('mini.tabline').setup()
+      require('mini.visits').setup()
     end,
   },
 }
