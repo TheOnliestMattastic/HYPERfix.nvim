@@ -19,7 +19,8 @@ return {
       {
         "nvim-treesitter/nvim-treesitter-textobjects",
         branch = "main",
-        event = "VeryLazy",
+        lazy = true,
+        event = { "BufRead", "BufNewFile", "BufEnter", "VeryLazy" },
         opts = {
           move = {
             enable = true,
@@ -33,7 +34,8 @@ return {
       -- ----------------------------------------------------------------------
       {
         "nvim-treesitter/nvim-treesitter-context",
-        event = "VeryLazy",
+        lazy = true,
+        event = { "BufRead", "BufNewFile", "BufEnter", "VeryLazy" },
         opts = function()
           local tsc = require("treesitter-context")
           Snacks.toggle({
@@ -46,7 +48,7 @@ return {
                 tsc.disable()
               end
             end,
-          }):map("\\t")
+          }):map("<leader>ut")
           return { mode = "cursor", max_lines = 3 }
         end,
       },
