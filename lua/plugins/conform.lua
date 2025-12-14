@@ -1,5 +1,6 @@
 return {
   'stevearc/conform.nvim',
+  lazy = true,
   event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
   keys = {
@@ -9,7 +10,7 @@ return {
         require('conform').format({ async = true, lsp_format = 'fallback' })
       end,
       mode = '',
-      desc = '[F]ormat buffer',
+      desc = '[F]ormat',
     },
   },
   opts = {
