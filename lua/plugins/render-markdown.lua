@@ -1,4 +1,7 @@
+-- =============================================================================
+-- RENDER-MARKDOWN
 -- REFERENCE: https://github.com/MeanderingProgrammer/render-markdown.nvim/wiki
+-- -----------------------------------------------------------------------------
 return {
   {
     'MeanderingProgrammer/render-markdown.nvim',
