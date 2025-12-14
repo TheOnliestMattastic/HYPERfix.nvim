@@ -1,6 +1,8 @@
+-- =============================================================================
 -- TREESITTER (Syntax Highlighting)
--- RESOURCE: https://github.com/nvim-treesitter/nvim-treesitter
---           https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+-- REFERENCE: https://github.com/nvim-treesitter/nvim-treesitter
+--            https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+-- -----------------------------------------------------------------------------
 return {
   {
     "nvim-treesitter/nvim-treesitter",
