@@ -1,4 +1,8 @@
-return{
+-- =============================================================================
+-- REFERENCE: https://github.com/MagicDuck/grug-far.nvim
+-- WHAT: Advanced search and replace with live preview
+-- -----------------------------------------------------------------------------
+return {
   {
     "MagicDuck/grug-far.nvim",
     lazy = true,
