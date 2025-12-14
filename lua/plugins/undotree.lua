@@ -1,3 +1,8 @@
+-- =============================================================================
+-- UNDOTREE (visual undo history)
+-- WHAT: Visual view of undo history
+-- REFERENCE: https://github.com/jiaoshijie/undotree
+-- -----------------------------------------------------------------------------
 return {
   'jiaoshijie/undotree',
   opts = {
