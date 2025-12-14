@@ -6,7 +6,8 @@ return {
   {
     'echasnovski/mini.nvim',
     version = false,
-    event = 'VeryLazy',
+    lazy = true,
+    event = { 'BufRead', 'BufNewFile', 'BufEnter', 'VeryLazy' },
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects', -- for mini.ai
     },
@@ -106,7 +107,7 @@ return {
       -- })
 
       require('mini.align').setup()
-      require('mini.basics').setup()
+      -- require('mini.basics').setup()
       require('mini.bracketed').setup()
       require('mini.colors').setup()
       require('mini.icons').setup()
