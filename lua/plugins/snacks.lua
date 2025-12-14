@@ -338,9 +338,9 @@ return {
       desc = '[S]earch [R]esume',
     },
     {
-      '<leader>ss',
+      '<leader><space>',
       function() Snacks.picker.smart() end,
-      desc = '[S]mart [S]earch',
+      desc = 'Smart Search',
     },
     {
       '<leader>su',
