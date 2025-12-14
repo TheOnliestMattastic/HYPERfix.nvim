@@ -24,7 +24,7 @@ return {
         name = 'Render Markdown',
         get = require('render-markdown').get,
         set = require('render-markdown').set,
-      }):map('\\m')
+      }):map('<leader>um')
     end,
   },
 }
