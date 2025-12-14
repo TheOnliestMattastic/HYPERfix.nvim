@@ -9,14 +9,14 @@ return {
     opts = {},
     keys = {
       {
-        '<CR>',
+        's',
         mode = { 'n', 'x', 'o' },
         function() require('flash').jump() end,
         desc = 'Flash',
       },
 
       {
-        '<C-CR>',
+        'S',
         mode = { 'n', 'x', 'o' },
         function() require('flash').treesitter() end,
         desc = 'Flash Treesitter',
