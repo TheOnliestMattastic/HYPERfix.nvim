@@ -11,6 +11,7 @@
 return {
   {
     'neovim/nvim-lspconfig',
+    event = { 'BufRead', 'BufNewFile', 'BufEnter', 'VeryLazy' },
     dependencies = {
       { 'mason-org/mason.nvim', opts = {} },
       'mason-org/mason-lspconfig.nvim',
@@ -38,7 +39,7 @@ return {
           map(
             '<leader>ca',
             vim.lsp.buf.code_action,
-            'Code [A]ction',
+            '[C]ode [A]ction',
             { 'n', 'x' }
           )
           map(
@@ -114,24 +115,6 @@ return {
                 })
               end,
             })
-          end
-          if
-            client
-            and client_supports_method(
-              client,
-              vim.lsp.protocol.Methods.textDocument_inlayHint,
-              event.buf
-            )
-          then
-            map(
-              '\\H',
-              function()
-                vim.lsp.inlay_hint.enable(
-                  not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })
-                )
-              end,
-              'Inlay [H]ints'
-            )
           end
         end,
       })
