@@ -16,7 +16,7 @@ return {
     'folke/todo-comments.nvim',
     lazy = true,
     cmd = { 'TodoTrouble', 'TodoTelescope' },
-    event = 'BufRead',
+    event = { 'BufRead', 'BufNewFile', 'BufEnter', 'VeryLazy' },
     dependencies = { 'nvim-lua/plenary.nvim', lazy = true },
 
     -- =========================================================================
