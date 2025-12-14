@@ -1,61 +1,22 @@
+-- =============================================================================
+-- NEOVIM LSP ECOSYSTEM CONFIGURATION
+-- -----------------------------------------------------------------------------
+-- LSP (Language Server Protocol) provides intelligent code features: completion,
+-- diagnostics, goto-definition, refactoring, and more. This config integrates:
+-- - Language servers via mason and lspconfig
+-- - Code completion via blink.cmp
+-- - Code formatting via conform.nvim
+-- - Lua development support via lazydev.nvim
+-- -----------------------------------------------------------------------------
 return {
   {
-    'folke/lazydev.nvim',
-    lazy = true,
-    ft = 'lua',
-    opts = {
-      library = {
-        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-        { path = 'snacks.nvim', words = { 'Snacks' } },
-        { path = 'lazy.nvim', words = { 'LazyVim' } },
-      },
-    },
-  },
-
-  -- ==========================================================================
-  -- NVIM-LSPCONFIG
-  -- --------------------------------------------------------------------------
-  {
     'neovim/nvim-lspconfig',
-    -- lazy = true,
     dependencies = {
-      -- ======================================================================
-      -- MASON.NVIM
-      -- ----------------------------------------------------------------------
-      {
-        'mason-org/mason.nvim',
-        lazy = true,
-        cmd = 'Mason',
-        keys = { { '<leader>cm', '<cmd>Mason<cr>', desc = 'Mason' } },
-        build = ':MasonUpdate',
-        opts_extend = { 'ensure_installed' },
-        opts = { ensure_installed = { 'stylua' } },
-        config = function(_, opts)
-          require('mason').setup(opts)
-          local mr = require('mason-registry')
-          mr:on('package:install:success', function()
-            vim.defer_fn(function()
-              -- trigger FileType event to possibly load this newly installed LSP server
-              require('lazy.core.handler.event').trigger({
-                event = 'FileType',
-                buf = vim.api.nvim_get_current_buf(),
-              })
-            end, 100)
-          end)
-
-          mr.refresh(function()
-            for _, tool in ipairs(opts.ensure_installed) do
-              local p = mr.get_package(tool)
-              if not p:is_installed() then p:install() end
-            end
-          end)
-        end,
-      },
-      { 'mason-org/mason-lspconfig.nvim', config = function() end },
+      { 'mason-org/mason.nvim', opts = {} },
+      'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       'saghen/blink.cmp',
     },
-
     config = function()
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup(
@@ -63,9 +24,6 @@ return {
           { clear = true }
         ),
         callback = function(event)
-          -- ==================================================================
-          -- keymaps
-          -- ------------------------------------------------------------------
           local map = function(keys, func, desc, mode)
             mode = mode or 'n'
             vim.keymap.set(
@@ -103,11 +61,6 @@ return {
             'gls',
             function() Snacks.picker.lsp_workspace_symbols() end,
             'Document [S]ymbols'
-          )
-          map(
-            'glS',
-            function() Snacks.picker.lsp_dynamic_workspace_symbols() end,
-            'Workspace [S]ymbols'
           )
           map(
             'glt',
@@ -162,10 +115,6 @@ return {
               end,
             })
           end
-
-          -- ==================================================================
-          -- toggle keymap
-          -- ------------------------------------------------------------------
           if
             client
             and client_supports_method(
@@ -181,31 +130,14 @@ return {
                   not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })
                 )
               end,
-              'Toggle Inlay [H]ints'
-            )
-          end
-
-          local bufnr = event.buf
-          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlineCompletion, bufnr) then
-            vim.lsp.inline_completion.enable(true, { bufnr = bufnr })
-            vim.keymap.set(
-              'i',
-              '<C-F>',
-              vim.lsp.inline_completion.get,
-              { desc = 'LSP: accept inline completion', buffer = bufnr }
-            )
-            vim.keymap.set(
-              'i',
-              '<C-G>',
-              vim.lsp.inline_completion.select,
-              { desc = 'LSP: switch inline completion', buffer = bufnr }
+              'Inlay [H]ints'
             )
           end
         end,
       })
-      -- ======================================================================
-      -- Diagnostic Config; See :help vim.diagnostic.Opts
-      -- ----------------------------------------------------------------------
+
+      -- Diagnostic Config
+      -- See :help vim.diagnostic.Opts
       vim.diagnostic.config({
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
@@ -220,8 +152,7 @@ return {
         } or {},
         virtual_text = {
           source = 'if_many',
-          spacing = 4,
-          -- prefix = 'icons',
+          spacing = 2,
           format = function(diagnostic)
             local diagnostic_message = {
               [vim.diagnostic.severity.ERROR] = diagnostic.message,
@@ -252,12 +183,12 @@ return {
 
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua',
+        'stylua', -- Used to format Lua code
       })
-
       require('mason-tool-installer').setup({
         ensure_installed = ensure_installed,
       })
+
       require('mason-lspconfig').setup({
         ensure_installed = {},
         automatic_installation = true,
@@ -275,72 +206,5 @@ return {
         },
       })
     end,
-  },
-
-  -- ==========================================================================
-  -- CONFORM.NVIM
-  -- --------------------------------------------------------------------------
-  {
-    'stevearc/conform.nvim',
-    lazy = true,
-    event = { 'BufWritePre' },
-    cmd = { 'ConformInfo' },
-    keys = {
-      {
-        '<leader>cf',
-        function()
-          require('conform').format({ async = true, lsp_format = 'fallback' })
-        end,
-        mode = '',
-        desc = '[F]ormat buffer',
-      },
-    },
-    opts = {
-      notify_on_error = true,
-      format_on_save = false,
-      formatters_by_ft = {
-        lua = { 'stylua' },
-      },
-    },
-  },
-
-  -- ==========================================================================
-  -- BLINK.CMP
-  -- --------------------------------------------------------------------------
-  {
-    'saghen/blink.cmp',
-    lazy = true,
-    event = { 'InsertEnter', 'CmdLineEnter' },
-    version = '1.*',
-    build = 'cargo build --release',
-    dependencies = {
-      'folke/lazydev.nvim',
-      'rafamadriz/friendly-snippets',
-      'saghen/blink.compat',
-    },
-
-    opts = {
-      keymap = { preset = 'default' },
-      appearance = { nerd_font_variant = 'mono' },
-      completion = { documentation = { auto_show = false } },
-      sources = {
-        per_filetype = {
-          lua = { inherit_defaults = true, 'lazydev' },
-        },
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
-        providers = {
-          lazydev = {
-            name = 'LazyDev',
-            module = 'lazydev.integrations.blink',
-            score_offset = 100,
-          },
-        },
-      },
-      snippets = { preset = 'default' },
-      fuzzy = { implementation = 'prefer_rust_with_warning' },
-      signature = { enabled = true },
-    },
-
-    config = function(_, opts) require('blink.cmp').setup(opts) end,
   },
 }
