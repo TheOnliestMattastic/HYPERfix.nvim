@@ -6,6 +6,7 @@ return {
   {
     "MagicDuck/grug-far.nvim",
     lazy = true,
+    event = { 'BufRead', 'BufNewFile', 'BufEnter', 'VeryLazy' },
     opts = { headerMaxWidth = 80 },
     cmd = { "GrugFar", "GrugFarWithin" },
     keys = {
