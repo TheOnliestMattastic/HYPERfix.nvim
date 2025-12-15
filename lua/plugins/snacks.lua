@@ -1,16 +1,29 @@
 -- =============================================================================
--- SNACKS.NVIM: The "Face"
+-- SNACKS.NVIM - The "Face" (UI/UX)
+-- =============================================================================
+-- WHAT: Collection of small QoL UI plugins (picker, dashboard, terminal, etc.)
+-- WHY:  Replaces multiple plugins with unified, lightweight alternatives
+-- HOW:  Each snack is a modular plugin (dashboard, picker, terminal, etc.)
+--       Enable/disable as needed in opts. Keymaps trigger snacks features.
+-- NOTE: Priority 1000 ensures it loads early. Lazy = false for immediate load.
+--
 -- REFERENCE: https://github.com/folke/snacks.nvim
--- -----------------------------------------------------------------------------
+-- =============================================================================
+
 local dashboard = require('snacks-dashboard')
+
 return {
   'folke/snacks.nvim',
   priority = 1000,
   lazy = false,
+
+  -- ===========================================================================
+  -- OPTIONS CONFIGURATION
+  -- ===========================================================================
   opts = {
     -- =========================================================================
-    -- dashboard
-    -- -------------------------------------------------------------------------
+    -- Dashboard: Home screen on startup
+    -- =========================================================================
     dashboard = {
       enabled = true,
       preset = { header = dashboard.header },
@@ -18,57 +31,65 @@ return {
     },
 
     -- =========================================================================
-    -- picker
-    -- -------------------------------------------------------------------------
+    -- Picker: Fuzzy finder / file/buffer/grep picker
+    -- =========================================================================
     picker = {
       enabled = true,
       sources = { explorer = { enabled = false } },
     },
 
     -- =========================================================================
-    -- styles
-    -- -------------------------------------------------------------------------
+    -- Styles: Notification and UI styling
+    -- =========================================================================
     styles = {
       enabled = true,
       notification = { wo = { wrap = true } },
     },
 
+    -- =========================================================================
+    -- Individual Snacks: Enable/disable by feature
+    -- =========================================================================
     -- stylua: ignore start
-    animate =       { enabled = true },
-    bigfile =       { enabled = true },
-    bufdelete =     { enabled = true },
-    debug =         { enabled = true },
-    dim =           { enabled = true },
-    explorer =      { enabled = false }, -- handled by mini.files
-    image =         { enabled = true },
-    indent =        { enabled = true },
-    input =         { enabled = true },
-    layout =        { enabled = true },
-    lazygit =       { enabled = true },
-    notifier =      { enabled = true },
-    notify =        { enabled = true },
-    profiler =      { enabled = true },
-    quickfile =     { enabled = true },
-    rename =        { enabled = true },
-    scope =         { enabled = true },
-    scratch =       { enabled = true },
-    scroll =        { enabled = true },
-    statuscolumn =  { enabled = true },
-    terminal =      { enabled = true },
-    toggle =        { enabled = true },
-    util =          { enabled = true },
-    words =         { enabled = true },
-    zen =           { enabled = true },
+    animate =       { enabled = true },  -- Smooth animations & transitions
+    bigfile =       { enabled = true },  -- Optimize performance for large files
+    bufdelete =     { enabled = true },  -- Smart buffer deletion
+    debug =         { enabled = true },  -- Pretty inspect & backtrace
+    dim =           { enabled = true },  -- Dim inactive scopes
+    explorer =      { enabled = false }, -- File explorer (handled by mini.files)
+    image =         { enabled = true },  -- Image viewer (Kitty/Wezterm/Ghostty)
+    indent =        { enabled = true },  -- Indent guides
+    input =         { enabled = true },  -- Better vim.ui.input
+    layout =        { enabled = true },  -- Window layouts
+    lazygit =       { enabled = true },  -- LazyGit integration
+    notifier =      { enabled = true },  -- Pretty notifications
+    notify =        { enabled = true },  -- vim.notify utilities
+    profiler =      { enabled = true },  -- Lua profiler
+    quickfile =     { enabled = true },  -- Fast file rendering
+    rename =        { enabled = true },  -- File renaming with LSP support
+    scope =         { enabled = true },  -- Scope detection & jumping
+    scratch =       { enabled = true },  -- Persistent scratch buffers
+    scroll =        { enabled = true },  -- Smooth scrolling
+    statuscolumn =  { enabled = true },  -- Pretty status column
+    terminal =      { enabled = true },  -- Floating/split terminals
+    toggle =        { enabled = true },  -- Toggle keymaps
+    util =          { enabled = true },  -- Utilities (library)
+    words =         { enabled = true },  -- LSP reference highlighting
+    zen =           { enabled = true },  -- Zen mode (distraction-free)
+    -- stylua: ignore end
   },
-  -- stylua: ignore end
 
   -- ===========================================================================
-  -- keymaps
-  -- ---------------------------------------------------------------------------
+  -- KEYMAPS
+  -- ===========================================================================
   keys = {
     -- =========================================================================
-    -- Top Level
-    -- -------------------------------------------------------------------------
+    -- Top Level: Global navigation & utilities
+    -- =========================================================================
+    {
+      '<leader><space>',
+      function() Snacks.picker.smart() end,
+      desc = 'Smart Search',
+    },
     {
       '<leader>/',
       function() Snacks.picker.grep() end,
@@ -85,93 +106,98 @@ return {
       desc = 'Scratch Buffer',
     },
     {
-      '<leader>`',
+      '<leader>t',
       function() Snacks.terminal() end,
-      desc = 'Toggle Terminal',
+      desc = '[T]erminal',
     },
     {
-      '<c-_>',
-      function() Snacks.terminal() end,
-      desc = 'which_key_ignore',
+      '<leader>qd',
+      function() Snacks.dashboard() end,
+      desc = '[D]ashboard',
     },
 
     -- =========================================================================
-    -- buffer
-    -- -------------------------------------------------------------------------
+    -- Buffer: Buffer operations
+    -- =========================================================================
     {
       '<leader>bb',
       function() Snacks.picker.buffers() end,
-      desc = '[B]uffers',
+      desc = 'Select [B]uffer',
     },
     {
       '<leader>bd',
       function() Snacks.bufdelete() end,
-      desc = '[B]uffer [D]elete',
+      desc = '[D]elete Buffer ',
     },
     {
       '<leader>bg',
       function() Snacks.picker.grep_buffers() end,
-      desc = 'Grep [B]uffers',
+      desc = '[G]rep Buffers',
+    },
+    {
+      "<leader>bS",
+      function() Snacks.scratch.select() end,
+      desc = "[S]elect Scratch Buffer"
     },
 
     -- =========================================================================
-    -- find/file
-    -- -------------------------------------------------------------------------
+    -- Find/File: File & project navigation
+    -- =========================================================================
     {
       '<leader>ff',
       function() Snacks.picker.files() end,
-      desc = '[F]ind [F]iles',
+      desc = 'Find [F]iles',
     },
     {
       '<leader>fp',
       function() Snacks.picker.projects() end,
-      desc = '[F]ind [P]rojects',
+      desc = 'Find [P]rojects',
     },
     {
       '<leader>fr',
       function() Snacks.picker.recent() end,
-      desc = '[F]ind [R]ecent',
+      desc = 'Find [R]ecent',
     },
     {
       '<leader>fR',
       function() Snacks.rename.rename_file() end,
-      desc = '[F]ile: [R]ename',
+      desc = '[R]ename File',
     },
     {
       '<leader>fw',
       function() Snacks.picker.grep_word() end,
-      desc = '[F]ind/Grep [W]ord',
+      desc = 'Find/Grep [W]ord',
       mode = { 'n', 'x' },
     },
 
     -- =========================================================================
-    -- git
-    -- -------------------------------------------------------------------------
+    -- Git: Git operations & GitHub integration
+    -- =========================================================================
     {
       '<leader>gb',
       function() Snacks.picker.git_branches() end,
-      desc = '[G]it [B]ranches',
+      desc = '[B]ranches',
     },
     {
       '<leader>gB',
       function() Snacks.gitbrowse() end,
-      desc = '[G]it [B]rowse',
+      desc = 'Open [B]rowser',
       mode = { 'n', 'v' },
     },
     {
       '<leader>gd',
       function() Snacks.picker.git_diff() end,
-      desc = '[G]it [D]iff (Hunks)',
+      desc = '[D]iff (Hunks)',
     },
     {
       '<leader>gf',
       function() Snacks.picker.git_files() end,
-      desc = '[G]it [F]iles',
+      desc = 'Git [F]iles',
     },
     {
       '<leader>gF',
       function() Snacks.picker.git_log_file() end,
-      desc = '[G]it Log [F]ile',
+      desc = 'Git Log [F]ile',
     },
     {
       '<leader>gg',
@@ -181,51 +207,51 @@ return {
     {
       '<leader>gi',
       function() Snacks.picker.gh_issue() end,
-      desc = '[G]itHub [I]ssues (open)',
+      desc = 'GitHub [I]ssues (open)',
     },
     {
       '<leader>gI',
       function() Snacks.picker.gh_issue({ state = 'all' }) end,
-      desc = '[G]itHub [I]ssues (all)',
+      desc = 'GitHub [I]ssues (all)',
     },
     {
       '<leader>gl',
       function() Snacks.picker.git_log() end,
-      desc = '[G]it [L]og',
+      desc = 'Git [L]og',
     },
     {
       '<leader>gL',
       function() Snacks.picker.git_log_line() end,
-      desc = '[G]it Log [L]ine',
+      desc = 'Git Log [L]ine',
     },
     {
       '<leader>gp',
       function() Snacks.picker.gh_pr() end,
-      desc = '[G]itHub [P]ull Requests (open)',
+      desc = 'GitHub [P]ull Requests (open)',
     },
     {
       '<leader>gP',
       function() Snacks.picker.gh_pr({ state = 'all' }) end,
-      desc = '[G]itHub [P]ull Requests (all)',
+      desc = 'GitHub [P]ull Requests (all)',
     },
     {
       '<leader>gs',
       function() Snacks.picker.git_status() end,
-      desc = '[G]it [S]tatus',
+      desc = '[S]tatus',
     },
     {
       '<leader>gS',
       function() Snacks.picker.git_stash() end,
-      desc = '[G]it [S]tash',
+      desc = '[S]tash',
     },
 
     -- =========================================================================
-    -- help
-    -- -------------------------------------------------------------------------
+    -- Help: Documentation & configuration
+    -- =========================================================================
     {
       '<leader>ha',
       function() Snacks.picker.autocmds() end,
-      desc = '[A]utocmds',
+      desc = 'Explore [A]utocmds',
     },
     {
       '<leader>hc',
@@ -234,7 +260,7 @@ return {
           cwd = vim.fn.stdpath('config'),
         })
       end,
-      desc = '[C]onfig Files',
+      desc = 'HYPERfix [C]onfig Files',
     },
     {
       '<leader>hh',
@@ -247,37 +273,13 @@ return {
       desc = '[K]eymaps',
     },
     {
-      '<leader>hm',
-      function() Snacks.picker.man() end,
-      desc = '[M]an Pages',
-    },
-    {
-      '<leader>hp',
-      function() Snacks.picker.lazy() end,
-      desc = '[P]lugin Spec',
-    },
-
-    -- =========================================================================
-    -- Notification
-    -- -------------------------------------------------------------------------
-    {
-      '<leader>nd',
-      function() Snacks.notifier.hide() end,
-      desc = '[D]ismiss Notifications',
-    },
-    {
-      '<leader>nh',
+      '<leader>nm',
       function() Snacks.picker.notifications() end,
-      desc = '[N]otification [H]istory',
-    },
-    {
-      '<leader>nn',
-      function() Snacks.notifier.show_history() end,
-      desc = '[N]otificatio[n] History',
+      desc = '[N]otification History',
     },
     {
       '<leader>nN',
-      desc = '[N]eovim [N]ews',
+      desc = '[N]eovim News',
       function()
         Snacks.win({
           file = vim.api.nvim_get_runtime_file('doc/news.txt', false)[1],
@@ -295,67 +297,92 @@ return {
     },
 
     -- =========================================================================
-    -- search
-    -- -------------------------------------------------------------------------
+    -- Search: Search & inspection utilities
+    -- =========================================================================
     {
       '<leader>sc',
       function() Snacks.picker.commands() end,
-      desc = '[S]earch [C]ommands',
+      desc = '[C]ommands',
+    },
+    {
+      '<leader>sd',
+      function() Snacks.picker.diagnostics() end,
+      desc = '[D]iagnostics',
+    },
+    {
+      '<leader>sD',
+      function() Snacks.picker.diagnostics_buffer() end,
+      desc = 'Buffer [D]iagnostics',
     },
     {
       '<leader>sh',
       function() Snacks.picker.search_history() end,
-      desc = '[S]earch [H]istory',
+      desc = '[H]istory',
     },
     {
       '<leader>sH',
       function() Snacks.picker.highlights() end,
-      desc = '[S]earch [H]ighlights',
+      desc = '[H]ighlights',
     },
     {
       '<leader>si',
       function() Snacks.picker.icons() end,
-      desc = '[S]earch [I]cons',
+      desc = '[I]cons',
     },
     {
       '<leader>sj',
       function() Snacks.picker.jumps() end,
-      desc = '[S]earch [J]umps',
+      desc = '[J]umps',
     },
     {
       '<leader>sl',
       function() Snacks.picker.lines() end,
-      desc = '[S]earch [L]ines',
+      desc = '[L]ines',
     },
     {
-      '<leader>sr',
+      '<leader>sL',
+      function() Snacks.picker.loclist() end,
+      desc = '[L]ocation',
+    },
+    {
+      '<leader>sm',
+      function() Snacks.picker.marks() end,
+      desc = '[M]arks',
+    },
+    {
+      '<leader>sx',
       function() Snacks.picker.registers() end,
-      desc = '[S]earch [R]egisters',
+      desc = 'Register Inde[x]',
     },
     {
       '<leader>sR',
       function() Snacks.picker.resume() end,
-      desc = '[S]earch [R]esume',
-    },
-    {
-      '<leader><space>',
-      function() Snacks.picker.smart() end,
-      desc = 'Smart Search',
+      desc = '[R]esume Search',
     },
     {
       '<leader>su',
       function() Snacks.picker.undo() end,
-      desc = '[S]earch [U]ndo History',
+      desc = '[U]ndo History',
     },
-    -- { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
-    -- { "<leader>sD", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer Diagnostics" },
-    -- { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
-    -- { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
-    -- { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
+    {
+      '<leader>sq',
+      function() Snacks.picker.qflist() end,
+      desc = '[Q]uickfix',
+    },
+    {
+      '<leader>ss',
+      function() Snacks.picker.lsp_symbols() end,
+      desc = 'LSP [S]ymbols',
+    },
+    {
+      '<leader>sS',
+      function() Snacks.picker.lsp_workspace_symbols() end,
+      desc = 'LSP Workspace [S]ymbols',
+    },
 
     -- =========================================================================
-    -- UI
-    -- -------------------------------------------------------------------------
+    -- UI: Interface toggles & settings
+    -- =========================================================================
     {
       '<leader>uC',
       function() Snacks.picker.colorschemes() end,
@@ -373,8 +400,8 @@ return {
     },
 
     -- =========================================================================
-    -- Other
-    -- -------------------------------------------------------------------------
+    -- Other: Navigation & reference jumping
+    -- =========================================================================
     {
       ']]',
       function() Snacks.words.jump(vim.v.count1) end,
@@ -387,27 +414,58 @@ return {
       desc = 'Prev Reference',
       mode = { 'n', 't' },
     },
-    -- {"<leader>bS", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer"},
 
     -- =========================================================================
-    -- LSP
-    -- -------------------------------------------------------------------------
-    -- { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
-    -- { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
-    -- { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
-    -- { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
-    -- { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
-    -- { "gai", function() Snacks.picker.lsp_incoming_calls() end, desc = "C[a]lls Incoming" },
-    -- { "gao", function() Snacks.picker.lsp_outgoing_calls() end, desc = "C[a]lls Outgoing" },
-    -- { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
-    -- { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+    -- LSP: Language server operations
+    -- =========================================================================
+    {
+      'gd',
+      function() Snacks.picker.lsp_definitions() end,
+      desc = '[D]efinition',
+    },
+    {
+      'gD',
+      function() Snacks.picker.lsp_declarations() end,
+      desc = '[D]eclaration',
+    },
+    {
+      'gr',
+      function() Snacks.picker.lsp_references() end,
+      nowait = true,
+      desc = '[R]eferences',
+    },
+    {
+      'gI',
+      function() Snacks.picker.lsp_implementations() end,
+      desc = '[I]mplementation',
+    },
+    {
+      'gy',
+      function() Snacks.picker.lsp_type_definitions() end,
+      desc = 'T[y]pe Definition',
+    },
+    {
+      'gli',
+      function() Snacks.picker.lsp_incoming_calls() end,
+      desc = 'Calls [I]ncoming',
+    },
+    {
+      'glo',
+      function() Snacks.picker.lsp_outgoing_calls() end,
+      desc = 'Calls [O]utgoing',
+    },
   },
 
+  -- ===========================================================================
+  -- INIT: Setup & configuration (runs at VeryLazy)
+  -- ===========================================================================
   init = function()
     vim.api.nvim_create_autocmd('User', {
       pattern = 'VeryLazy',
       callback = function()
-        -- Setup some globals for debugging (lazy-loaded)
+        -- =====================================================================
+        -- Debug Utilities: Global functions for pretty debugging
+        -- =====================================================================
         _G.dd = function(...) Snacks.debug.inspect(...) end
         _G.bt = function() Snacks.debug.backtrace() end
 
@@ -418,30 +476,51 @@ return {
           vim.print = _G.dd
         end
 
-        -- Create some toggle mappings
-        Snacks.toggle.option('spell', { name = '[S]pelling' }):map('<leader>us')
+        -- =====================================================================
+        -- Toggle Mappings: Create toggles for UI features (with <leader>u)
+        -- =====================================================================
+        Snacks.toggle.animate():map('<leader>ua')
+
+        Snacks.toggle.option(
+          'conceallevel',
+          {
+            name = "[C]onceal",
+            off = 0,
+            on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2
+          }
+        ):map('<leader>uc')
+
+        Snacks.toggle.diagnostics(
+          { name = '[D]iagnostics' }
+        ):map('<leader>ud')
+
+        Snacks.toggle.dim():map('<leader>uD', { desc = '[D]im' })
+        Snacks.toggle.indent():map('<leader>ug', { desc = '[I]ndent [G]uides' })
+
+        Snacks.toggle.option(
+          'relativenumber',
+          { name = 'Re[l]ative Number'}
+        ):map('<leader>uL')
+
+        Snacks.toggle.line_number(
+          { name = '[L]ine number' }
+        ):map('<leader>ul')
+
+        Snacks.toggle.treesitter(
+          {name = '[T]reesitter Highlights' }
+        ):map('<leader>uT')
+
+        Snacks.toggle.inlay_hints(
+          { name = 'Inlay [H]ints' }
+        ):map('<leader>uh')
+
+        Snacks.toggle.option(
+          'spell',
+          { name = '[S]pelling' }
+        ):map('<leader>us')
+
+        Snacks.toggle.scroll():map('<leader>uS')
         Snacks.toggle.option('wrap', { name = '[W]rap' }):map('<leader>uw')
-        Snacks.toggle
-          .option('relativenumber', { name = 'Re[l]ative Number' })
-          :map('<leader>uL')
-        Snacks.toggle.diagnostics():map('<leader>ud')
-        Snacks.toggle.line_number():map('<leader>ul')
-        Snacks.toggle
-          .option(
-            'conceallevel',
-            { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }
-          )
-          :map('<leader>uc')
-        Snacks.toggle.treesitter():map('<leader>uT')
-        -- Snacks.toggle
-        --   .option(
-        --     'background',
-        --     { off = 'light', on = 'dark', name = 'Dark Background' }
-        --   )
-        --   :map('<leader>ub')
-        Snacks.toggle.inlay_hints():map('<leader>uh')
-        Snacks.toggle.indent():map('<leader>ug')
-        Snacks.toggle.dim():map('<leader>uD')
       end,
     })
   end,
