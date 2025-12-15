@@ -4,7 +4,7 @@
 return {
   'sourcegraph/amp.nvim',
   lazy = true,
-  event = { 'BufRead', 'BufNewFile', 'BufEnter', 'VeryLazy' },
+  event = { 'BufRead' },
   branch = 'main',
   opts = { auto_start = true, log_level = 'info' },
 

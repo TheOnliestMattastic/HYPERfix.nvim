@@ -28,6 +28,7 @@ return {
       enabled = true,
       preset = { header = dashboard.header },
       sections = dashboard.sections,
+      formats = dashboard.formats,
     },
 
     -- =========================================================================
@@ -109,11 +110,6 @@ return {
       '<leader>t',
       function() Snacks.terminal() end,
       desc = '[T]erminal',
-    },
-    {
-      '<leader>qd',
-      function() Snacks.dashboard() end,
-      desc = '[D]ashboard',
     },
 
     -- =========================================================================
@@ -413,6 +409,11 @@ return {
       function() Snacks.words.jump(-vim.v.count1) end,
       desc = 'Prev Reference',
       mode = { 'n', 't' },
+    },
+    {
+      '<leader>qd',
+      function() Snacks.dashboard() end,
+      desc = '[D]ashboard',
     },
 
     -- =========================================================================
