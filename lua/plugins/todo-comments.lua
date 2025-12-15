@@ -4,19 +4,18 @@
 -- WHAT: Highlights, highlights, and searches for todo comments (TODO, FIX, HACK, etc.)
 --       in your codebase with different icons, colors, and styles.
 --
--- HOW:  Parses any comment starting with a keyword (e.g. "TODO: fix this")
---       and highlights it. Integrates with Trouble (sidebar UI) and Snacks picker
---       for navigation. Treesitter-aware (matches comments only, not code).
+-- HOW:  Parses any comment starting with a keyword and highlights it.
+--       Integrates with Trouble (sidebar UI) and Snacks picker for navigation.
+--       Treesitter-aware (matches comments only, not code).
 --
 -- REFERENCE: https://github.com/folke/todo-comments.nvim
 -- =============================================================================
-
 return {
   {
     'folke/todo-comments.nvim',
     lazy = true,
     cmd = { 'TodoTrouble', 'TodoTelescope' },
-    event = { 'BufRead', 'BufNewFile', 'BufEnter', 'VeryLazy' },
+    event = { 'BufRead' },
     dependencies = { 'nvim-lua/plenary.nvim', lazy = true },
 
     -- =========================================================================
@@ -27,27 +26,24 @@ return {
     opts = {
       keywords = {
         WHAT = {
-          icon = "󰗢",
           color = "info",
-          alt = { "WHAT:" },
-        },
-        WHY = {
-          icon = "󰯙",
-          color = "warning",
-          alt = { "WHY:" },
+          icon = '󰽴'
         },
         HOW = {
-          icon = "󰯅",
-          color = "hint",
-          alt = { "HOW:" },
+          color = "info",
+          icon = '󰝚'
         },
-        REFERENCE = {
-          icon = "󰀹",
+        WHY = {
+          color = "info",
+          icon = '󰎇'
+        },
+        REF = {
+          icon = "󰯙",
           color = "default",
-          alt = { "REF", "REFERENCE:" },
+          alt = { "REFERENCE" },
         },
         FIX = {
-          icon = "󱏛",
+          icon = "󱇫",
           color = "error",
           alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
         },
@@ -56,7 +52,7 @@ return {
           color = "info",
         },
         HACK = {
-          icon = "󰣈",
+          icon = "󰧼",
           color = "warning",
         },
         WARN = {
@@ -65,7 +61,7 @@ return {
           alt = { "WARNING", "XXX" },
         },
         PERF = {
-          icon = "󰳊",
+          icon = "󱁞",
           alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" },
         },
         NOTE = {
@@ -74,7 +70,7 @@ return {
           alt = { "INFO" },
         },
         TEST = {
-          icon = "󱆡",
+          icon = "󱄳",
           color = "test",
           alt = { "TESTING", "PASSED", "FAILED" },
         },
