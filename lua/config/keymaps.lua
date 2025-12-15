@@ -1,7 +1,11 @@
+-- =============================================================================
+-- LUA/CONFIG/KEYMAPS.MD
+-- -----------------------------------------------------------------------------
 local map = vim.keymap.set
 -- =============================================================================
 -- Window navigation
 -- -----------------------------------------------------------------------------
+-- stylua: ignore start
 map('n',  '<C-h>',                '<C-w>h',               { desc = 'Window Left' })
 map('n',  '<C-j>',                '<C-w>j',               { desc = 'Window Down' })
 map('n',  '<C-k>',                '<C-w>k',               { desc = 'Window Up' })
@@ -10,13 +14,14 @@ map('n',  '<C-l>',                '<C-w>l',               { desc = 'Window Right
 -- =============================================================================
 -- TAB MANAGEMENT
 -- -----------------------------------------------------------------------------
-map('n',  '<leader><tab><tab>',   '<cmd>tabnew<cr>',      { desc = 'New' })
-map('n',  '<leader><tab>n',       '<cmd>tabnext<cr>',     { desc = 'Next' })
-map('n',  '<leader><tab>p',       '<cmd>tabprevious<cr>', { desc = 'Previous' })
-map('n',  '<leader><tab>f',       '<cmd>tabfirst<cr>',    { desc = 'First' })
-map('n',  '<leader><tab>l',       '<cmd>tablast<cr>',     { desc = 'Last' })
-map('n',  '<leader><tab>q',       '<cmd>tabclose<cr>',    { desc = 'Close' })
-map('n',  '<leader><tab>o',       '<cmd>tabonly<cr>',     { desc = 'Close Others' })
+map('n',  '<leader><tab><tab>',   '<cmd>tabnew<cr>',      { desc = 'New [T]ab' })
+map('n',  '<leader><tab>n',       '<cmd>tabnext<cr>',     { desc = '[N]ext' })
+map('n',  '<leader><tab>p',       '<cmd>tabprevious<cr>', { desc = '[P]rev' })
+map('n',  '<leader><tab>f',       '<cmd>tabfirst<cr>',    { desc = '[F]irst' })
+map('n',  '<leader><tab>l',       '<cmd>tablast<cr>',     { desc = '[L]ast' })
+map('n',  '<leader><tab>q',       '<cmd>tabclose<cr>',    { desc = '[Q]uit' })
+map('n',  '<leader><tab>o',       '<cmd>tabonly<cr>',     { desc = 'Close [O]thers' })
+-- stylua: ignore end
 
 -- =============================================================================
 -- MOVEMENT - Enhanced up/down navigation
@@ -103,25 +108,17 @@ map(
 -- WHY: Allows undoing text after specific punctuation without losing everything
 -- HOW: <c-g>u creates an undo point without moving cursor
 -- -----------------------------------------------------------------------------
+-- stylua: ignore start
 map('i',    ',',    ',<c-g>u')
 map('i',    '.',    '.<c-g>u')
 map('i',    ';',    ';<c-g>u')
+-- stylua: ignore end
 
 -- =============================================================================
 -- FILE MANAGEMENT
 -- -----------------------------------------------------------------------------
-map(
-  { 'i', 'x', 'n', 's' },
-  '<C-s>',
-  '<cmd>w<cr><esc>',
-  { desc = 'Save File' }
-)
-map(
-  'n',
-  '<leader>fn',
-  '<cmd>enew<cr>',
-  { desc = 'New File' }
-)
+map({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
+map('n', '<leader>fn', '<cmd>enew<cr>', { desc = '[N]ew File' })
 
 -- =============================================================================
 -- INDENTATION
@@ -129,23 +126,20 @@ map(
 -- WHAT: Re-indent selection when using < or > in visual mode
 -- HOW: gv reselects previous visual selection after the indent
 -- -----------------------------------------------------------------------------
+-- stylua: ignore start
 map('x',    '<',            '<gv')
 map('x',    '>',            '>gv')
 
 -- =============================================================================
 -- PLUGIN MANAGEMENT
 -- -----------------------------------------------------------------------------
-map('n',    '<leader>nl',   '<cmd>Lazy<cr>',  { desc = 'Lazy' })
+map('n',    '<leader>nl',   '<cmd>Lazy<cr>',  { desc = '[L]azy' })
+-- stylua: ignore end
 
 -- =============================================================================
 -- APPLICATION MANAGEMENT
 -- -----------------------------------------------------------------------------
-map(
-  'n',
-  '<leader>qq',
-  '<cmd>qa<cr>',
-  { desc = 'Quit All' }
-)
+map('n', '<leader>qq', '<cmd>qa<cr>', { desc = '[Q]uit All' })
 map(
   'n',
   '<Esc>',
