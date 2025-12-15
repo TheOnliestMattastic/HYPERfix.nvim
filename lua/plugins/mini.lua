@@ -70,7 +70,7 @@ return {
         if not require('mini.files').close() then
           require('mini.files').open()
         end
-      end, { desc = 'Mini Fil[e]s' })
+      end, { desc = 'File [E]xplorer' })
 
       vim.api.nvim_create_autocmd('User', {
         pattern = 'MiniFilesActionRename',
