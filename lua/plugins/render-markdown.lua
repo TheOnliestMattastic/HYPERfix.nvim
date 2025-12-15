@@ -21,7 +21,7 @@ return {
     config = function(_, opts)
       require('render-markdown').setup(opts)
       Snacks.toggle({
-        name = 'Render Markdown',
+        name = 'Render [M]arkdown',
         get = require('render-markdown').get,
         set = require('render-markdown').set,
       }):map('<leader>um')
