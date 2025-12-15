@@ -6,9 +6,9 @@ return {
   {
     'MeanderingProgrammer/render-markdown.nvim',
     lazy = true,
-    event = { 'BufRead', 'BufNewFile', 'VeryLazy' },
+    event = { 'BufRead' },
     dependencies = {
-      { 'nvim-treesitter/nvim-treesitter', lazy = true },
+      'nvim-treesitter/nvim-treesitter',
     },
 
     opts = {

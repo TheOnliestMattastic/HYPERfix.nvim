@@ -10,7 +10,7 @@ return {
     branch = "main",
     version = false,
     build = ":TSUpdate",
-    event = { "BufRead", "BufNewFile", "BufEnter", "VeryLazy" },
+    event = { "BufRead", "BufNewFile" },
     dependencies = {
 
       -- ======================================================================
@@ -18,9 +18,8 @@ return {
       -- ----------------------------------------------------------------------
       {
         "nvim-treesitter/nvim-treesitter-textobjects",
-        branch = "main",
         lazy = true,
-        event = { "BufRead", "BufNewFile", "BufEnter", "VeryLazy" },
+        branch = "main",
         opts = {
           move = {
             enable = true,
@@ -34,8 +33,6 @@ return {
       -- ----------------------------------------------------------------------
       {
         "nvim-treesitter/nvim-treesitter-context",
-        lazy = true,
-        event = { "BufRead", "BufNewFile", "BufEnter", "VeryLazy" },
         opts = function()
           local tsc = require("treesitter-context")
           Snacks.toggle({
