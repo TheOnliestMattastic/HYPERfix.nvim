@@ -1,42 +1,36 @@
+-- =============================================================================
+-- WHICH-KEY.NVIM
+-- REFERENCE: https://github.com/folke/which-key.nvim
+-- =============================================================================
+
 return {
   'folke/which-key.nvim',
   event = 'VeryLazy',
-  opts_extend = { 'spec' },
+  opts_extend = { 'spec' }, -- Allow merging of spec arrays instead of replacing
   opts = {
-    preset = 'helix',
+    preset = 'helix', -- Use helix-style keybinding help UI
     defaults = {},
+    -- Nerd Font icons for visual clarity
     icons = {
-      breadcrumb = '󰯙 ', -- symbol used in the command line area that shows your active key combo
-      separator = '', -- symbol used between a key and it's label
-      group = '', -- symbol prepended to a group
+      breadcrumb = '󰯙 ', -- Active key combo breadcrumb
+      separator = '', -- Key/label separator
+      group = '', -- Group prefix
       ellipsis = '…',
-      keys = {
-        Up = '󱨊 ',
-        Down = '󱨉 ',
-        Left = ' ',
-        Right = ' ',
-        C = '󰘴 ',
-        M = '󰘵 ',
-        D = '󰘳 ',
-        S = '󰘶 ',
-        CR = '󰌑 ',
-        Esc = '󱊷 ',
-        NL = '󰌑 ',
-        BS = '󰭜',
-        Space = '󱁐 ',
-        Tab = '󰌒 ',
-      },
     },
+    -- Keymap groups and bindings with mnemonic organization
     spec = {
       {
         mode = { 'n', 'x' },
+        -- =======================================================================
+        -- Standalone Commands
+        -- =======================================================================
         {
           '<leader>?',
-          icon = '󰌓',
+          icon = '󰌓', -- Show keymaps
         },
         {
           '<leader>e',
-          icon = '󰆌',
+          icon = '󰆌', -- File explorer toggle
         },
         {
           '<leader><space>',
@@ -63,6 +57,10 @@ return {
           desc = '[T]erminal',
           icon = '󰞷',
         },
+
+        -- =======================================================================
+        -- Keymap Groups (submenu prefixes)
+        -- =======================================================================
         {
           '<leader><tab>',
           group = '[Tabs]',
@@ -118,6 +116,10 @@ return {
           group = 'Inde[x]',
           icon = '󰉹',
         },
+
+        -- =======================================================================
+        -- Motion Groups (built-in vim motions)
+        -- =======================================================================
         { '[', group = 'Prev' },
         { ']', group = 'Next' },
         {
@@ -135,6 +137,10 @@ return {
           group = 'Fold',
           icon = '󰘺'
         },
+
+        -- =======================================================================
+        -- Dynamic Groups (auto-expanded based on buffer state)
+        -- =======================================================================
         {
           '<leader>b',
           group = '[B]uffer',
@@ -144,7 +150,7 @@ return {
         {
           '<leader>w',
           group = 'windows',
-          proxy = '<c-w>',
+          proxy = '<c-w>', -- Proxy to Vim's window commands
           expand = function() return require('which-key.extras').expand.win() end,
           icon = '󰖲'
         },

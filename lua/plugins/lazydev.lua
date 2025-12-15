@@ -7,7 +7,6 @@
 return  {
   'folke/lazydev.nvim',
   lazy = true,
-  -- event = { "BufRead", "BufNewFile", "BufEnter", "VeryLazy" },
   ft = 'lua',
   opts = {
     library = {
