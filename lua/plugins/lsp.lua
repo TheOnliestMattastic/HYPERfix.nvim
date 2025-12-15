@@ -25,50 +25,6 @@ return {
           { clear = true }
         ),
         callback = function(event)
-          local map = function(keys, func, desc, mode)
-            mode = mode or 'n'
-            vim.keymap.set(
-              mode,
-              keys,
-              func,
-              { buffer = event.buf, desc = 'LSP: ' .. desc }
-            )
-          end
-
-          map('<leader>cr', vim.lsp.buf.rename, '[R]ename')
-          map(
-            '<leader>ca',
-            vim.lsp.buf.code_action,
-            '[C]ode [A]ction',
-            { 'n', 'x' }
-          )
-          map(
-            'glr',
-            function() Snacks.picker.lsp_references() end,
-            '[R]eferences'
-          )
-          map(
-            'gli',
-            function() Snacks.picker.lsp_implementations() end,
-            '[I]mplementation'
-          )
-          map(
-            'gld',
-            function() Snacks.picker.lsp_definitions() end,
-            '[D]efinition'
-          )
-          map('glD', vim.lsp.buf.declaration, '[D]eclaration')
-          map(
-            'gls',
-            function() Snacks.picker.lsp_workspace_symbols() end,
-            'Document [S]ymbols'
-          )
-          map(
-            'glt',
-            function() Snacks.picker.lsp_type_definitions() end,
-            '[T]ype Definition'
-          )
-
           local function client_supports_method(client, method, bufnr)
             if vim.fn.has('nvim-0.11') == 1 then
               return client:supports_method(method, bufnr)
@@ -129,8 +85,8 @@ return {
           text = {
             [vim.diagnostic.severity.ERROR] = '󰚑 ',
             [vim.diagnostic.severity.WARN] = '󰻍 ',
-            [vim.diagnostic.severity.INFO] = '󰀹 ',
-            [vim.diagnostic.severity.HINT] = '󰯙 ',
+            [vim.diagnostic.severity.INFO] = '󱦄 ',
+            [vim.diagnostic.severity.HINT] = '󱃏 ',
           },
         } or {},
         virtual_text = {
