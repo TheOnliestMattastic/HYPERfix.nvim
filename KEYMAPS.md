@@ -68,19 +68,26 @@
 ## Escape Sequences
 | Keymap | Mode | Action |
 |--------|------|--------|
-| `jk` | Insert, Command, Visual, Select | Exit to Normal mode |
-| `kj` | Insert, Command, Visual, Select | Exit to Normal mode |
-| `jk` | Terminal | Exit to Normal mode |
-| `kj` | Terminal | Exit to Normal mode |
+| `jk` / `kj` | Insert, Command, Visual, Select | Exit to Normal mode |
+| `jk` / `kj` | Terminal | Exit to Normal mode |
 | `<Esc>` | Normal | Clear search, refresh screen |
 
 ---
 
-## Screen Control
+## Application Management
 | Keymap | Mode | Action |
 |--------|------|--------|
-| `<Esc>` | Normal | Clear hlsearch, update diff, refresh screen |
 | `<leader>qq` | Normal | Quit all |
+| `<leader>qw` | Normal | Write & quit |
+| `<leader>qQ` | Normal | Quit without saving |
+
+---
+
+## Comments
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `gco` | Normal | Add comment line below |
+| `gcO` | Normal | Add comment line above |
 
 ---
 
@@ -91,18 +98,14 @@
 | `<leader>dc` | Normal | Continue execution |
 | `<leader>di` | Normal | Step into |
 | `<leader>do` | Normal | Step over |
-| `<leader>du` | Normal | Toggle DAP UI |
+| `<leader>dd` | Normal | Toggle DAP UI |
 
 ---
 
 ## Flash (Smart Navigation)
 | Keymap | Mode | Action |
 |--------|------|--------|
-| `<CR>` | Normal, Visual, Operator | Jump to location with labels |
-| `<Shift><CR>` | Normal, Visual, Operator | Jump to Treesitter node |
-| `r` | Operator | Remote flash (perform motion at different location) |
-| `R` | Operator, Visual | Treesitter search |
-| `<C-x>` | Command | Toggle Flash search |
+| `s` | Normal, Visual, Operator | Flash search (jump to location) |
 
 ---
 
@@ -110,11 +113,6 @@
 | Keymap | Mode | Action |
 |--------|------|--------|
 | `<leader>sr` | Normal, Visual | Open search & replace dialog |
-| `<localleader>r` | Grug-far Buffer | Perform replace |
-| `<localleader>c` | Grug-far Buffer | Close grug-far |
-| `<Enter>` | Grug-far Buffer | Go to result location |
-| `<Up>` | Grug-far Buffer | Open previous result |
-| `<Down>` | Grug-far Buffer | Open next result |
 
 ---
 
@@ -123,20 +121,20 @@
 ### General LSP
 | Keymap | Mode | Action |
 |--------|------|--------|
-| `<leader>cm` | Normal | Open Mason (LSP manager) |
+| `<leader>nm` | Normal | Open Mason (LSP manager) |
 
-### Code Navigation
+### LSP Navigation (via Snacks picker)
 | Keymap | Mode | Action |
 |--------|------|--------|
-| `gld` | Normal | Go to definition |
-| `glD` | Normal | Go to declaration |
-| `glr` | Normal | Find references |
-| `gli` | Normal | Find implementations |
-| `glt` | Normal | Go to type definition |
-| `gls` | Normal | Document symbols |
-| `glS` | Normal | Workspace symbols |
+| `gd` | Normal | Go to definition |
+| `gD` | Normal | Go to declaration |
+| `gr` | Normal | Find references |
+| `gI` | Normal | Find implementations |
+| `gy` | Normal | Go to type definition |
+| `gli` | Normal | Incoming calls |
+| `glo` | Normal | Outgoing calls |
 
-### Code Actions
+### LSP Code Actions & Formatting
 | Keymap | Mode | Action |
 |--------|------|--------|
 | `<leader>cr` | Normal | Rename symbol |
@@ -179,8 +177,6 @@
 | `sf` | Normal | Find surrounding (cursor right) |
 | `sF` | Normal | Find surrounding (cursor left) |
 | `sh` | Normal | Highlight surrounding |
-| `sa` suffix | Normal | Add with last/next modifier |
-| `sd` suffix | Normal | Delete with last/next modifier |
 
 ### Mini.comment (Commenting)
 | Keymap | Mode | Action |
@@ -235,38 +231,93 @@
 
 ## Snacks.nvim
 
-### Picker (Smart Finder)
+### Smart Picker (Global Search)
 | Keymap | Mode | Action |
 |--------|------|--------|
-| `<leader><space>` | Normal | Smart find (smart picker) |
-| `<leader>` | Normal | Smart find |
-
-### Buffers & Files
-| Keymap | Mode | Action |
-|--------|------|--------|
-| `<leader>,` | Normal | Open buffer picker |
-| `<leader>.` | Normal | Open scratch buffer |
-
-### Search & History
-| Keymap | Mode | Action |
-|--------|------|--------|
+| `<leader><space>` | Normal | Smart find (auto-detect context) |
 | `<leader>/` | Normal | Grep search |
 | `<leader>:` | Normal | Command history |
+| `<leader>.` | Normal | Scratch buffer selector |
 
-### Terminal
+### Buffer Management
 | Keymap | Mode | Action |
 |--------|------|--------|
-| `<C-/>` | Normal | Toggle terminal |
+| `<leader>bb` | Normal | Select buffer |
+| `<leader>bd` | Normal | Delete buffer |
+| `<leader>bg` | Normal | Grep in buffers |
+| `<leader>bS` | Normal | Select scratch buffer |
 
-### Git Integration
+### File & Project Navigation
 | Keymap | Mode | Action |
 |--------|------|--------|
-| `<leader>gg` | Normal | Open Lazygit |
+| `<leader>ff` | Normal | Find files |
+| `<leader>fp` | Normal | Find projects |
+| `<leader>fr` | Normal | Find recent files |
+| `<leader>fR` | Normal | Rename file |
+| `<leader>fw` | Normal, Visual | Find/grep word under cursor |
 
-### Markdown Rendering
+### Git Operations
 | Keymap | Mode | Action |
 |--------|------|--------|
-| `\m` | Normal | Toggle render markdown |
+| `<leader>gb` | Normal | Git branches |
+| `<leader>gB` | Normal, Visual | Open in browser |
+| `<leader>gd` | Normal | Git diff (hunks) |
+| `<leader>gf` | Normal | Git files |
+| `<leader>gF` | Normal | Git log file |
+| `<leader>gg` | Normal | LazyGit |
+| `<leader>gi` | Normal | GitHub issues (open) |
+| `<leader>gI` | Normal | GitHub issues (all) |
+| `<leader>gl` | Normal | Git log |
+| `<leader>gL` | Normal | Git log line |
+| `<leader>gp` | Normal | GitHub PRs (open) |
+| `<leader>gP` | Normal | GitHub PRs (all) |
+| `<leader>gs` | Normal | Git status |
+| `<leader>gS` | Normal | Git stash |
+
+### Help & Configuration
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader>ha` | Normal | Autocmds |
+| `<leader>hc` | Normal | Config files |
+| `<leader>hh` | Normal | Help pages |
+| `<leader>hk` | Normal | Keymaps |
+| `<leader>nm` | Normal | Notification history |
+| `<leader>nN` | Normal | Neovim news |
+
+### Search & Inspection
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader>sc` | Normal | Commands |
+| `<leader>sd` | Normal | Diagnostics |
+| `<leader>sD` | Normal | Buffer diagnostics |
+| `<leader>sh` | Normal | Search history |
+| `<leader>sH` | Normal | Highlights |
+| `<leader>si` | Normal | Icons |
+| `<leader>sj` | Normal | Jumps |
+| `<leader>sl` | Normal | Lines |
+| `<leader>sL` | Normal | Location list |
+| `<leader>sm` | Normal | Marks |
+| `<leader>sx` | Normal | Registers |
+| `<leader>sR` | Normal | Resume last search |
+| `<leader>su` | Normal | Undo history |
+| `<leader>sq` | Normal | Quickfix list |
+| `<leader>ss` | Normal | LSP symbols |
+| `<leader>sS` | Normal | LSP workspace symbols |
+
+### UI & Toggles
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader>uC` | Normal | Colorschemes |
+| `<leader>uz` | Normal | Zen mode |
+| `<leader>uZ` | Normal | Zoom |
+
+### Other Navigation
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `]]` | Normal, Terminal | Next reference |
+| `[[` | Normal, Terminal | Previous reference |
+| `<leader>qd` | Normal | Dashboard |
+| `<leader>t` | Normal | Toggle terminal |
 
 ---
 
@@ -284,23 +335,18 @@
 
 ## Trouble (Diagnostics & References)
 
-### Diagnostics
+### Diagnostics & Symbols
 | Keymap | Mode | Action |
 |--------|------|--------|
-| `<leader>xx` | Normal | Toggle all diagnostics |
-| `<leader>xX` | Normal | Toggle buffer diagnostics |
-
-### Symbols & References
-| Keymap | Mode | Action |
-|--------|------|--------|
-| `<leader>cs` | Normal | Toggle document symbols |
-| `<leader>cS` | Normal | Toggle LSP references/definitions |
+| `<leader>xd` | Normal | Toggle diagnostics |
+| `<leader>xD` | Normal | Toggle buffer diagnostics |
+| `<leader>xs` | Normal | Toggle symbols |
 
 ### Lists
 | Keymap | Mode | Action |
 |--------|------|--------|
-| `<leader>xL` | Normal | Toggle location list |
-| `<leader>xQ` | Normal | Toggle quickfix list |
+| `<leader>xl` | Normal | Toggle location list |
+| `<leader>xq` | Normal | Toggle quickfix list |
 | `[q` | Normal | Previous quickfix/trouble item |
 | `]q` | Normal | Next quickfix/trouble item |
 
@@ -331,15 +377,18 @@
 
 ---
 
+## Conform (Formatting)
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader>cf` | Normal, Visual, Select | Format buffer |
+
+---
+
 ## Standard Vim Navigation (Built-in)
 | Keymap | Mode | Action |
 |--------|------|--------|
-| `gd` | Normal | Go to definition (LSP) |
-| `gr` | Normal | Find references (LSP) |
 | `K` | Normal | Hover (LSP documentation) |
 | `<C-k>` | Insert | Signature help (LSP) |
-| `[q` | Normal | Previous quickfix item |
-| `]q` | Normal | Next quickfix item |
 | `.` | Normal | Repeat last command |
 | `u` | Normal | Undo |
 | `<C-r>` | Normal | Redo |
@@ -368,14 +417,13 @@ Usage: Combine with operators like `d` (delete), `c` (change), `y` (yank)
 
 ## Notes
 
-- **Leader Key**: `<leader>` is typically mapped to space
-- **LocalLeader Key**: `<localleader>` is used for buffer-local keybindings (especially in grug-far)
+- **Leader Key**: `<leader>` is mapped to space
+- **LocalLeader Key**: `<localleader>` is used for buffer-local keybindings
 - **Mode Abbreviations**:
   - `n` = Normal mode
   - `i` = Insert mode
   - `c` = Command mode
-  - `v` = Visual mode
-  - `x` = Visual mode (alias)
+  - `x` = Visual mode
   - `s` = Select mode
   - `o` = Operator-pending mode
   - `t` = Terminal mode
@@ -383,4 +431,4 @@ Usage: Combine with operators like `d` (delete), `c` (change), `y` (yank)
 - **Keybinding Strategy**:
   - Mnemonic leader keys: `<leader>f` = find, `<leader>g` = git, `<leader>x` = diagnostics
   - Bracketed navigation: `[x`/`]x` for previous/next, `[X`/`]X` for first/last
-  - LSP operations: `gl` prefix for language navigation
+  - LSP operations integrated with Snacks picker (gd, gr, gI, gy, etc.)
