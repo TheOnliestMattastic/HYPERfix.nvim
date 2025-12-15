@@ -7,10 +7,7 @@ return {
     'echasnovski/mini.nvim',
     version = false,
     lazy = true,
-    event = { 'BufRead', 'BufNewFile', 'BufEnter', 'VeryLazy' },
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects', -- for mini.ai
-    },
+    event = { 'VeryLazy' },
     config = function()
       -- =======================================================================
       -- mini.ai
