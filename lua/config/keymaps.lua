@@ -140,6 +140,8 @@ map('n',    '<leader>nl',   '<cmd>Lazy<cr>',  { desc = '[L]azy' })
 -- APPLICATION MANAGEMENT
 -- -----------------------------------------------------------------------------
 map('n', '<leader>qq', '<cmd>qa<cr>', { desc = '[Q]uit All' })
+map('n', '<leader>qw', '<cmd>wq<cr>', { desc = '[W]rite & Quit' })
+map('n', '<leader>qQ', '<cmd>q!<cr>', { desc = '[Q]uit w/o Writing' })
 map(
   'n',
   '<Esc>',

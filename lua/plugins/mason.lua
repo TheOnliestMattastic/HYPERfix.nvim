@@ -13,7 +13,7 @@
 return {
   "mason-org/mason.nvim",
   lazy = true,
-  event = { 'BufRead', 'BufNewFile', 'BufEnter', 'VeryLazy' },
+  -- event = { 'VeryLazy' },
   keys = { { '<leader>nm', '<cmd>Mason<cr>', desc = '[M]ason' } },
   opts = {
     ui = {
