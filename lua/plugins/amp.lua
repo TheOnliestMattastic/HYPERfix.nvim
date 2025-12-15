@@ -1,30 +1,18 @@
 -- =============================================================================
--- REFERENCE: https://github.com/sourcegraph/amp.nvim
+-- AMP.NVIM
+-- REF: https://github.com/sourcegraph/amp.nvim
 -- -----------------------------------------------------------------------------
 return {
   'sourcegraph/amp.nvim',
   lazy = true,
   event = { 'BufRead' },
   branch = 'main',
-  opts = { auto_start = true, log_level = 'info' },
-
-  -- ===========================================================================
-  -- WHAT: Configure amp and create user commands after plugin loads
-  -- WHY: Lua files must `return` the plugin spec; runtime setup must run in `config`
-  -- HOW: `config` receives opts; we call require('amp').setup(opts) and create commands
-  -- NOTE: Placing commands here avoids code after `return` which causes the EOF error
-  -- ---------------------------------------------------------------------------
-  config = function(_, opts)
-    -- apply plugin options safely
-    local ok, amp = pcall(require, 'amp')
-    if ok and type(amp.setup) == 'function' then amp.setup(opts) end
-
-    local amp_message = require('amp.message')
-
+  config = function()
     -- =========================================================================
     -- WHAT: Send a quick message to the agent
     -- NOTE: nargs="*" lets the command accept multi-word arguments
     -- -------------------------------------------------------------------------
+    local amp_message = require('amp.message')
     vim.api.nvim_create_user_command('AmpSend', function(cmdopts)
       local message = cmdopts.args or ''
       if message == '' then

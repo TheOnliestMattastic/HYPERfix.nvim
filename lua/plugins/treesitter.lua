@@ -18,7 +18,6 @@ return {
       -- ----------------------------------------------------------------------
       {
         "nvim-treesitter/nvim-treesitter-textobjects",
-        lazy = true,
         branch = "main",
         opts = {
           move = {
@@ -63,15 +62,6 @@ return {
       folds = { enable = true },
       sync_install = false,
       auto_install = true,
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "gvv",
-          node_incremental = "gvn",
-          scope_incremental = "gvs",
-          node_decremental = "gvp",
-        },
-      },
       ensure_installed = {
         "bash",
         "c",

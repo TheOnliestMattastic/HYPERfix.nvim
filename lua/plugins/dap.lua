@@ -1,14 +1,17 @@
+-- =============================================================================
+-- DEBUG ADAPTER PROTOCOL CONFIG
+-- REFERENCE: https://github.com/mfussenegger/nvim-dap
+-- REFERENCE: https://github.com/rcarriga/nvim-dap-ui
+-- =============================================================================
 return {
   {
     'mfussenegger/nvim-dap',
     lazy = true,
-    -- event = { 'BufRead' },
     dependencies = {
       'rcarriga/nvim-dap-ui',
       'nvim-neotest/nvim-nio',
       {
         'jay-babu/mason-nvim-dap.nvim',
-        -- lazy = true,
         dependencies = 'williamboman/mason.nvim',
         cmd = { 'DapInstall', 'DapUninstall' },
       },

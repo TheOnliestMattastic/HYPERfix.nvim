@@ -6,7 +6,6 @@ return {
   {
     'echasnovski/mini.nvim',
     version = false,
-    lazy = true,
     event = { 'VeryLazy' },
     config = function()
       -- =======================================================================
@@ -104,7 +103,6 @@ return {
       -- })
 
       require('mini.align').setup()
-      -- require('mini.basics').setup()
       require('mini.bracketed').setup()
       require('mini.colors').setup()
       require('mini.icons').setup()

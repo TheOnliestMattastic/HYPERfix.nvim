@@ -7,7 +7,6 @@ return {
   'folke/trouble.nvim',
   lazy = true,
   cmd = { 'Trouble' },
-  -- event = { 'BufRead', 'BufNewFile', 'VeryLazy' },
   opts = {
     modes = {
       lsp = {
