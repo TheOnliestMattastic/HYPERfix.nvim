@@ -12,9 +12,7 @@
 
 ## What Is This?
 
-**HYPERfix.nvim** is a Neovim configuration template that prioritizes **accessibility, clarity, and neurodivergent-friendly design** from the ground up. Instead of cramming every plugin and keymap into one bloated config, HYPERfix strips things back to essentials and builds intentionally.
-
-Think of it as **Neovim for humans** — especially humans whose brains are wired a little differently.
+**HYPERfix.nvim** is a Neovim configuration template that prioritizes **accessibility, clarity, and neurodivergent-friendly design** from the ground up.
 
 **Bonus**: HYPERfix works seamlessly with **[AMP](https://ampcode.com/)**, an AI assistant that helps you configure, learn, and troubleshoot your setup without the overwhelm.
 
@@ -33,17 +31,16 @@ HYPERfix is built around principles that help **ADHD, autism, dyslexia, and othe
 - **Explicit documentation** — Every code block explains WHAT/WHY/HOW
 - **Graceful degradation** — Missing optional tools won't break your editor
 
-## Legend of Zelda Theme 🗡️
+## Legend of Zelda Theme
 
-Welcome to the land of **Hyrule.nvim**—no wait, we mean **HYPERfix.nvim**. 
+>  *It's dangerous to go alone! Take this.*
+>          🔥      🧙‍♂️🗡️     🔥
 
-This config draws inspiration from the **Legend of Zelda** universe. We name our colorscheme after Kokiri (the forest inhabitants), and we aspire to be as reliable as Link's trusty sword. The UI is designed to be as welcoming and intuitive as stepping into Kakariko Village.
-
-Why Zelda? Because:
-- It's **timeless and universally beloved** ✨
-- It represents **adventure, exploration, and problem-solving** 🧭
-- It's **accessible to everyone**, regardless of ability 💚
-- And honestly, who doesn't want their editor to feel like an epic quest? ⚔️
+This config draws inspiration from the **Legend of Zelda** universe. Why Zelda? Because:
+- It's **timeless and universally beloved**
+- It represents **adventure, exploration, and problem-solving**
+- It's **accessible to everyone**, regardless of ability
+- And well honestly, why not?
 
 ## Inspired By Giants
 
@@ -52,7 +49,7 @@ HYPERfix stands on the shoulders of incredible Neovim projects:
 - **[Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)** — The gold standard for starter configs. Minimal, well-documented, and focused on teaching.
 - **[LazyVim](https://github.com/LazyVim/LazyVim)** — Polished, opinionated, and beautifully organized. We borrowed a lot of thinking here.
 - **[Mini.nvim](https://github.com/echasnovski/mini.nvim)** — The modular powerhouse. Small, composable modules that "just work."
-- **[Folke](https://github.com/folke)** (LazyVim developer) — For pushing the boundaries of what Neovim configs can be, and for creating `lazy.nvim` and `which-key.nvim`.
+- **[Folke](https://github.com/folke)** (LazyVim developer) — For pushing the boundaries of what Neovim configs can be, and for creating `lazy.nvim`, `which-key.nvim`, and much more.
 
 We're building something that honors these projects while adding **neurodivergent-first accessibility** to the mix.
 
@@ -101,7 +98,7 @@ choco install neovim git ripgrep fd
 # Font: Download Atkinson Mono from https://www.nerdfonts.com (optional)
 ```
 
-### Quick Install (Copy & Paste)
+### Quick Install
 
 Replace your Neovim config with HYPERfix in one command:
 
@@ -136,8 +133,6 @@ nvim
 3. **Mason** installs LSPs and formatters for your languages
 4. You're ready to edit
 
-That's it. Seriously. No config wrestling, no plugin conflicts, no "why is my editor broken" 20 minutes in.
-
 ### Optional Tools (For Extra Flavor)
 
 If you want the dashboard to look extra fancy, install one or more of these:
@@ -153,8 +148,6 @@ brew install fortune cowsay lolcat  # macOS
 apt install fortune cowsay lolcat   # Debian/Ubuntu
 ```
 
----
-
 ## Quick Start
 
 Once installed:
@@ -167,11 +160,9 @@ Once installed:
 
 All keymaps are **mnemonic** — if you remember the letter, you remember the command.
 
----
-
 ## Customization
 
-HYPERfix is meant to be forked and modified. Here's where to make changes:
+HYPERfix is meant to be cloned/forked and modified. Here's where to make changes:
 
 - **Keymaps**: `lua/config/keymaps.lua`
 - **Editor settings**: `lua/config/options.lua`
@@ -179,8 +170,6 @@ HYPERfix is meant to be forked and modified. Here's where to make changes:
 - **Colorscheme**: `colors/kokiri.lua` (or change in `init.lua`)
 
 Every file has comments explaining the WHAT/WHY/HOW. If something feels opinionated, you can change it.
-
----
 
 ## AI-Assisted Development with AMP
 
@@ -235,8 +224,6 @@ To use AMP with HYPERfix:
 
 **AI is a tool for learning and automation — use it intentionally.**
 
----
-
 ## Philosophy & Design
 
 ### Why KISSME?
@@ -263,7 +250,7 @@ opt.linespace = 4
 -- Longer timeout for key sequences (time to think, not race conditions)
 opt.timeoutlen = 300
 
--- Intelligent cursor behavior (centered on screen)
+-- Consistent cursor behavior (centered on screen)
 opt.scrolloff = 999
 ```
 
@@ -282,8 +269,6 @@ Instead of arbitrary letters, we use patterns you can predict:
 - `<leader>d` = **D**ebug (breakpoints, stepping)
 
 Once you remember the pattern, the entire config becomes discoverable.
-
----
 
 ## Troubleshooting
 
@@ -311,23 +296,12 @@ The Kokiri colorscheme is designed for dark terminals. If colors look off:
 2. Verify it's not conflicting with your shell or OS keybinds
 3. Look at `lua/config/keymaps.lua` to see if it's defined
 
-### "I broke something and don't know how to fix it"
-
-Restore your backup:
-
-```bash
-rm -rf ~/.config/nvim
-mv ~/.config/nvim.backup ~/.config/nvim
-```
-
-Then make smaller changes and test them one at a time.
-
 ## Contributing
 
-This is a personal project, but we welcome feedback:
+This is a personal project, but I welcome feedback:
 
 - Found a bug? Open an issue with a minimal reproducible example
-- Have an accessibility suggestion? We'd love to hear it
+- Have an accessibility suggestion? I'd love to hear it
 - Want to improve documentation? PRs welcome
 
 ## License
@@ -341,10 +315,10 @@ GNU
 - **Mini.nvim** for modular genius
 - **Folke** for pushing Neovim into the future
 - The Neovim community for being endlessly helpful and kind
-- Everyone with ADHD/autism/dyslexia who's ever struggled with a bloated editor config — we see you
 
 ---
 
 **Made with ⚔️ and 💚 by someone who understands that neurodivergent brains are a feature, not a bug.**
 
-*Now go forth and edit. Your editor is waiting. 🏰*
+> *Time passes, people move... Like a river's flow, it never ends... A childish mind will turn to noble ambition... Young love will become deep affection... The clear water's surface reflects growth...*
+> -Shiek
