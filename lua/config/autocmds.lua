@@ -208,29 +208,3 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })
-
--- =============================================================================
--- Amp CLI Setup: Deferred Initialization on First Buffer
--- =============================================================================
--- WHAT: Initializes amp CLI connection on first BufRead to avoid startup delay
--- WHY:  amp needs to establish CLI connection, but deferring to BufRead keeps
---       nvim startup fast; we check if already setup to avoid reinitializing
--- HOW:  Triggers on BufRead, checks if amp already initialized, runs setup once
--- NOTE: Uses buffer variable to ensure setup runs only once across all buffers
--- =============================================================================
-vim.api.nvim_create_autocmd("BufRead", {
-  group = augroup("amp_cli_setup"),
-  callback = function()
-    -- Exit early if amp already initialized
-    if vim.g.hyperfix_amp_setup then
-      return
-    end
-    vim.g.hyperfix_amp_setup = true
-
-    -- Safely initialize amp
-    local ok, amp = pcall(require, "amp")
-    if ok and type(amp.setup) == "function" then
-      amp.setup({ auto_start = true, log_level = "info" })
-    end
-  end,
-})

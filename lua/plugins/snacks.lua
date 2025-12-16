@@ -411,7 +411,7 @@ return {
       mode = { 'n', 't' },
     },
     {
-      '<leader>qd',
+      '<leader>qD',
       function() Snacks.dashboard() end,
       desc = '[D]ashboard',
     },
@@ -495,8 +495,8 @@ return {
           { name = '[D]iagnostics' }
         ):map('<leader>ud')
 
-        Snacks.toggle.dim():map('<leader>uD', { desc = '[D]im' })
-        Snacks.toggle.indent():map('<leader>ug', { desc = '[I]ndent [G]uides' })
+        Snacks.toggle.dim():map('<leader>uD', { desc = 'Dim' })
+        Snacks.toggle.indent():map('<leader>ug', { desc = 'Indent Guides' })
 
         Snacks.toggle.option(
           'relativenumber',
