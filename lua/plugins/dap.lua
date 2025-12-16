@@ -7,6 +7,7 @@ return {
   {
     'mfussenegger/nvim-dap',
     lazy = true,
+    event = 'BufRead',
     dependencies = {
       'rcarriga/nvim-dap-ui',
       'nvim-neotest/nvim-nio',

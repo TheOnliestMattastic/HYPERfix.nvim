@@ -75,10 +75,19 @@
 ---
 
 ## Application Management
+
+### Session Management
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<leader>qs` | Normal | Save session |
+| `<leader>qr` | Normal | Restore session (picker) |
+| `<leader>qd` | Normal | Delete session |
+
+### Quit Operations
 | Keymap | Mode | Action |
 |--------|------|--------|
 | `<leader>qq` | Normal | Quit all |
-| `<leader>qw` | Normal | Write & quit |
+| `<leader>qw` | Normal | Save all buffers, save session, and quit |
 | `<leader>qQ` | Normal | Quit without saving |
 
 ---
@@ -316,7 +325,7 @@
 |--------|------|--------|
 | `]]` | Normal, Terminal | Next reference |
 | `[[` | Normal, Terminal | Previous reference |
-| `<leader>qd` | Normal | Dashboard |
+| `<leader>qD` | Normal | Dashboard |
 | `<leader>t` | Normal | Toggle terminal |
 
 ---

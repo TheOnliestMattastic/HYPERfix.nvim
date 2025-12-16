@@ -138,10 +138,71 @@ map('n',    '<leader>nl',   '<cmd>Lazy<cr>',  { desc = '[L]azy' })
 
 -- =============================================================================
 -- APPLICATION MANAGEMENT
--- -----------------------------------------------------------------------------
+-- =============================================================================
+-- WHAT: Quit group keymaps with session support
+-- WHY: Save sessions and prompt for unsaved changes before quitting
+-- HOW: <leader>qq = quit all, <leader>qw = save all & quit, <leader>qQ = force quit
+--      <leader>qs = save session, <leader>qr = restore session (picker)
+-- =============================================================================
 map('n', '<leader>qq', '<cmd>qa<cr>', { desc = '[Q]uit All' })
-map('n', '<leader>qw', '<cmd>wq<cr>', { desc = '[W]rite & Quit' })
+
+map('n', '<leader>qw', function()
+  local sessions = require('mini.sessions')
+  local active_session = vim.v.this_session ~= '' and vim.v.this_session or nil
+
+  -- Handle session saving first
+  if not active_session then
+    -- No active session - prompt for session name
+    vim.ui.input(
+      { prompt = 'Session name (leave blank to skip): ' },
+      function(name)
+        if name and name ~= '' then
+          sessions.write(name)
+        end
+        -- Let nvim handle saving/quitting with :wqa
+        -- (nvim will prompt for unsaved buffers if any)
+        vim.cmd('wqa')
+      end
+    )
+  else
+    -- Active session exists - save it and quit
+    sessions.write()
+    vim.cmd('wqa')
+  end
+end, { desc = '[W]rite All & Quit w/ Session' })
+
 map('n', '<leader>qQ', '<cmd>q!<cr>', { desc = '[Q]uit w/o Writing' })
+
+map('n', '<leader>qs', function()
+  local sessions = require('mini.sessions')
+  local active_session = vim.v.this_session ~= '' and vim.v.this_session or nil
+
+  if active_session then
+    -- Active session - save it
+    sessions.write()
+    Snacks.notify.info('Session "' .. vim.fn.fnamemodify(active_session, ':t:r') .. '" saved')
+  else
+    -- No active session - prompt for name
+    vim.ui.input(
+      { prompt = 'Session name: ' },
+      function(name)
+        if name and name ~= '' then
+          sessions.write(name)
+          Snacks.notify.info('Session "' .. name .. '" saved')
+        end
+      end
+    )
+  end
+end, { desc = '[S]ave Session' })
+
+map('n', '<leader>qr', function()
+  require('mini.sessions').select()
+end, { desc = '[R]estore Session' })
+
+map('n', '<leader>qd', function()
+  require('mini.sessions').select('delete')
+end, { desc = '[D]elete Session' })
+
 map(
   'n',
   '<Esc>',
