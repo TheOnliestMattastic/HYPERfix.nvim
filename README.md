@@ -6,7 +6,7 @@
 <a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/leaderkey?style=flat" /></a>
 <a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/plugin-manager?style=flat" /></a>
 
-> *A universally designed Neovim template for neurodivergent developers.** Built for brains that work differently—and think that's awesome.*
+> **A universally designed Neovim template for neurodivergent developers.** Built for brains that work differently—and think that's awesome.
 
 ## What Is This?
 
@@ -32,6 +32,7 @@ HYPERfix is built around principles that help **ADHD, autism, dyslexia, and othe
 ## Legend of Zelda Theme
 
 >  *It's dangerous to go alone! Take this.*
+>
 >          🔥      🧙‍♂️🗡️     🔥
 
 This config draws inspiration from the **Legend of Zelda** universe. Why Zelda? Because:
