@@ -9,6 +9,7 @@ return {
   opts_extend = { 'spec' }, -- Allow merging of spec arrays instead of replacing
   opts = {
     preset = 'helix', -- Use helix-style keybinding help UI
+    delay = 0,
     defaults = {},
     -- Nerd Font icons for visual clarity
     icons = {

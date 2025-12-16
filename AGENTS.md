@@ -56,7 +56,7 @@ HYPERfix is built on **universal design** principles—accessibility is the foun
 
 ### Interaction Design
 
-- **Thoughtful pacing:** 500ms `timeoutlen` for key sequences (time to think)
+- **Thoughtful pacing: **1250ms `timeoutlen` for key sequences (time to think)
 - **Mnemonic keymaps:** Logical patterns (`<leader>f` = find, `<leader>g` = git)
 
 ### Code & Organization
