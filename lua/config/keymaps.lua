@@ -146,7 +146,9 @@ map('n',    '<leader>nl',   '<cmd>Lazy<cr>',  { desc = '[L]azy' })
 -- =============================================================================
 map('n', '<leader>qq', '<cmd>qa<cr>', { desc = '[Q]uit All' })
 
-map('n', '<leader>qw', function()
+map('n', '<leader>qw', '<cmd>wqa<cr>', { desc = '[W]rite & Quit' })
+
+map('n', '<leader>qW', function()
   local sessions = require('mini.sessions')
   local active_session = vim.v.this_session ~= '' and vim.v.this_session or nil
 
@@ -169,9 +171,9 @@ map('n', '<leader>qw', function()
     sessions.write()
     vim.cmd('wqa')
   end
-end, { desc = '[W]rite All & Quit w/ Session' })
+end, { desc = '[W]rite to Session & Quit' })
 
-map('n', '<leader>qQ', '<cmd>q!<cr>', { desc = '[Q]uit w/o Writing' })
+map('n', '<leader>qQ', '<cmd>q!<cr>', { desc = 'Force [Q]uit' })
 
 map('n', '<leader>qs', function()
   local sessions = require('mini.sessions')
