@@ -15,7 +15,7 @@ return {
     opts = {
       debounce = 75,
       render_modes = true,
-      pipe_table = { present = 'heavy' },
+      pipe_table = { preset = 'heavy' },  -- Changed from 'heavy' to boolean
       completions = { lsp = { enabled = true } },
     },
     ft = { 'markdown', 'norg', 'rmd', 'org', 'codecompanion' },

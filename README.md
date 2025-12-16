@@ -42,14 +42,7 @@ This config draws inspiration from the **Legend of Zelda** universe. Why Zelda? 
 
 ## Inspired By Giants
 
-HYPERfix stands on the shoulders of incredible Neovim projects:
-
-- **[Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)** — The gold standard for starter configs. Minimal, well-documented, and focused on teaching.
-- **[LazyVim](https://github.com/LazyVim/LazyVim)** — Polished, opinionated, and beautifully organized. We borrowed a lot of thinking here.
-- **[Mini.nvim](https://github.com/echasnovski/mini.nvim)** — The modular powerhouse. Small, composable modules that "just work."
-- **[Folke](https://github.com/folke)** (LazyVim developer) — For pushing the boundaries of what Neovim configs can be, and for creating `lazy.nvim`, `which-key.nvim`, and much more.
-
-We're building something that honors these projects while adding **neurodivergent-first accessibility** to the mix.
+Built on [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim), [LazyVim](https://github.com/LazyVim/LazyVim), and [Mini.nvim](https://github.com/echasnovski/mini.nvim) — but with **neurodivergent-first accessibility** baked in.
 
 ## What's Inside?
 
@@ -72,7 +65,7 @@ We're building something that honors these projects while adding **neurodivergen
 
 You'll need a few things on your system. This should take ~5 minutes to install:
 
- > Install requires Neovim 0.9+. Always review the code before installing a configuration.
+ > Requires **Neovim 0.11+**. Always review the code before installing a configuration.
 
 ```bash
 # macOS (Homebrew)
@@ -127,7 +120,7 @@ nvim
 ### What Happens Next
 
 1. **lazy.nvim** bootstraps itself automatically
-2. Plugins install on first launch (grab a ☕ — this takes ~30 seconds)
+2. Plugins install on first launch
 3. **Mason** installs LSPs and formatters for your languages
 4. You're ready to edit
 
@@ -136,12 +129,12 @@ nvim
 If you want the dashboard to look extra fancy, install one or more of these:
 
 ```bash
-# Bonsai tree animation (look at it and smile)
+# Bonsai tree animation
 sudo pacman -S cbonsai  # Arch
 brew install cbonsai   # macOS
 apt install cbonsai    # Debian/Ubuntu
 
-# Fortune + cowsay + lolcat (because terminals can be fun)
+# Fortune + cowsay + lolcat
 brew install fortune cowsay lolcat  # macOS
 apt install fortune cowsay lolcat   # Debian/Ubuntu
 ```
@@ -154,7 +147,7 @@ Once installed:
 2. **Explore keymaps**: Press `<leader>?` (spacebar + question mark)
 3. **Open the file explorer**: `<leader>e` 
 4. **Search for files**: `<leader><space>` (try `<leader>f` for more find options)
-5. **Open recent files**: `<leader>fr`
+5. **Explore the help documents or config files**: `<leader>h`
 
 All keymaps are **mnemonic** — if you remember the letter, you remember the command.
 
@@ -164,63 +157,18 @@ HYPERfix is meant to be cloned/forked and modified. Here's where to make changes
 
 - **Keymaps**: `lua/config/keymaps.lua`
 - **Editor settings**: `lua/config/options.lua`
-- **Plugins**: `lua/plugins/` (one plugin per file)
-- **Colorscheme**: `colors/kokiri.lua` (or change in `init.lua`)
+- **Plugins**: `lua/plugins/` (one plugin per file; if you don't like one, just delete it)
+- **Colorscheme**: `lua/plugins/mini.lua` (uncomment the `mini.hues` module: lines 98-103)
 
 Every file has comments explaining the WHAT/WHY/HOW. If something feels opinionated, you can change it.
 
-## AI-Assisted Development with AMP
+## AI-Assisted Configuration
 
-HYPERfix is designed to work with **[AMP](https://ampcode.com/)**, an AI coding assistant that understands your codebase and helps you configure, learn, and maintain your Neovim setup.
+HYPERfix pairs well with **[AMP](https://ampcode.com/)**, an AI assistant that understands your codebase. Use it to learn, debug, and extend your config.
 
-### Why AI for Config?
+The included `AGENTS.md` file provides guidelines for AI-assisted customization — ensuring transparency, verification, and that you stay in control of your config.
 
-Configuring Neovim can feel **overwhelming** — especially if you're neurodivergent or managing cognitive load. AMP helps by:
-
-- **Reducing decision paralysis** — Ask questions, explore options together
-- **Automating repetitive tasks** — Plugin installation, boilerplate config, documentation updates
-- **Explaining the "why"** — Understand design decisions instead of blindly copying code
-- **Learning at your pace** — AMP acts as a mentor, not a magic box
-
-### Why AMP (and Not Copilot/Windsurf/Codeium)?
-
-HYPERfix intentionally uses **[AMP](https://ampcode.com/)** instead of inline AI assistants (Copilot, Windsurf, Codeium) because:
-
-- **Non-intrusive** — AMP doesn't push constant suggestions or promote AI over-reliance. You ask; it answers
-- **Intentional usage** — Unlike always-on autocomplete, AMP requires explicit interaction (you control when to ask)
-- **Respects autonomy** — The extensive code snippets and LSP server configuration in HYPERfix provide a good balance between assistance and independence
-- **Transparent approach** — AMP's design philosophy aligns with KISSME: explicit, understandable, and non-magical
-
-**This means:** You use AI as a *tool when you need it*, not a constant presence nudging you toward lazy coding. You stay engaged with your config, not dependent on autocomplete.
-
-The balance HYPERfix strikes is intentional: enough scaffolding that you can explore independently, plus optional AI assistance when things get complex.
-
-*If you do want in-editor AI suggestions, **[Sidekick.nvim](https://github.com/folke/Sidekick.nvim)** works well with HYPERfix.*
-
-### AGENTS.md: AI Configuration Guidelines
-
-The included `AGENTS.md` file contains detailed instructions for AI agents helping with HYPERfix. It covers:
-
-- **Verification & transparency** — AI sources its answers and provides links so you can verify
-- **Default-first configuration** — Plugins are set up with sensible defaults before customizations
-- **Permission before changes** — You review and approve all modifications before they're applied
-- **Mentorship approach** — AI helps you understand your config, not just manipulate it
-
-This ensures AI is a **transparent, educational tool** — not a black box.
-
-### Using AMP with HYPERfix
-
-To use AMP with HYPERfix:
-
-1. Open HYPERfix in AMP (paste your repo URL or open the project locally)
-2. AMP reads the `AGENTS.md` file automatically
-3. Ask questions like:
-   - "How do I add telescope.nvim?"
-   - "Explain how the keymaps work"
-   - "Help me debug why X isn't working"
-4. AMP will guide you through changes, show you diffs, and wait for your approval
-
-**AI is a tool for learning and automation — use it intentionally.**
+*For in-editor AI suggestions, **[Sidekick.nvim](https://github.com/folke/Sidekick.nvim)** integrates well with HYPERfix.*
 
 ## Philosophy & Design
 
@@ -237,25 +185,9 @@ HYPERfix solves this by:
 2. Making every decision **explicit** (comments explain WHAT/WHY/HOW)
 3. Removing **unnecessary complexity** (we say "no" to plugins that don't earn their spot)
 
-### Accessibility Isn't an Afterthought
+### Accessibility First
 
-Our options are set with accessibility in mind:
-
-```lua
--- 4px line spacing for readability (WCAG AAA standard)
-opt.linespace = 4
-
--- Longer timeout for key sequences (time to think, not race conditions)
-opt.timeoutlen = 1250
-
--- Consistent cursor behavior (centered on screen)
-opt.scrolloff = 999
-```
-
-This helps **everyone**, but it especially helps folks with:
-- ADHD (more visual processing time, less sensory chaos)
-- Dyslexia (better spacing and contrast)
-- Motor challenges (slower timeouts = easier key combos)
+HYPERfix sets options with accessibility in mind: 4px line spacing (WCAG AAA), 1250ms timeouts (time to think), and centered scrolling. This helps **everyone**, especially those with ADHD, dyslexia, or motor challenges.
 
 ### Mnemonic Keymaps
 
@@ -284,9 +216,10 @@ Look for warnings about missing dependencies (git, ripgrep, etc.).
 
 The Kokiri colorscheme is designed for dark terminals. If colors look off:
 
-1. Check your terminal's theme (should be a dark background)
-2. Try changing the colorscheme in `init.lua`: `vim.cmd.colorscheme("default")`
-3. Report it as an issue if it's genuinely broken
+1. Restart Neovim (known bug: installing/updating plugins via lazy.nvim may interrupt loading the colorscheme; simply restart after installation)
+2. Check your terminal's theme (should be a dark background)
+3. Try changing the colorscheme in `init.lua`: `vim.cmd.colorscheme("default")`
+4. Report it as an issue if it's genuinely broken
 
 ### "A keymap isn't working"
 

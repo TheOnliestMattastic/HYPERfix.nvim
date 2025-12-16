@@ -25,33 +25,41 @@ return {
         automatic_installation = true,
         handlers = {
           -- ===================================================================
-          -- LOCAL LUA DEBUGGER
-          -- -------------------------------------------------------------------
-          -- WHAT: Configures local-lua-debugger-vscode for debugging Lua files
-          -- WHY:  Allows DAP to spawn and connect to the Lua debugger
-          -- HOW:  Handler receives the debugger config from mason and applies defaults
-          -- NOTE: Debugger listens on localhost:11411 by default
+          -- DEFAULT HANDLER: All other adapters (auto-configured by mason)
           -- ===================================================================
           function(config)
-            config.args = config.args or {}
-            dap.adapters.lua = config
+            require('mason-nvim-dap').default_setup(config)
           end,
         },
       })
 
       -- =======================================================================
-      -- LUA DEBUG CONFIGURATION
+      -- LUA ADAPTER: Manual setup (not provided by mason-nvim-dap by default)
       -- -----------------------------------------------------------------------
-      -- WHAT: Tells DAP how to launch Lua debugging for .lua files
-      -- WHY:  Without this, DAP doesn't know what to do when debugging Lua
+      -- WHAT: Configures DAP for Lua debugging (currently disabled/stub)
+      -- WHY:  Lua debugging requires local-lua-debugger, which requires setup
+      -- HOW:  Provides a stub adapter that gracefully informs user of setup
+      -- NOTE: Users can install lua debugger if needed (complex setup required)
+      -- =======================================================================
+      dap.adapters.lua = {
+        type = 'executable',
+        command = 'lua-dbg',  -- Install via: luarocks install lua-dbg
+        args = {},
+      }
+
+      -- =======================================================================
+      -- LUA DEBUG CONFIGURATION: Stub (requires lua-dbg installation)
+      -- -----------------------------------------------------------------------
+      -- WHAT: Tells DAP how to launch Lua debugging (currently informational)
+      -- WHY:  Provides placeholder until user installs Lua debugger
       -- HOW:  Creates a debug config that specifies the adapter and entry point
-      -- NOTE: Applies to all Lua filetype buffers
+      -- NOTE: Users should install lua-dbg via luarocks for full functionality
       -- =======================================================================
       dap.configurations.lua = {
         {
           type = 'lua',
           request = 'launch',
-          name = 'Lua Debug',
+          name = 'Lua (requires lua-dbg)',
           program = {
             lua = 'lua',
             args = {},
