@@ -44,4 +44,7 @@ node_modules/
 *.out
 
 # Notes
-.notes
+.notes/
+
+# Amp
+.amp/
