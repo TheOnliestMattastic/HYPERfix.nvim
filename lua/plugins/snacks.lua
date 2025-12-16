@@ -492,6 +492,9 @@ return {
     vim.api.nvim_create_autocmd('User', {
       pattern = 'VeryLazy',
       callback = function()
+        vim.ui.input = Snacks.input
+        vim.ui.select = Snacks.picker.select
+
         -- =====================================================================
         -- Debug Utilities: Global functions for pretty debugging
         -- =====================================================================
