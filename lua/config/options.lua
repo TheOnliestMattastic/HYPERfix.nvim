@@ -181,8 +181,8 @@ opt.laststatus = 3 -- global statusline
 -- HOW:  Set longer timeoutlen for which-key, updatetime for CursorHold
 -- =============================================================================
 
-opt.timeoutlen = 300 -- Lower than default (1000) to quickly trigger which-key
-opt.jumpoptions = 'view'
+opt.timeoutlen = 1250
+opt.jumpoptions = "view"
 
 -- =============================================================================
 -- Options (Messages & Feedback)
