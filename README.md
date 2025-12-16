@@ -2,9 +2,9 @@
 
 ![welcome](assets/welcome.png)
 
-<a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/plugins?style=flat" /></a>
-<a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/leaderkey?style=flat" /></a>
-<a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/plugin-manager?style=flat" /></a>
+<a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/plugins?style=for-the-badge" /></a>
+<a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/leaderkey?style=for-the-badge" /></a>
+<a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/plugin-manager?style=for-the-badge" /></a>
 
 > **A universally designed Neovim template for neurodivergent developers.** Built for brains that work differently—and think that's awesome.
 
@@ -31,9 +31,9 @@ HYPERfix is built around principles that help **ADHD, autism, dyslexia, and othe
 
 ## Legend of Zelda Theme
 
->  *It's dangerous to go alone! Take this.*
+> *It's dangerous to go alone! Take this.*
 >
->          🔥      🧙‍♂️🗡️     🔥
+> 🔥      🧙‍♂️🗡️     🔥
 
 This config draws inspiration from the **Legend of Zelda** universe. Why Zelda? Because:
 - It's **timeless and universally beloved**
@@ -238,7 +238,7 @@ This is a personal project, but I welcome feedback:
 
 ## License
 
-GNU
+GNU General Public License v3.0 — See [LICENSE](LICENSE) for details.
 
 ## Acknowledgments
 
@@ -254,4 +254,4 @@ GNU
 
 > *Time passes, people move... Like a river's flow, it never ends... A childish mind will turn to noble ambition... Young love will become deep affection... The clear water's surface reflects growth...*
 >
-> -- Shiek
+> Shiek
