@@ -8,8 +8,6 @@
 
 > **A universally designed Neovim template for neurodivergent developers.** Built for brains that work differently—and think that's awesome.
 
-🚨 **WORK IN PROGRESS** — This project is actively evolving. Expect breaking changes, new features, and the occasional debug session.
-
 ## What Is This?
 
 **HYPERfix.nvim** is a Neovim configuration template that prioritizes **accessibility, clarity, and neurodivergent-friendly design** from the ground up.
@@ -26,7 +24,7 @@
 HYPERfix is built around principles that help **ADHD, autism, dyslexia, and other neurodivergent folks** (and honestly, everyone):
 
 - **Clear visual hierarchy** — 4px line spacing + WCAG AAA contrast ratios
-- **Thoughtful pacing** — Longer timeouts (300ms) for key sequences—time to think
+- **Thoughtful pacing** — Longer timeouts (1250) for key sequences—time to think
 - **Mnemonic keymaps** — `<leader>f` = find, `<leader>g` = git. Patterns you can predict
 - **Explicit documentation** — Every code block explains WHAT/WHY/HOW
 - **Graceful degradation** — Missing optional tools won't break your editor
@@ -248,7 +246,7 @@ Our options are set with accessibility in mind:
 opt.linespace = 4
 
 -- Longer timeout for key sequences (time to think, not race conditions)
-opt.timeoutlen = 300
+opt.timeoutlen = 1250
 
 -- Consistent cursor behavior (centered on screen)
 opt.scrolloff = 999
