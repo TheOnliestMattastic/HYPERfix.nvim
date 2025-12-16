@@ -51,31 +51,31 @@ return {
     -- Individual Snacks: Enable/disable by feature
     -- =========================================================================
     -- stylua: ignore start
-    animate =       { enabled = true },  -- Smooth animations & transitions
-    bigfile =       { enabled = true },  -- Optimize performance for large files
-    bufdelete =     { enabled = true },  -- Smart buffer deletion
-    debug =         { enabled = true },  -- Pretty inspect & backtrace
-    dim =           { enabled = true },  -- Dim inactive scopes
+    animate =       { enabled = true }, -- Smooth animations & transitions
+    bigfile =       { enabled = true }, -- Optimize performance for large files
+    bufdelete =     { enabled = true }, -- Smart buffer deletion
+    debug =         { enabled = true }, -- Pretty inspect & backtrace
+    dim =           { enabled = true }, -- Dim inactive scopes
     explorer =      { enabled = false }, -- File explorer (handled by mini.files)
-    image =         { enabled = true },  -- Image viewer (Kitty/Wezterm/Ghostty)
-    indent =        { enabled = true },  -- Indent guides
-    input =         { enabled = true },  -- Better vim.ui.input
-    layout =        { enabled = true },  -- Window layouts
-    lazygit =       { enabled = true },  -- LazyGit integration
-    notifier =      { enabled = true },  -- Pretty notifications
-    notify =        { enabled = true },  -- vim.notify utilities
-    profiler =      { enabled = true },  -- Lua profiler
-    quickfile =     { enabled = true },  -- Fast file rendering
-    rename =        { enabled = true },  -- File renaming with LSP support
-    scope =         { enabled = true },  -- Scope detection & jumping
-    scratch =       { enabled = true },  -- Persistent scratch buffers
-    scroll =        { enabled = true },  -- Smooth scrolling
-    statuscolumn =  { enabled = true },  -- Pretty status column
-    terminal =      { enabled = true },  -- Floating/split terminals
-    toggle =        { enabled = true },  -- Toggle keymaps
-    util =          { enabled = true },  -- Utilities (library)
-    words =         { enabled = true },  -- LSP reference highlighting
-    zen =           { enabled = true },  -- Zen mode (distraction-free)
+    image =         { enabled = true }, -- Image viewer (Kitty/Wezterm/Ghostty)
+    indent =        { enabled = true }, -- Indent guides
+    input =         { enabled = true }, -- Better vim.ui.input
+    layout =        { enabled = true }, -- Window layouts
+    lazygit =       { enabled = true }, -- LazyGit integration
+    notifier =      { enabled = true }, -- Pretty notifications
+    notify =        { enabled = true }, -- vim.notify utilities
+    profiler =      { enabled = true }, -- Lua profiler
+    quickfile =     { enabled = true }, -- Fast file rendering
+    rename =        { enabled = true }, -- File renaming with LSP support
+    scope =         { enabled = true }, -- Scope detection & jumping
+    scratch =       { enabled = true }, -- Persistent scratch buffers
+    scroll =        { enabled = true }, -- Smooth scrolling
+    statuscolumn =  { enabled = true }, -- Pretty status column
+    terminal =      { enabled = true }, -- Floating/split terminals
+    toggle =        { enabled = true }, -- Toggle keymaps
+    util =          { enabled = true }, -- Utilities (library)
+    words =         { enabled = true }, -- LSP reference highlighting
+    zen =           { enabled = true }, -- Zen mode (distraction-free)
     -- stylua: ignore end
   },
 
@@ -131,9 +131,9 @@ return {
       desc = '[G]rep Buffers',
     },
     {
-      "<leader>bS",
+      '<leader>bS',
       function() Snacks.scratch.select() end,
-      desc = "[S]elect Scratch Buffer"
+      desc = '[S]elect Scratch Buffer',
     },
 
     -- =========================================================================
@@ -446,14 +446,42 @@ return {
       desc = 'T[y]pe Definition',
     },
     {
-      'gli',
+      'gi',
       function() Snacks.picker.lsp_incoming_calls() end,
       desc = 'Calls [I]ncoming',
     },
     {
-      'glo',
+      'go',
       function() Snacks.picker.lsp_outgoing_calls() end,
       desc = 'Calls [O]utgoing',
+    },
+    {
+      '<leader>cl',
+      function() Snacks.picker.lsp_config() end,
+      desc = '[L]sp Info',
+    },
+    {
+      '<leader>ca',
+      vim.lsp.buf.code_action,
+      desc = 'Code [A]ction',
+      mode = { 'n', 'x' },
+    },
+    {
+      '<leader>cc',
+      vim.lsp.codelens.run,
+      desc = 'Run [C]odelens',
+      mode = { 'n', 'x' },
+    },
+    {
+      '<leader>cC',
+      vim.lsp.codelens.refresh,
+      desc = 'Refresh & Display [C]odelens',
+      mode = { 'n' },
+    },
+    {
+      '<leader>cr',
+      vim.lsp.buf.rename,
+      desc = '[R]ename',
     },
   },
 
@@ -482,43 +510,32 @@ return {
         -- =====================================================================
         Snacks.toggle.animate():map('<leader>ua')
 
-        Snacks.toggle.option(
-          'conceallevel',
-          {
-            name = "[C]onceal",
+        Snacks.toggle
+          .option('conceallevel', {
+            name = '[C]onceal',
             off = 0,
-            on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2
-          }
-        ):map('<leader>uc')
+            on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2,
+          })
+          :map('<leader>uc')
 
-        Snacks.toggle.diagnostics(
-          { name = '[D]iagnostics' }
-        ):map('<leader>ud')
+        Snacks.toggle.diagnostics({ name = '[D]iagnostics' }):map('<leader>ud')
 
         Snacks.toggle.dim():map('<leader>uD', { desc = 'Dim' })
         Snacks.toggle.indent():map('<leader>ug', { desc = 'Indent Guides' })
 
-        Snacks.toggle.option(
-          'relativenumber',
-          { name = 'Re[l]ative Number'}
-        ):map('<leader>uL')
+        Snacks.toggle
+          .option('relativenumber', { name = 'Re[l]ative Number' })
+          :map('<leader>uL')
 
-        Snacks.toggle.line_number(
-          { name = '[L]ine number' }
-        ):map('<leader>ul')
+        Snacks.toggle.line_number({ name = '[L]ine number' }):map('<leader>ul')
 
-        Snacks.toggle.treesitter(
-          {name = '[T]reesitter Highlights' }
-        ):map('<leader>uT')
+        Snacks.toggle
+          .treesitter({ name = '[T]reesitter Highlights' })
+          :map('<leader>uT')
 
-        Snacks.toggle.inlay_hints(
-          { name = 'Inlay [H]ints' }
-        ):map('<leader>uh')
+        Snacks.toggle.inlay_hints({ name = 'Inlay [H]ints' }):map('<leader>uh')
 
-        Snacks.toggle.option(
-          'spell',
-          { name = '[S]pelling' }
-        ):map('<leader>us')
+        Snacks.toggle.option('spell', { name = '[S]pelling' }):map('<leader>us')
 
         Snacks.toggle.scroll():map('<leader>uS')
         Snacks.toggle.option('wrap', { name = '[W]rap' }):map('<leader>uw')
