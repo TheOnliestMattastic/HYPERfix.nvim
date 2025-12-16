@@ -384,6 +384,15 @@
 | `<C-j>` | Insert | Jump to next snippet placeholder |
 | `<C-k>` | Insert | Jump to previous snippet placeholder |
 
+### Completion Sources
+| Source | Purpose | Triggers |
+|--------|---------|----------|
+| LSP | Language intelligence (definitions, types, methods) | Auto on typing (language-aware) |
+| Path | File/directory completion | Auto when typing `/` or `./` |
+| Snippets | VSCode-style code templates | Auto on typing snippet prefixes |
+| Lazydev | Neovim API completions | Auto in Neovim config files |
+| Ripgrep | Project-wide code search (reduce typos, discover patterns) | Auto after 3 characters typed |
+
 ---
 
 ## Conform (Formatting)

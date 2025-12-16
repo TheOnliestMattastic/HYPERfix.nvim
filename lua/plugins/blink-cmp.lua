@@ -11,6 +11,8 @@ return {
   lazy = true,
   version = '1.*',
   dependencies = {
+    'folke/lazydev.nvim', -- Neovim API completions & type hints
+
     -- =========================================================================
     -- Snippet Engine: LuaSnip
     -- -------------------------------------------------------------------------
@@ -22,6 +24,7 @@ return {
       'L3MON4D3/LuaSnip',
       version = '2.*',
       build = 'make install_jsregexp', -- Required for regex support in snippets
+      opts = {},
       dependencies = {
         {
           'rafamadriz/friendly-snippets',
@@ -30,50 +33,49 @@ return {
           end,
         },
       },
-      opts = {},
     },
-    -- Neovim API completions & type hints
-    'folke/lazydev.nvim',
+
+    -- =========================================================================
+    -- Project-wide code discovery via ripgrep/git grep
+    -- -------------------------------------------------------------------------
+    -- WHAT: Adds project codebase search to completion suggestions
+    -- WHY:  Reduces typos, discovers patterns you've used, improves consistency
+    -- HOW:  Searches tracked files (git grep) or entire project (ripgrep)
+    -- NOTE: Configurable prefix length to avoid excessive searches
+    -- -------------------------------------------------------------------------
+    {
+      'mikavilpas/blink-ripgrep.nvim',
+      version = '*',
+    },
   },
   opts = {
-    -- =========================================================================
-    -- Keymap Preset
-    -- -------------------------------------------------------------------------
     keymap = {
       preset = 'default', -- Standard completion keybinds (C-n/C-p navigate)
     },
-
-    -- =========================================================================
-    -- Appearance
-    -- -------------------------------------------------------------------------
     appearance = {
       nerd_font_variant = 'mono', -- Use monospace Nerd Font icons
     },
-
-    -- =========================================================================
-    -- Completion Behavior
-    -- -------------------------------------------------------------------------
     completion = {
       -- Disable auto-show docs to reduce visual noise (user can view with C-y)
       documentation = { auto_show = false, auto_show_delay_ms = 500 },
     },
-
-    -- =========================================================================
-    -- Completion Sources & Priorities
-    -- -------------------------------------------------------------------------
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'lazydev' },
+      default = { 'buffer', 'lsp', 'path', 'snippets', 'lazydev', 'ripgrep' },
       providers = {
         lazydev = {
           module = 'lazydev.integrations.blink',
           score_offset = 100, -- Boost Neovim API completions in priority
         },
+        ripgrep = {
+          module = 'blink-ripgrep',
+          name = 'Ripgrep',
+          opts = {
+            -- Smart: prefer git grep, fallback to ripgrep
+            backend = { use = 'gitgrep-or-ripgrep' },
+          },
+        },
       },
     },
-
-    -- =========================================================================
-    -- Snippets & Fuzzy Matching
-    -- -------------------------------------------------------------------------
     snippets = { preset = 'luasnip' },
     fuzzy = { implementation = 'prefer_rust_with_warning' }, -- Use Rust impl if available
     signature = { enabled = true }, -- Show function signatures while typing
