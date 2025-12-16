@@ -43,8 +43,8 @@ node_modules/
 *.exe
 *.out
 
-# Notes
-.notes/
+# Notes (symlink)
+.notes
 
 # Amp
 .amp/
