@@ -2,11 +2,11 @@
 
 ![welcome](assets/welcome.png)
 
-<a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/plugins?style=for-the-badge" /></a>
-<a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/leaderkey?style=for-the-badge" /></a>
-<a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/plugin-manager?style=for-the-badge" /></a>
+<a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/plugins?style=flat" /></a>
+<a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/leaderkey?style=flat" /></a>
+<a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/plugin-manager?style=flat" /></a>
 
-> **A universally designed Neovim template for neurodivergent developers.** Built for brains that work differently—and think that's awesome.
+> *A universally designed Neovim template for neurodivergent developers.** Built for brains that work differently—and think that's awesome.*
 
 ## What Is This?
 
@@ -252,4 +252,5 @@ GNU
 **Made with ⚔️ and 💚 by someone who understands that neurodivergent brains are a feature, not a bug.**
 
 > *Time passes, people move... Like a river's flow, it never ends... A childish mind will turn to noble ambition... Young love will become deep affection... The clear water's surface reflects growth...*
-> -Shiek
+>
+> -- Shiek
