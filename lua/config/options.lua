@@ -124,12 +124,8 @@ opt.foldmethod = 'indent'
 opt.foldlevel = 99
 opt.foldtext = ''
 opt.fillchars = {
-  foldopen = ' ',
-  foldclose = ' ',
-  fold = ' ',
-  foldsep = ' ',
-  diff = '╱',
-  eob = ' ',
+  foldopen = '󱄰',
+  foldclose = '󱄱',
 }
 
 -- =============================================================================

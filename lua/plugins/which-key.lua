@@ -27,36 +27,36 @@ return {
         -- =======================================================================
         {
           '<leader>?',
-          icon = '󰌓', -- Show keymaps
+          icon = '󱕴', -- Show keymaps
         },
         {
           '<leader>e',
-          icon = '󰆌', -- File explorer toggle
+          icon = '󰨁', -- File explorer toggle
         },
         {
           '<leader><space>',
           desc = 'Smart Search',
-          icon = '',
+          icon = '󰬯',
         },
         {
           '<leader>/',
           desc = 'Grep',
-          icon = '',
+          icon = '󰍈',
         },
         {
           '<leader>:',
           desc = 'Command History',
-          icon = '󰋚',
+          icon = '󱦟',
         },
         {
           '<leader>.',
           desc = 'Scratch Buffer',
-          icon = '󱧃',
+          icon = '󰑷',
         },
         {
           '<leader>t',
           desc = '[T]erminal',
-          icon = '󰞷',
+          icon = '󱃏',
         },
 
         -- =======================================================================
@@ -64,13 +64,13 @@ return {
         -- =======================================================================
         {
           '<leader><tab>',
-          group = '[Tabs]',
-          icon = '󰓩',
+          group = '[TAB]',
+          icon = '',
         },
         {
           '<leader>c',
           group = '[C]ode',
-          icon = '',
+          icon = '󰓥',
         },
         {
           '<leader>d',
@@ -80,7 +80,7 @@ return {
         {
           '<leader>f',
           group = '[F]ile/Find',
-          icon = '󰑷',
+          icon = '󰆌',
         },
         {
           '<leader>g',
@@ -105,17 +105,17 @@ return {
         {
           '<leader>s',
           group = '[S]earch',
-          icon = '',
+          icon = '',
         },
         {
           '<leader>u',
           group = '[U]I',
-          icon = '󰆍',
+          icon = '󱞠',
         },
         {
           '<leader>x',
           group = 'Inde[x]',
-          icon = '󰉹',
+          icon = '󰴮',
         },
 
         -- =======================================================================
@@ -126,17 +126,17 @@ return {
         {
           'g',
           group = '[G]oto',
-          icon = '󱓷'
+          icon = '󱡮'
         },
         {
           'gs',
           group = '[S]urround',
-          icon = '󰅩'
+          icon = '󰟫'
         },
         {
           'z',
           group = 'Fold',
-          icon = '󰘺'
+          icon = '󱉋'
         },
 
         -- =======================================================================
@@ -146,14 +146,14 @@ return {
           '<leader>b',
           group = '[B]uffer',
           expand = function() return require('which-key.extras').expand.buf() end,
-          icon = '󰘓'
+          icon = '󰯃'
         },
         {
           '<leader>w',
-          group = 'windows',
+          group = '[W]indows',
           proxy = '<c-w>', -- Proxy to Vim's window commands
           expand = function() return require('which-key.extras').expand.win() end,
-          icon = '󰖲'
+          icon = '󰮕'
         },
       },
     },

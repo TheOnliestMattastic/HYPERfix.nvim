@@ -269,7 +269,7 @@ return {
       desc = '[K]eymaps',
     },
     {
-      '<leader>nm',
+      '<leader>nn',
       function() Snacks.picker.notifications() end,
       desc = '[N]otification History',
     },
@@ -492,8 +492,6 @@ return {
     vim.api.nvim_create_autocmd('User', {
       pattern = 'VeryLazy',
       callback = function()
-        vim.ui.input = Snacks.input
-        vim.ui.select = Snacks.picker.select
 
         -- =====================================================================
         -- Debug Utilities: Global functions for pretty debugging
