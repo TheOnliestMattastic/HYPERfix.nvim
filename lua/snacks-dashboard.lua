@@ -36,7 +36,7 @@ return {
     if vim.fn.executable('cbonsai') == 1 then
       table.insert(sections, {
         section = 'terminal',
-        cmd = 'cbonsai -li -t .15 -b 3 -M 3 -L 16',
+        cmd = 'cbonsai -li -b 3 -M 3 -L 16',
         height = 12,
         padding = 0,
       })

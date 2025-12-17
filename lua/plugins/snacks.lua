@@ -121,14 +121,14 @@ return {
       desc = 'Select [B]uffer',
     },
     {
-      '<leader>bd',
-      function() Snacks.bufdelete() end,
-      desc = '[D]elete Buffer ',
-    },
-    {
       '<leader>bg',
       function() Snacks.picker.grep_buffers() end,
       desc = '[G]rep Buffers',
+    },
+    {
+      '<leader>bq',
+      function() Snacks.bufdelete() end,
+      desc = '[Q]uit Buffer ',
     },
     {
       '<leader>bS',
