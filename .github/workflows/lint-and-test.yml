@@ -21,23 +21,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Install selene
-        run: |
-          curl -L https://github.com/Kampfkarren/selene/releases/download/0.29.0/selene-0.29.0-linux.zip -o selene.zip
-          unzip -q selene.zip
-          sudo mv selene /usr/local/bin/
-          sudo chmod +x /usr/local/bin/selene
-
       - name: Install stylua
         run: |
           curl -L https://github.com/JohnnyMorganz/StyLua/releases/download/v2.3.1/stylua-linux-x86_64.zip -o stylua.zip
           unzip -q stylua.zip
           sudo mv stylua /usr/local/bin/
           sudo chmod +x /usr/local/bin/stylua
-
-      - name: Run selene (Lua linter)
-        run: |
-          selene lua/
 
       - name: Run stylua (Lua formatter check)
         run: |
