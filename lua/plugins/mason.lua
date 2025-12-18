@@ -1,15 +1,14 @@
 -- =============================================================================
--- MASON.NVIM - Package Manager for Language Servers
+-- MASON.NVIM: Package Manager for LSP Servers & Tools
 -- =============================================================================
--- WHAT: Install and manage language servers, formatters, and linters
--- WHY:  LSP servers and tools must be installed separately from Neovim.
---       Mason provides a unified UI to install/update them without terminal.
--- HOW:  Press '<leader>nm' to open Mason. Browse packages, press 'i' to install.
---       Installed tools are automatically used by LSP, conform, and other plugins.
--- NOTE: Works with nvim-lspconfig to automatically attach servers to buffers.
---
+-- WHAT: Install and manage language servers, formatters, linters, and debuggers
+-- WHY:  LSP servers must be installed separately from Neovim; Mason provides a UI
+-- HOW:  <leader>nm to open Mason UI; browse, press 'i' to install. Auto-integrated with plugins.
+-- NOTE: Works with lspconfig (auto-attach), conform (formatters), dap (debuggers)
+-- KEYMAPS: <leader>nm to open Mason
 -- REFERENCE: https://github.com/williamboman/mason.nvim
--- -----------------------------------------------------------------------------
+-- RELATED: lua/plugins/lsp.lua (lspconfig), lua/plugins/conform.lua, lua/plugins/dap.lua
+-- =============================================================================-------------------------------------------------------------------
 return {
   "mason-org/mason.nvim",
   lazy = true,

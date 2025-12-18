@@ -1,41 +1,23 @@
 -- =============================================================================
--- FLASH.NVIM - Smart Character-Based Navigation
--- -----------------------------------------------------------------------------
--- WHAT: Fast navigation with intelligent character labels across visible text
--- WHY:  Motions like `w`, `f`, and `b` require multiple keystrokes to reach
---       distant targets. Flash provides 1-2 keystrokes to jump anywhere visible.
--- HOW:  Press 's' to activate Flash. Type any visible character and Flash will
---       label all matches with keyboard shortcuts. Press the shortcut to jump.
--- NOTE: Works in normal, visual, and operator-pending modes. Respects Vim's
---       language and motion semantics (can be used with operators like 'd', 'c').
---
+-- FLASH.NVIM: Lightning-Fast Motion Navigation
+-- =============================================================================
+-- WHAT: Jump anywhere visible using intuitive two-keystroke motions with labels
+-- WHY:  Standard Vim motions (w, f, b) require multiple keypresses for distant targets.
+--       Flash labels all matches so you jump in one or two keystrokes (neurodivergent-friendly!)
+-- HOW:  Activate with 's' and type the target character; Flash labels each match
+-- NOTE: Works in normal, visual, and operator modes. Integrates with d/c/y operators.
 -- REFERENCE: https://github.com/folke/flash.nvim
--- -----------------------------------------------------------------------------
+-- =============================================================================-------------------------------------------------------------------
 --
--- QUICK START
--- -----------
+-- KEYMAPS AND USAGE
+-- ==================
 -- • s    : Search and jump to any visible character (normal/visual/op-pending)
 -- • S    : Search within syntax tree (jump to language constructs)
 -- • r    : Remote motion (use with operators: 'd', 'c', 'y', etc.)
 -- • R    : Search syntax tree for operators
 -- • C-s  : Toggle Flash search (e.g., disable if activated on accident)
 --
--- EXAMPLE USAGE
--- -----------
--- Normal mode:
---   • Press 's', then type 'f' to highlight all 'f' characters and their labels.
---   • Type the label (e.g., 'a') to jump to that location.
---   • Repeat: 'sfe' jumps to nearest 'e' that matches your label.
---
--- Operator-pending (delete/change/yank):
---   • Press 'ds' (delete with Flash motion) to delete up to your target.
---   • Flash prompts: select label to delete.
---   • Works with 'c' (change), 'y' (yank), and other operators.
---
--- Visual mode:
---   • Enter visual mode with 'v' or 'V'.
---   • Use 's' to extend selection to a target character.
---   • Useful for multi-line selections without counting lines.
+-- EXAMPLES: 's' + 'f' = jump to next f, 'ds' + label = delete to target, 'c2s' = change
 -- =============================================================================
 return {
   {

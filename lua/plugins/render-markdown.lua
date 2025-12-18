@@ -1,7 +1,14 @@
 -- =============================================================================
--- RENDER-MARKDOWN
--- REFERENCE: https://github.com/MeanderingProgrammer/render-markdown.nvim/wiki
--- -----------------------------------------------------------------------------
+-- RENDER-MARKDOWN.NVIM: Beautiful Markdown Rendering
+-- =============================================================================
+-- WHAT: Renders markdown beautifully with colors, icons, and enhanced formatting
+-- WHY:  Plain markdown is hard to read; rendered view improves readability & focus
+-- HOW:  Auto-loads for markdown files; can be toggled with <leader>um
+-- NOTE: Uses Treesitter for syntax; works with Nerd Fonts for icons
+-- KEYMAPS: <leader>um to toggle markdown rendering
+-- REFERENCE: https://github.com/MeanderingProgrammer/render-markdown.nvim
+-- RELATED: lua/plugins/treesitter.lua (syntax highlighting), lua/config/options.lua
+-- =============================================================================-------------------------------------------------------------------
 return {
   {
     'MeanderingProgrammer/render-markdown.nvim',

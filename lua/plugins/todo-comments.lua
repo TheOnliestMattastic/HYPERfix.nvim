@@ -1,14 +1,13 @@
 -- =============================================================================
--- TODO-COMMENTS.NVIM
--- -----------------------------------------------------------------------------
--- WHAT: Highlights, highlights, and searches for todo comments (TODO, FIX, HACK, etc.)
---       in your codebase with different icons, colors, and styles.
---
--- HOW:  Parses any comment starting with a keyword and highlights it.
---       Integrates with Trouble (sidebar UI) and Snacks picker for navigation.
---       Treesitter-aware (matches comments only, not code).
---
+-- TODO-COMMENTS.NVIM: Highlight & Navigate Code Comments
+-- =============================================================================
+-- WHAT: Highlights, colors, and provides nav for TODO, FIX, HACK, NOTE, and custom comments
+-- WHY:  Makes it easy to spot and track work-in-progress annotations across codebase
+-- HOW:  Parses comments with keywords; integrates with Trouble sidebar and Snacks picker
+-- NOTE: Treesitter-aware (only matches in comment syntax, not code), supports custom keywords
+-- KEYMAPS: ]t/[t (jump comments), <leader>st/<leader>sT (search), <leader>xt/<leader>xT (sidebar)
 -- REFERENCE: https://github.com/folke/todo-comments.nvim
+-- RELATED: lua/plugins/trouble.lua (sidebar view), lua/plugins/snacks.lua (picker)
 -- =============================================================================
 return {
   {
@@ -52,7 +51,7 @@ return {
           color = "info",
         },
         HACK = {
-          icon = "󰧼",
+          icon = "󰣈",
           color = "warning",
         },
         WARN = {

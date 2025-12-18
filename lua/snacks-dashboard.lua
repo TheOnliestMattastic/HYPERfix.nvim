@@ -16,7 +16,7 @@ return {
   -- WHAT: Dashboard sections with tiered terminal animation support
   -- WHY: Gracefully handle optional dependencies (cbonsai, fortune, cowsay, bat, lolcat)
   -- HOW: Try cbonsai first, then fall back to shell command chains if available
-  -- NOTE: vim.fn.executable returns 1 if found, 0 if not (Lua treats 0 as falsy)
+  -- NOTE: vim.fn.executable returns 1 if found, 0 if not (Lua treats 0 as false)
   -- ---------------------------------------------------------------------------
   formats = {
     key = function(item)

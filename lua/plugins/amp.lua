@@ -1,6 +1,15 @@
 -- =============================================================================
+-- AMP.NVIM: AI-Assisted Code Editing
+-- =============================================================================
+-- WHAT: In-editor AI agent for code understanding, refactoring, and generation
+-- WHY:  Reduces cognitive load by automating routine coding tasks
+--       (perfect for neurodivergent developers)
+-- HOW:  Integrates with AMP CLI to provide context-aware suggestions and edits
+-- NOTE: Optional; can be safely deleted from lua/plugins/ if not needed
 -- REFERENCE: https://github.com/sourcegraph/amp.nvim
--- -----------------------------------------------------------------------------
+-- KEYMAPS: Commands defined in config: :AmpSend, :AmpSendBuffer, :AmpPromptSelection
+-- =============================================================================
+
 return {
   'sourcegraph/amp.nvim',
   lazy = true,
@@ -9,10 +18,12 @@ return {
   opts = { auto_start = true, log_level = 'info' },
 
   -- ===========================================================================
-  -- WHAT: Configure amp and create user commands after plugin loads
-  -- WHY: Lua files must `return` the plugin spec; runtime setup must run in `config`
-  -- HOW: `config` receives opts; we call require('amp').setup(opts) and create commands
-  -- NOTE: Placing commands here avoids code after `return` which causes the EOF error
+  -- CONFIGURATION: Setup amp plugin and create user commands
+  -- ===========================================================================
+  -- WHAT: Initialize amp and define custom commands for AI interaction
+  -- WHY:  Must be in `config` block; plugin spec returns before runtime code runs
+  -- HOW:  Call require('amp').setup(opts) and create user commands
+  -- NOTE: User commands provide convenient shortcuts for sending code to AI
   -- ---------------------------------------------------------------------------
   config = function(_, opts)
     -- apply plugin options safely

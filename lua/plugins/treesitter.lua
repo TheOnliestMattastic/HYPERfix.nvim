@@ -1,8 +1,13 @@
 -- =============================================================================
--- TREESITTER (Syntax Highlighting)
+-- TREESITTER: Advanced Syntax Highlighting & Text Objects
+-- =============================================================================
+-- WHAT: Parse-tree based syntax highlighting + smart text objects for code navigation
+-- WHY:  Treesitter understands language structure (not just regexes), enabling precise highlighting & selections
+-- HOW:  Auto-installs parsers on first use; integrates with textobjects and context plugins
+-- NOTE: Includes textobjects (af, if, ac, ic), context panel, and text folding
 -- REFERENCE: https://github.com/nvim-treesitter/nvim-treesitter
---            https://github.com/nvim-treesitter/nvim-treesitter-textobjects
--- -----------------------------------------------------------------------------
+-- RELATED: lua/plugins/mini.lua (mini.ai for text objects), lua/config/keymaps.lua
+-- =============================================================================-------------------------------------------------------------------
 return {
   {
     "nvim-treesitter/nvim-treesitter",

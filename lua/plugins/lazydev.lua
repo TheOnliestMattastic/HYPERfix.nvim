@@ -1,10 +1,14 @@
-  -- ===========================================================================
-  -- LAZYDEV.NVIM: Lua Development Support
-  -- https://github.com/folke/lazydev.nvim
-  -- WHAT: Provides Lua type hints for nvim/luv/plugin libraries
-  -- WHY:  Enables completion and type checking in Neovim config files
-  -- ---------------------------------------------------------------------------
-return  {
+-- =============================================================================
+-- LAZYDEV.NVIM: Lua Development Support
+-- =============================================================================
+-- WHAT: Provides type hints and completions for Neovim API and Lua libraries
+-- WHY:  Enables IntelliSense for Vim objects (vim.api, vim.uv) and plugins
+-- HOW:  Auto-loads on .lua files; integrates with blink.cmp for completion
+-- NOTE: Library includes vim types, Snacks plugin types, and Luv async API
+-- REFERENCE: https://github.com/folke/lazydev.nvim
+-- RELATED: lua/plugins/blink-cmp.lua (provides completions), lua/plugins/lsp.lua
+-- =============================================================================
+return {
   'folke/lazydev.nvim',
   lazy = true,
   ft = 'lua',

@@ -1,7 +1,13 @@
 -- =============================================================================
--- MINI.NVIM: The "Brain"
+-- MINI.NVIM: The "Brain" - Collection of Small Modular Plugins
+-- =============================================================================
+-- WHAT: Collection of 20+ small, independent plugins (files, surround, AI, align, etc.)
+-- WHY:  Replaces many single-purpose plugins with one consistent, well-documented package
+-- HOW:  Enable/disable individual modules in config; each module handles one concern
+-- NOTE: Includes mini.sessions for session management; extremely modular and lightweight
 -- REFERENCE: https://github.com/echasnovski/mini.nvim
--- -----------------------------------------------------------------------------
+-- MODULES: ai (text objects), files (explorer), sessions, align, surround, operators, etc.
+-- =============================================================================-------------------------------------------------------------------
 return {
   {
     'echasnovski/mini.nvim',

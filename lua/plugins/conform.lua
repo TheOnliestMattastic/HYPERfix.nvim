@@ -1,7 +1,14 @@
 -- =============================================================================
--- CONFORM.NVIM
+-- CONFORM.NVIM: Code Formatter Integration
+-- =============================================================================
+-- WHAT: Unified interface for running code formatters (stylua, prettier, etc.)
+-- WHY:  Automatic code formatting ensures consistent style without manual effort
+-- HOW:  Lazy-loads on save; uses `lsp_format = 'fallback'` to use LSP if no formatter
+-- NOTE: Each language can have multiple formatters; Conform tries them in order
+-- KEYMAPS: <leader>cf to format current buffer
 -- REFERENCE: https://github.com/stevearc/conform.nvim
--- -----------------------------------------------------------------------------
+-- RELATED: lua/config/options.lua (formatoptions), lua/plugins/lsp.lua
+-- =============================================================================
 
 return {
   'stevearc/conform.nvim',

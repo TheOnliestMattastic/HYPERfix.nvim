@@ -1,7 +1,13 @@
 -- =============================================================================
+-- GRUG-FAR.NVIM: Advanced Find and Replace
+-- =============================================================================
+-- WHAT: Full-featured search & replace with live preview and safety checks
+-- WHY:  Built-in substitute command is error-prone; grug-far shows changes before commit
+-- HOW:  Opens dedicated buffer for search patterns; preview updates in real-time
+-- NOTE: File-type auto-filtering helps avoid accidentally changing wrong file types
+-- KEYMAPS: <leader>sr to open dialog (or GrugFar/GrugFarWithin commands)
 -- REFERENCE: https://github.com/MagicDuck/grug-far.nvim
--- WHAT: Advanced search and replace with live preview
--- -----------------------------------------------------------------------------
+-- =============================================================================-------------------------------------------------------------------
 return {
   {
     'MagicDuck/grug-far.nvim',

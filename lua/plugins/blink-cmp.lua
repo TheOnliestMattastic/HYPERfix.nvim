@@ -1,11 +1,14 @@
 -- =============================================================================
--- BLINK.CMP
--- -----------------------------------------------------------------------------
--- WHAT: Fast, minimal completion engine for Neovim (LSP, snippets, paths)
--- WHY:  Replaces built-in completion with Rust-powered fuzzy matching & docs
--- HOW:  Integrates LuaSnip for snippets, lazydev for Neovim API completions
--- NOTE: Lazy-loaded; auto-show documentation disabled to reduce visual clutter
--- -----------------------------------------------------------------------------
+-- BLINK.CMP: Lightning-Fast Code Completion
+-- =============================================================================
+-- WHAT: Intelligent completion with LSP, snippets, paths, and ripgrep searches
+-- WHY:  Rust-powered fuzzy matching is faster and more accurate than built-in completion
+-- HOW:  Lazy-loads on first insert; integrates LSP, LuaSnip, lazydev, and ripgrep
+-- NOTE: Auto-show documentation disabled to reduce cognitive load; press C-y to view
+-- KEYMAPS: C-space (show), C-e (hide), C-y (accept), C-n/p (navigate), C-f/b (scroll docs)
+-- REFERENCE: https://github.com/saghen/blink.cmp
+-- RELATED: lua/plugins/lsp.lua, lua/plugins/lazydev.lua
+-- =============================================================================
 return {
   'saghen/blink.cmp',
   lazy = true,

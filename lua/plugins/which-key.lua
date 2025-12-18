@@ -1,6 +1,13 @@
 -- =============================================================================
--- WHICH-KEY.NVIM
+-- WHICH-KEY.NVIM: Keymap Discover & Display
+-- =============================================================================
+-- WHAT: Shows available keymaps in a menu when you pause after pressing <leader>
+-- WHY:  Prevents keymap amnesia—you can discover commands instead of memorizing them
+-- HOW:  Press <leader> and wait 1.25s (timeoutlen); menu shows all available actions
+-- NOTE: Uses mnemonic groups (f=find, g=git, c=code) to make patterns predictable
+-- KEYMAPS: <leader>? to show all keymaps
 -- REFERENCE: https://github.com/folke/which-key.nvim
+-- RELATED: lua/config/keymaps.lua, lua/config/options.lua (timeoutlen setting)
 -- =============================================================================
 
 return {

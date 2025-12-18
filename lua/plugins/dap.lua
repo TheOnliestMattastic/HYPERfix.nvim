@@ -1,7 +1,13 @@
 -- =============================================================================
--- DEBUG ADAPTER PROTOCOL CONFIG
--- REFERENCE: https://github.com/mfussenegger/nvim-dap
--- REFERENCE: https://github.com/rcarriga/nvim-dap-ui
+-- NVIM-DAP: Debugging Support
+-- =============================================================================
+-- WHAT: Debug Adapter Protocol integration for code debugging
+-- WHY:  Step through code, inspect variables, set breakpoints without leaving editor
+-- HOW:  Lazy-loads on file read; mason-nvim-dap auto-installs debug adapters
+-- NOTE: Lua debugging requires manual setup; other languages via Mason
+-- KEYMAPS: <leader>db (breakpoint), <leader>dc (continue), <leader>di (step), <leader>dd (toggle UI)
+-- REFERENCE: https://github.com/mfussenegger/nvim-dap, https://github.com/rcarriga/nvim-dap-ui
+-- RELATED: lua/plugins/mason.lua
 -- =============================================================================
 return {
   {
@@ -22,6 +28,7 @@ return {
       local ui = require('dapui')
 
       require('mason-nvim-dap').setup({
+        ensure_installed = {},
         automatic_installation = true,
         handlers = {
           -- ===================================================================

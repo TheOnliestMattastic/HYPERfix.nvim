@@ -1,8 +1,14 @@
 -- =============================================================================
--- TROUBLE.NVIM
--- WHAT: Pretty panel for diagnostics, symbols, quickfix, and location lists
+-- TROUBLE.NVIM: Diagnostics & Quickfix Panel
+-- =============================================================================
+-- WHAT: Unified sidebar for viewing diagnostics, symbols, quickfix, and location lists
+-- WHY:  Makes errors/warnings easier to scan and navigate than inline diagnostics alone
+-- HOW:  Toggle sidebar with <leader>x? commands; navigate with <leader>x? or [q/]q
+-- NOTE: Auto-integrates with LSP diagnostics and location lists; also shows symbols
+-- KEYMAPS: <leader>xd/xD (diagnostics), <leader>xs (symbols), <leader>xl (location), <leader>xq (quickfix)
 -- REFERENCE: https://github.com/folke/trouble.nvim
--- -----------------------------------------------------------------------------
+-- RELATED: lua/plugins/lsp.lua (diagnostics), lua/plugins/snacks.lua (picker integration)
+-- =============================================================================-------------------------------------------------------------------
 return {
   'folke/trouble.nvim',
   lazy = true,
