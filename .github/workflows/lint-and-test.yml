@@ -21,21 +21,17 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Lua
-        uses: "leafo/gh-actions-lua@v10"
-        with:
-          version: "5.1"
-
-      - name: Setup luarocks
-        uses: "leafo/gh-actions-luarocks@v4"
-
       - name: Install selene
         run: |
-          luarocks install selene
+          curl -sSL https://github.com/Kampfkarren/selene/releases/download/0.28.0/selene-0.28.0-linux-x86_64.tar.gz -o selene.tar.gz
+          tar -xzf selene.tar.gz
+          sudo mv selene /usr/local/bin/
 
       - name: Install stylua
         run: |
-          cargo install stylua
+          curl -sSL https://github.com/JohnnyMorganz/StyLua/releases/download/v0.20.0/stylua-0.20.0-linux-x86_64.zip -o stylua.zip
+          unzip stylua.zip
+          sudo mv stylua /usr/local/bin/
 
       - name: Run selene (Lua linter)
         run: |
