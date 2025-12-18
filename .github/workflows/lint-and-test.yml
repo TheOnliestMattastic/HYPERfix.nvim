@@ -1,0 +1,62 @@
+name: Lint and Test Config
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  lint:
+    name: Lint Code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Lua
+        uses: "leafo/gh-actions-lua@v10"
+        with:
+          version: "5.1"
+
+      - name: Setup luarocks
+        uses: "leafo/gh-actions-luarocks@v4"
+
+      - name: Install selene
+        run: |
+          luarocks install selene
+
+      - name: Install stylua
+        run: |
+          cargo install stylua
+
+      - name: Run selene (Lua linter)
+        run: |
+          selene lua/
+
+      - name: Run stylua (Lua formatter check)
+        run: |
+          stylua --check lua/
+
+  startup:
+    name: Test Config Startup
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Neovim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: nightly
+
+      - name: Test Config Loads
+        run: |
+          nvim --headless -u init.lua -c 'quit'
