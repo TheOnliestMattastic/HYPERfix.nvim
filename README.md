@@ -10,7 +10,7 @@
 <a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/leaderkey?style=for-the-badge" /></a>
 <a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/plugin-manager?style=for-the-badge" /></a>
 <a href="https://neovim.io/"><img src="https://img.shields.io/badge/Neovim-v0.11+-27C45E?style=for-the-badge&labelColor=2342AE&logo=neovim" /></a>
-<a href="https://github.com/theonliestmattastic/hyperfix.nvim/actions"><img src="https://img.shields.io/github/actions/workflow/status/theonliestmattastic/hyperfix.nvim/lint-and-test.yml?branch=main&style=for-the-badge&labelColor=2342AE&color=27C45E" /></a>
+<a href="https://github.com/theonliestmattastic/hyperfix.nvim/actions"><img src="https://img.shields.io/github/actions/workflow/status/theonliestmattastic/hyperfix.nvim/lint-and-test.yml?branch=master&style=for-the-badge&labelColor=2342AE&color=27C45E" /></a>
 <a href="https://github.com/theonliestmattastic/hyperfix.nvim"><img src="https://img.shields.io/github/languages/code-size/theonliestmattastic/hyperfix.nvim?style=for-the-badge&labelColor=2342AE&color=27C45E" /></a>
 <a href="https://www.w3.org/WAI/WCAG21/quickref/"><img src="https://img.shields.io/badge/Accessibility-WCAG%20AAA-27C45E?style=for-the-badge&labelColor=2342AE" /></a>
 
