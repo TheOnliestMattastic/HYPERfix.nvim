@@ -140,10 +140,10 @@ map('i', '<C-;>', function()
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
   local next_char = line:sub(col + 1, col + 1)
 
-  if next_char:match("[)%]}'\" ]") then
+  if next_char:match('[)%]}\'" ]') then
     vim.api.nvim_win_set_cursor(0, { row, col + 1 })
   end
-end, { noremap = true, silent = true, desc = "Skip past closing punctuation" })
+end, { noremap = true, silent = true, desc = 'Skip past closing punctuation' })
 
 -- =============================================================================
 -- FILE MANAGEMENT
@@ -189,9 +189,7 @@ map('n', '<leader>qW', function()
     vim.ui.input(
       { prompt = 'Session name (leave blank to skip): ' },
       function(name)
-        if name and name ~= '' then
-          sessions.write(name)
-        end
+        if name and name ~= '' then sessions.write(name) end
         -- Let nvim handle saving/quitting with :wqa
         -- (nvim will prompt for unsaved buffers if any)
         vim.cmd('wqa')
@@ -213,28 +211,33 @@ map('n', '<leader>qs', function()
   if active_session then
     -- Active session - save it
     sessions.write()
-    Snacks.notify.info('Session "' .. vim.fn.fnamemodify(active_session, ':t:r') .. '" saved')
+    Snacks.notify.info(
+      'Session "' .. vim.fn.fnamemodify(active_session, ':t:r') .. '" saved'
+    )
   else
     -- No active session - prompt for name
-    vim.ui.input(
-      { prompt = 'Session name: ' },
-      function(name)
-        if name and name ~= '' then
-          sessions.write(name)
-          Snacks.notify.info('Session "' .. name .. '" saved')
-        end
+    vim.ui.input({ prompt = 'Session name: ' }, function(name)
+      if name and name ~= '' then
+        sessions.write(name)
+        Snacks.notify.info('Session "' .. name .. '" saved')
       end
-    )
+    end)
   end
 end, { desc = '[S]ave Session' })
 
-map('n', '<leader>qr', function()
-  require('mini.sessions').select()
-end, { desc = '[R]estore Session' })
+map(
+  'n',
+  '<leader>qr',
+  function() require('mini.sessions').select() end,
+  { desc = '[R]estore Session' }
+)
 
-map('n', '<leader>qd', function()
-  require('mini.sessions').select('delete')
-end, { desc = '[D]elete Session' })
+map(
+  'n',
+  '<leader>qd',
+  function() require('mini.sessions').select('delete') end,
+  { desc = '[D]elete Session' }
+)
 
 map(
   'n',

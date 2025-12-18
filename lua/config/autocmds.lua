@@ -20,7 +20,7 @@
 -- =============================================================================
 
 local function augroup(name)
-  return vim.api.nvim_create_augroup("hyperfix_" .. name, { clear = true })
+  return vim.api.nvim_create_augroup('hyperfix_' .. name, { clear = true })
 end
 
 -- =============================================================================
@@ -32,12 +32,10 @@ end
 -- HOW:  Triggers on FocusGained (window refocuses), TermClose, TermLeave
 --       and runs :checktime to reload if needed
 -- =============================================================================
-vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
-  group = augroup("checktime"),
+vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
+  group = augroup('checktime'),
   callback = function()
-    if vim.o.buftype ~= "nofile" then
-      vim.cmd("checktime")
-    end
+    if vim.o.buftype ~= 'nofile' then vim.cmd('checktime') end
   end,
 })
 
@@ -48,11 +46,9 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 -- WHY:  Provides visual feedback so you know the selection worked
 -- HOW:  Triggers on TextYankPost and calls vim's built-in highlight.on_yank()
 -- =============================================================================
-vim.api.nvim_create_autocmd("TextYankPost", {
-  group = augroup("highlight_yank"),
-  callback = function()
-    (vim.hl or vim.highlight).on_yank()
-  end,
+vim.api.nvim_create_autocmd('TextYankPost', {
+  group = augroup('highlight_yank'),
+  callback = function() (vim.hl or vim.highlight).on_yank() end,
 })
 
 -- =============================================================================
@@ -62,12 +58,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- WHY:  Keeps your window layout proportional and balanced after resizing
 -- HOW:  Triggers on VimResized and runs wincmd = (equal width/height)
 -- =============================================================================
-vim.api.nvim_create_autocmd({ "VimResized" }, {
-  group = augroup("resize_splits"),
+vim.api.nvim_create_autocmd({ 'VimResized' }, {
+  group = augroup('resize_splits'),
   callback = function()
     local current_tab = vim.fn.tabpagenr()
-    vim.cmd("tabdo wincmd =")
-    vim.cmd("tabnext " .. current_tab)
+    vim.cmd('tabdo wincmd =')
+    vim.cmd('tabnext ' .. current_tab)
   end,
 })
 
@@ -80,12 +76,15 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 -- HOW:  Triggers on BufReadPost, restores the " mark (last position)
 --       if it's valid (excluding git commits and other special files)
 -- =============================================================================
-vim.api.nvim_create_autocmd("BufReadPost", {
-  group = augroup("last_loc"),
+vim.api.nvim_create_autocmd('BufReadPost', {
+  group = augroup('last_loc'),
   callback = function(event)
-    local exclude = { "gitcommit" }
+    local exclude = { 'gitcommit' }
     local buf = event.buf
-    if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].hyperfix_last_loc then
+    if
+      vim.tbl_contains(exclude, vim.bo[buf].filetype)
+      or vim.b[buf].hyperfix_last_loc
+    then
       return
     end
     vim.b[buf].hyperfix_last_loc = true
@@ -107,35 +106,35 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 --       and maps 'q' to close + delete the buffer
 -- NOTE: Marks these buffers as unlisted so they don't clutter buffer list
 -- =============================================================================
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("close_with_q"),
+vim.api.nvim_create_autocmd('FileType', {
+  group = augroup('close_with_q'),
   pattern = {
-    "PlenaryTestPopup",
-    "checkhealth",
-    "dbout",
-    "gitsigns-blame",
-    "grug-far",
-    "help",
-    "lspinfo",
-    "neotest-output",
-    "neotest-output-panel",
-    "neotest-summary",
-    "notify",
-    "qf",
-    "spectre_panel",
-    "startuptime",
-    "tsplayground",
+    'PlenaryTestPopup',
+    'checkhealth',
+    'dbout',
+    'gitsigns-blame',
+    'grug-far',
+    'help',
+    'lspinfo',
+    'neotest-output',
+    'neotest-output-panel',
+    'neotest-summary',
+    'notify',
+    'qf',
+    'spectre_panel',
+    'startuptime',
+    'tsplayground',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.schedule(function()
-      Snacks.keymap.set("n", "q", function()
-        vim.cmd("close")
+      Snacks.keymap.set('n', 'q', function()
+        vim.cmd('close')
         pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
       end, {
         buffer = event.buf,
         silent = true,
-        desc = "Quit buffer",
+        desc = 'Quit buffer',
       })
     end)
   end,
@@ -148,12 +147,10 @@ vim.api.nvim_create_autocmd("FileType", {
 -- WHY:  Keeps your buffer list clean when viewing man pages inline
 -- HOW:  Triggers on FileType "man" and sets buflisted = false
 -- =============================================================================
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("man_unlisted"),
-  pattern = { "man" },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-  end,
+vim.api.nvim_create_autocmd('FileType', {
+  group = augroup('man_unlisted'),
+  pattern = { 'man' },
+  callback = function(event) vim.bo[event.buf].buflisted = false end,
 })
 
 -- =============================================================================
@@ -164,13 +161,13 @@ vim.api.nvim_create_autocmd("FileType", {
 -- HOW:  Triggers on FileType for markdown, text, git commits, etc.
 --       and enables both wrap and spell locally
 -- =============================================================================
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("wrap_spell"),
-  pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
+vim.api.nvim_create_autocmd('FileType', {
+  group = augroup('wrap_spell'),
+  pattern = { 'text', 'plaintex', 'typst', 'gitcommit', 'markdown' },
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
-    vim.opt_local.colorcolumn = ''  -- Disable colorcolumn for wrapped text
+    vim.opt_local.colorcolumn = '' -- Disable colorcolumn for wrapped text
   end,
 })
 
@@ -182,12 +179,10 @@ vim.api.nvim_create_autocmd("FileType", {
 --       Default conceallevel would hide quotes/brackets
 -- HOW:  Triggers on FileType for json/jsonc/json5 and sets conceallevel = 0
 -- =============================================================================
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = augroup("json_conceal"),
-  pattern = { "json", "jsonc", "json5" },
-  callback = function()
-    vim.opt_local.conceallevel = 0
-  end,
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  group = augroup('json_conceal'),
+  pattern = { 'json', 'jsonc', 'json5' },
+  callback = function() vim.opt_local.conceallevel = 0 end,
 })
 
 -- =============================================================================
@@ -199,13 +194,11 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 -- HOW:  Triggers on BufWritePre and creates directory structure with mkdir
 -- NOTE: Skips remote files (ssh://, http://, etc.)
 -- =============================================================================
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  group = augroup("auto_create_dir"),
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  group = augroup('auto_create_dir'),
   callback = function(event)
-    if event.match:match("^%w%w+:[\\/][\\/]") then
-      return
-    end
+    if event.match:match('^%w%w+:[\\/][\\/]') then return end
     local file = vim.uv.fs_realpath(event.match) or event.match
-    vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+    vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
   end,
 })

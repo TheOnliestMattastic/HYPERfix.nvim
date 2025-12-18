@@ -133,17 +133,17 @@ return {
         {
           'g',
           group = '[G]oto',
-          icon = '󱡮'
+          icon = '󱡮',
         },
         {
           'gs',
           group = '[S]urround',
-          icon = '󰟫'
+          icon = '󰟫',
         },
         {
           'z',
           group = 'Fold',
-          icon = '󱉋'
+          icon = '󱉋',
         },
 
         -- =======================================================================
@@ -153,14 +153,14 @@ return {
           '<leader>b',
           group = '[B]uffer',
           expand = function() return require('which-key.extras').expand.buf() end,
-          icon = '󰯃'
+          icon = '󰯃',
         },
         {
           '<leader>w',
           group = '[W]indows',
           proxy = '<c-w>', -- Proxy to Vim's window commands
           expand = function() return require('which-key.extras').expand.win() end,
-          icon = '󰮕'
+          icon = '󰮕',
         },
       },
     },

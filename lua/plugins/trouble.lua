@@ -16,7 +16,7 @@ return {
   opts = {
     modes = {
       lsp = {
-        win = { position = 'right' },  -- LSP symbols appear on right side
+        win = { position = 'right' }, -- LSP symbols appear on right side
       },
     },
   },

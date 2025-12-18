@@ -25,53 +25,53 @@ return {
     opts = {
       keywords = {
         WHAT = {
-          color = "info",
-          icon = '󰽴'
+          color = 'info',
+          icon = '󰽴',
         },
         HOW = {
-          color = "info",
-          icon = '󰝚'
+          color = 'info',
+          icon = '󰝚',
         },
         WHY = {
-          color = "info",
-          icon = '󰎇'
+          color = 'info',
+          icon = '󰎇',
         },
         REF = {
-          icon = "󰯙",
-          color = "default",
-          alt = { "REFERENCE" },
+          icon = '󰯙',
+          color = 'default',
+          alt = { 'REFERENCE' },
         },
         FIX = {
-          icon = "󱇫",
-          color = "error",
-          alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
+          icon = '󱇫',
+          color = 'error',
+          alt = { 'FIXME', 'BUG', 'FIXIT', 'ISSUE' },
         },
         TODO = {
-          icon = "󰳈",
-          color = "info",
+          icon = '󰳈',
+          color = 'info',
         },
         HACK = {
-          icon = "󰣈",
-          color = "warning",
+          icon = '󰣈',
+          color = 'warning',
         },
         WARN = {
-          icon = "󰚑",
-          color = "warning",
-          alt = { "WARNING", "XXX" },
+          icon = '󰚑',
+          color = 'warning',
+          alt = { 'WARNING', 'XXX' },
         },
         PERF = {
-          icon = "󱁞",
-          alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" },
+          icon = '󱁞',
+          alt = { 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' },
         },
         NOTE = {
-          icon = "󰷠",
-          color = "hint",
-          alt = { "INFO" },
+          icon = '󰷠',
+          color = 'hint',
+          alt = { 'INFO' },
         },
         TEST = {
-          icon = "󱄳",
-          color = "test",
-          alt = { "TESTING", "PASSED", "FAILED" },
+          icon = '󱄳',
+          color = 'test',
+          alt = { 'TESTING', 'PASSED', 'FAILED' },
         },
       },
     },
@@ -124,12 +124,12 @@ return {
       --       `<leader>sT` searches only critical todos (TODO|FIX|FIXME)
       {
         '<leader>st',
-        function() Snacks.picker.grep { pattern = "TODO|HACK|NOTE|PERF|TEST" } end,
+        function() Snacks.picker.grep({ pattern = 'TODO|HACK|NOTE|PERF|TEST' }) end,
         desc = '[T]odo',
       },
       {
         '<leader>sT',
-        function() Snacks.picker.grep { pattern = "TODO|FIX|FIXME" } end,
+        function() Snacks.picker.grep({ pattern = 'TODO|FIX|FIXME' }) end,
         desc = '[T]odo/Fix/Fixme',
       },
     },

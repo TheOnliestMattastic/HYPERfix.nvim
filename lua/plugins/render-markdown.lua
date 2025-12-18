@@ -16,13 +16,13 @@ return {
     event = { 'BufRead' },
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
-      'nvim-mini/mini.nvim'
+      'nvim-mini/mini.nvim',
     },
 
     opts = {
       debounce = 75,
       render_modes = true,
-      pipe_table = { preset = 'heavy' },  -- Changed from 'heavy' to boolean
+      pipe_table = { preset = 'heavy' }, -- Changed from 'heavy' to boolean
       completions = { lsp = { enabled = true } },
     },
     ft = { 'markdown', 'norg', 'rmd', 'org', 'codecompanion' },

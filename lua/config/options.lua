@@ -24,7 +24,7 @@ vim.g.markdown_recommended_style = 0
 local opt = vim.opt
 
 opt.swapfile = false
-opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
 opt.undofile = true
 opt.undolevels = 10000
 opt.updatetime = 200 -- Save swap file and trigger CursorHold
@@ -43,14 +43,14 @@ opt.background = 'dark'
 opt.termguicolors = true -- True color support
 opt.guifont = 'AtkynsonMonoNerdFont:h14' -- Optimized for readability
 opt.linespace = 4 -- Atkinson Mono + 4px linespace is WCAG AAA compliant
-opt.colorcolumn = "81" -- Show column at 81 chars
+opt.colorcolumn = '81' -- Show column at 81 chars
 opt.cursorline = true -- Enable highlighting of the current line
 opt.cursorcolumn = false -- Disable highlighting of the current column
 opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 opt.number = true -- Print line number
 opt.relativenumber = true -- Relative line numbers
 opt.ruler = false -- Disable the default ruler
-opt.guicursor = ""
+opt.guicursor = ''
 
 -- =============================================================================
 -- Options (Indentation & Tabs)
@@ -178,7 +178,7 @@ opt.laststatus = 3 -- global statusline
 -- =============================================================================
 
 opt.timeoutlen = 1250
-opt.jumpoptions = "view"
+opt.jumpoptions = 'view'
 
 -- =============================================================================
 -- Options (Messages & Feedback)

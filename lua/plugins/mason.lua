@@ -10,16 +10,16 @@
 -- RELATED: lua/plugins/lsp.lua (lspconfig), lua/plugins/conform.lua, lua/plugins/dap.lua
 -- =============================================================================-------------------------------------------------------------------
 return {
-  "mason-org/mason.nvim",
+  'mason-org/mason.nvim',
   lazy = true,
   keys = { { '<leader>nm', '<cmd>Mason<cr>', desc = '[M]ason' } },
   opts = {
     ui = {
       icons = {
-        package_installed = "󰳈",
-        package_pending = "󰇠",
-        package_uninstalled = "󰞇"
-      }
-    }
-  }
+        package_installed = '󰳈',
+        package_pending = '󰇠',
+        package_uninstalled = '󰞇',
+      },
+    },
+  },
 }

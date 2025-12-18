@@ -492,7 +492,6 @@ return {
     vim.api.nvim_create_autocmd('User', {
       pattern = 'VeryLazy',
       callback = function()
-
         -- =====================================================================
         -- Debug Utilities: Global functions for pretty debugging
         -- =====================================================================

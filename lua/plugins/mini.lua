@@ -112,9 +112,9 @@ return {
       -- mini.sessions: Session management
       -- -----------------------------------------------------------------------
       require('mini.sessions').setup({
-        autoread = false,   -- Don't auto-restore on startup
-        autowrite = false,  -- Don't auto-save on exit
-        directory = vim.fn.stdpath('data') .. '/sessions',  -- ~/.local/share/nvim/sessions
+        autoread = false, -- Don't auto-restore on startup
+        autowrite = false, -- Don't auto-save on exit
+        directory = vim.fn.stdpath('data') .. '/sessions', -- ~/.local/share/nvim/sessions
       })
 
       require('mini.align').setup()

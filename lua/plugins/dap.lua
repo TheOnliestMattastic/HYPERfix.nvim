@@ -34,9 +34,7 @@ return {
           -- ===================================================================
           -- DEFAULT HANDLER: All other adapters (auto-configured by mason)
           -- ===================================================================
-          function(config)
-            require('mason-nvim-dap').default_setup(config)
-          end,
+          function(config) require('mason-nvim-dap').default_setup(config) end,
         },
       })
 
@@ -50,7 +48,7 @@ return {
       -- =======================================================================
       dap.adapters.lua = {
         type = 'executable',
-        command = 'lua-dbg',  -- Install via: luarocks install lua-dbg
+        command = 'lua-dbg', -- Install via: luarocks install lua-dbg
         args = {},
       }
 

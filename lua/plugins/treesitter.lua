@@ -10,37 +10,37 @@
 -- =============================================================================-------------------------------------------------------------------
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
+    'nvim-treesitter/nvim-treesitter',
     lazy = true,
-    branch = "main",
+    branch = 'main',
     version = false,
-    build = ":TSUpdate",
-    event = { "BufRead", "BufNewFile" },
+    build = ':TSUpdate',
+    event = { 'BufRead', 'BufNewFile' },
     dependencies = {
 
       -- ======================================================================
       -- TREESITTER-TEXTOBJECTS
       -- ----------------------------------------------------------------------
       {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        branch = "main",
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        branch = 'main',
         opts = {
           move = {
             enable = true,
             set_jumps = true,
-          }
-        }
+          },
+        },
       },
 
       -- ======================================================================
       -- TREESITTER-CONTEXT
       -- ----------------------------------------------------------------------
       {
-        "nvim-treesitter/nvim-treesitter-context",
+        'nvim-treesitter/nvim-treesitter-context',
         opts = function()
-          local tsc = require("treesitter-context")
+          local tsc = require('treesitter-context')
           Snacks.toggle({
-            name = "[T]reesitter Context",
+            name = '[T]reesitter Context',
             get = tsc.enabled,
             set = function(state)
               if state then
@@ -49,8 +49,8 @@ return {
                 tsc.disable()
               end
             end,
-          }):map("<leader>ut")
-          return { mode = "cursor", max_lines = 3 }
+          }):map('<leader>ut')
+          return { mode = 'cursor', max_lines = 3 }
         end,
       },
     },
@@ -68,30 +68,30 @@ return {
       sync_install = false,
       auto_install = true,
       ensure_installed = {
-        "bash",
-        "c",
-        "diff",
-        "html",
-        "javascript",
-        "jsdoc",
-        "json",
-        "jsonc",
-        "lua",
-        "luadoc",
-        "luap",
-        "markdown",
-        "markdown_inline",
-        "printf",
-        "python",
-        "query",
-        "regex",
-        "toml",
-        "tsx",
-        "typescript",
-        "vim",
-        "vimdoc",
-        "xml",
-        "yaml",
+        'bash',
+        'c',
+        'diff',
+        'html',
+        'javascript',
+        'jsdoc',
+        'json',
+        'jsonc',
+        'lua',
+        'luadoc',
+        'luap',
+        'markdown',
+        'markdown_inline',
+        'printf',
+        'python',
+        'query',
+        'regex',
+        'toml',
+        'tsx',
+        'typescript',
+        'vim',
+        'vimdoc',
+        'xml',
+        'yaml',
       },
 
       -- ======================================================================
@@ -114,8 +114,6 @@ return {
     -- ========================================================================
     -- setup treesitter
     -- ------------------------------------------------------------------------
-    config = function(_, opts)
-      require("nvim-treesitter").setup({opts})
-    end,
+    config = function(_, opts) require('nvim-treesitter').setup({ opts }) end,
   },
 }
