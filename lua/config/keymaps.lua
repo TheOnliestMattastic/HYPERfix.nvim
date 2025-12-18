@@ -1,6 +1,13 @@
 -- =============================================================================
--- LUA/CONFIG/KEYMAPS.MD
--- -----------------------------------------------------------------------------
+-- KEYMAPS: Custom Vim key bindings and remaps
+-- =============================================================================
+-- WHAT: Define custom keyboard shortcuts for common editor actions
+-- WHY:  Faster workflow with mnemonic patterns (<leader>f = find, <leader>g = git)
+-- HOW:  Use vim.keymap.set() with mode, key, action, and description
+-- NOTE: Full reference in KEYMAPS.md; most keymaps come from plugins
+-- REFERENCE: KEYMAPS.md for complete keymap documentation
+-- =============================================================================
+
 local map = vim.keymap.set
 -- =============================================================================
 -- Window navigation
@@ -120,6 +127,23 @@ map('i',    ',',    ',<c-g>u')
 map('i',    '.',    '.<c-g>u')
 map('i',    ';',    ';<c-g>u')
 -- stylua: ignore end
+
+-- =============================================================================
+-- SMART CLOSING PUNCTUATION SKIP
+-- =============================================================================
+-- WHAT: Skip past closing punctuation in insert mode
+-- WHY:  Streamlines workflow—jump over ) } ] ' " without arrow keys
+-- HOW:  Checks if next character is closing punctuation, moves cursor forward
+-- =============================================================================
+map('i', '<C-;>', function()
+  local line = vim.api.nvim_get_current_line()
+  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local next_char = line:sub(col + 1, col + 1)
+
+  if next_char:match("[)%]}'\" ]") then
+    vim.api.nvim_win_set_cursor(0, { row, col + 1 })
+  end
+end, { noremap = true, silent = true, desc = "Skip past closing punctuation" })
 
 -- =============================================================================
 -- FILE MANAGEMENT

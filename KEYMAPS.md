@@ -57,6 +57,11 @@
 | `.` | Insert | Period + undo break-point |
 | `;` | Insert | Semicolon + undo break-point |
 
+### Smart Closing Punctuation Skip (Insert Mode)
+| Keymap | Mode | Action |
+|--------|------|--------|
+| `<C-;>` | Insert | Skip past closing punctuation `)` `}` `]` `'` `"` |
+
 ### Visual Mode Indentation
 | Keymap | Mode | Action |
 |--------|------|--------|
