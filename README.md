@@ -2,11 +2,17 @@
 
 ![welcome](assets/welcome.png)
 
-https://github.com/user-attachments/assets/4e7ed51e-eec6-4279-8276-ab1b75197974
+![preview](assets/preview.png)
+
+![preview_2](assets/preview_2.png)
 
 <a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/plugins?style=for-the-badge" /></a>
 <a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/leaderkey?style=for-the-badge" /></a>
 <a href="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim"><img src="https://dotfyle.com/TheOnliestMattastic/hyperfixnvim/badges/plugin-manager?style=for-the-badge" /></a>
+<a href="https://neovim.io/"><img src="https://img.shields.io/badge/Neovim-v0.11+-57a143?style=for-the-badge&labelColor=2342AE&logo=neovim" /></a>
+<a href="https://www.lua.org/"><img src="https://img.shields.io/badge/Made%20with%20Lua-2c3e50?style=for-the-badge&logo=lua&logoColor=white" /></a>
+<a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-2c3e50?style=for-the-badge" /></a>
+<a href="https://www.w3.org/WAI/WCAG21/quickref/"><img src="https://img.shields.io/badge/Accessibility-WCAG%20AAA-57a143?style=for-the-badge" /></a>
 
 > **A universally designed Neovim template for neurodivergent developers.** Built for brains that work differently—and think that's awesome.
 
@@ -14,7 +20,9 @@ https://github.com/user-attachments/assets/4e7ed51e-eec6-4279-8276-ab1b75197974
 
 **HYPERfix.nvim** is a Neovim configuration template that prioritizes **accessibility, clarity, and neurodivergent-friendly design** from the ground up.
 
-**Bonus**: HYPERfix works seamlessly with **[AMP](https://ampcode.com/)**, an AI assistant that helps you configure, learn, and troubleshoot your setup without the overwhelm.
+**Built for learning.** HYPERfix is designed to help new Neovim users (and anyone new to coding) learn by configuring and personalizing their setup. Extensive comments explain WHAT/WHY/HOW for every decision so you understand the system.
+
+**AI-powered by design.** HYPERfix integrates **[AMP](https://ampcode.com/)**, an AI assistant that understands your codebase. Use it to reduce cognitive load, learn faster, and skip tedious, repetitive tasks. AI isn't a distraction—it's a feature, especially for neurodivergent brains that benefit from cognitive support.
 
 ### Core Philosophy: KISSME
 
@@ -31,17 +39,22 @@ HYPERfix is built around principles that help **ADHD, autism, dyslexia, and othe
 - **Explicit documentation** — Every code block explains WHAT/WHY/HOW
 - **Graceful degradation** — Missing optional tools won't break your editor
 
-## Legend of Zelda Theme
+## The Kokiri Forest: A Personalized Zelda Theme
 
 > *It's dangerous to go alone! Take this.*
 >
 > 🔥      🧙‍♂️🗡️     🔥
 
-This config draws inspiration from the **Legend of Zelda** universe. Why Zelda? Because:
-- It's **timeless and universally beloved**
-- It represents **adventure, exploration, and problem-solving**
-- It's **accessible to everyone**, regardless of ability
-- And well honestly, why not?
+HYPERfix embraces the **Legend of Zelda** universe as its thematic foundation. The Kokiri colorscheme, icons, and naming conventions create a **cohesive, immersive experience** that makes learning to code feel less like a chore and more like an adventure.
+
+Why Zelda?
+- **Timeless and universally beloved** — A familiar, welcoming reference point
+- **Adventure and exploration** — Mirrors the learning journey of mastering your editor
+- **Problem-solving and growth** — You start as a novice and level up through configuration
+- **Accessibility for everyone** — Zelda games accommodate different play styles and abilities
+- **Personalization matters** — Just like Link's journey is unique, so is your Neovim setup
+
+Everything is customizable. Change the colorscheme, swap out icons, rebrand the theme—HYPERfix adapts to your vision.
 
 ## Inspired By Giants
 
@@ -70,27 +83,41 @@ You'll need a few things on your system. This should take ~5 minutes to install:
 
  > Requires **Neovim 0.11+**. Always review the code before installing a configuration.
 
+**Core Requirements:**
+- Neovim 0.11+
+- Git
+- Ripgrep (for search)
+- fd (for file finding)
+- **AMP CLI** (for AI-assisted configuration) — optional, but recommended
+
 ```bash
 # macOS (Homebrew)
 brew install neovim git ripgrep fd
 brew install atkinson-mono-font  # Optional, for optimal readability
+npm install -g @ampcode/cli      # AMP CLI for AI-assisted config
 
 # Ubuntu/Debian
 sudo apt install neovim git ripgrep fd-find
+npm install -g @ampcode/cli      # AMP CLI
 # Font: Download Atkinson Mono from https://www.nerdfonts.com (optional)
 
 # Fedora/RHEL
 sudo dnf install neovim git ripgrep fd
+npm install -g @ampcode/cli      # AMP CLI
 # Font: Download Atkinson Mono from https://www.nerdfonts.com (optional)
 
 # Arch
 sudo pacman -S neovim git ripgrep fd
+npm install -g @ampcode/cli      # AMP CLI
 # Font: yay -S atkinson-mono-font (optional)
 
 # Windows (with Chocolatey)
-choco install neovim git ripgrep fd
+choco install neovim git ripgrep fd nodejs
+npm install -g @ampcode/cli      # AMP CLI
 # Font: Download Atkinson Mono from https://www.nerdfonts.com (optional)
 ```
+
+**Note on AMP:** The included `amp.nvim` plugin integrates AMP directly into your editor. If you prefer not to use AI assistance, the plugin can be safely deleted from `lua/plugins/`—HYPERfix will work perfectly without it.
 
 ### Quick Install
 
