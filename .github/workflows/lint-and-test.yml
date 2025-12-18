@@ -23,7 +23,7 @@ jobs:
 
       - name: Install selene
         run: |
-          curl -L https://github.com/Kampfkarren/selene/releases/download/0.29.0/selene-0.29.0-linux-x86_64.zip -o selene.zip
+          curl -L https://github.com/Kampfkarren/selene/releases/download/0.29.0/selene-0.29.0-linux.zip -o selene.zip
           unzip -q selene.zip
           sudo mv selene /usr/local/bin/
 
