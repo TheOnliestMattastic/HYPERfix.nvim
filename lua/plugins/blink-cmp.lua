@@ -61,6 +61,8 @@ return {
     completion = {
       -- Disable auto-show docs to reduce visual noise (user can view with C-y)
       documentation = { auto_show = false, auto_show_delay_ms = 500 },
+      -- Auto-insert first completion match (faster workflow)
+      list = { selection = 'auto_insert' },
     },
     sources = {
       default = { 'buffer', 'lsp', 'path', 'snippets', 'lazydev', 'ripgrep' },

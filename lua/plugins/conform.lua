@@ -9,7 +9,6 @@
 -- REFERENCE: https://github.com/stevearc/conform.nvim
 -- RELATED: lua/config/options.lua (formatoptions), lua/plugins/lsp.lua
 -- =============================================================================
-
 return {
   'stevearc/conform.nvim',
   lazy = true,
@@ -28,10 +27,43 @@ return {
   },
   opts = {
     notify_on_error = true,
-    -- Per-filetype formatter configuration
     formatters_by_ft = {
-      lua = { 'stylua' },      -- Lua: stylua formatter
-      markdown = { 'prettier' }, -- Markdown: prettier formatter
-    },
+      -- stylua: ignore start
+      lua             = { 'stylua' },
+
+      -- Web & Markup
+      markdown        = { 'prettier' },
+      json            = { 'prettier' },
+      jsonc           = { 'prettier' },
+      yaml            = { 'prettier' },
+      html            = { 'prettier' },
+      css             = { 'prettier' },
+      scss            = { 'prettier' },
+      less            = { 'prettier' },
+
+      -- JavaScript/TypeScript
+      javascript      = { 'prettier' },
+      typescript      = { 'prettier' },
+      javascriptreact = { 'prettier' },
+      typescriptreact = { 'prettier' },
+
+      -- Shell
+      bash            = { 'shfmt' },
+      sh              = { 'shfmt' },
+      zsh             = { 'shfmt' },
+
+      -- Python
+      python          = { 'black' },
+
+      -- Go
+      go              = { 'gofmt' },
+
+      -- C/C++
+      c               = { 'clang_format' },
+      cpp             = { 'clang_format' },
+
+      -- Rust
+      rust            = { 'rustfmt' },
+    }, -- stylua: ignore end
   },
 }
