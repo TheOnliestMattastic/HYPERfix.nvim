@@ -41,13 +41,14 @@ HYPERfix is built around principles that help **ADHD, autism, dyslexia, and othe
 
 ## The Kokiri Forest: A Personalized Zelda Theme
 
-> *It's dangerous to go alone! Take this.*
+> _It's dangerous to go alone! Take this._
 >
-> 🔥      🧙‍♂️🗡️     🔥
+> 🔥 🧙‍♂️🗡️ 🔥
 
 HYPERfix embraces the **Legend of Zelda** universe as its thematic foundation. The Kokiri colorscheme, icons, and naming conventions create a **cohesive, immersive experience** that makes learning to code feel less like a chore and more like an adventure.
 
 Why Zelda?
+
 - **Timeless and universally beloved** — A familiar, welcoming reference point
 - **Adventure and exploration** — Mirrors the learning journey of mastering your editor
 - **Problem-solving and growth** — You start as a novice and level up through configuration
@@ -62,18 +63,18 @@ Built on [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim), [LazyVim]
 
 ## What's Inside?
 
-+ [echasnovski/mini.nvim](https://dotfyle.com/plugins/echasnovski/mini.nvim) — The "brain" of HYPERfix. Modules for alignment, surround, AI text objects, files, and more
-+ [folke/snacks.nvim](https://dotfyle.com/plugins/folke/snacks.nvim) — Dashboard, picker, and developer utilities
-+ [folke/flash.nvim](https://dotfyle.com/plugins/folke/flash.nvim) — Lightning-fast motion with `f`/`t` and Treesitter integration
-+ [folke/which-key.nvim](https://dotfyle.com/plugins/folke/which-key.nvim) — Discoverable keymaps with helpful descriptions
-+ [folke/trouble.nvim](https://dotfyle.com/plugins/folke/trouble.nvim) — Beautiful diagnostic and search results viewer
-+ [MagicDuck/grug-far.nvim](https://dotfyle.com/plugins/MagicDuck/grug-far.nvim) — Find and replace with previews
-+ [MeanderingProgrammer/render-markdown.nvim](https://dotfyle.com/plugins/MeanderingProgrammer/render-markdown.nvim) — Markdown rendered beautifully
-+ [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter) — Syntax highlighting and text objects
-+ [saghen/blink.cmp](https://dotfyle.com/plugins/saghen/blink.cmp) — Lightning-fast completion engine
-+ [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig) — Language server setup
-+ [mfussenegger/nvim-dap](https://dotfyle.com/plugins/mfussenegger/nvim-dap) — Debugging support
-+ [stevearc/conform.nvim](https://dotfyle.com/plugins/stevearc/conform.nvim) — Code formatting
+- [echasnovski/mini.nvim](https://dotfyle.com/plugins/echasnovski/mini.nvim) — The "brain" of HYPERfix. Modules for alignment, surround, AI text objects, files, and more
+- [folke/snacks.nvim](https://dotfyle.com/plugins/folke/snacks.nvim) — Dashboard, picker, and developer utilities
+- [folke/flash.nvim](https://dotfyle.com/plugins/folke/flash.nvim) — Lightning-fast motion with `f`/`t` and Treesitter integration
+- [folke/which-key.nvim](https://dotfyle.com/plugins/folke/which-key.nvim) — Discoverable keymaps with helpful descriptions
+- [folke/trouble.nvim](https://dotfyle.com/plugins/folke/trouble.nvim) — Beautiful diagnostic and search results viewer
+- [MagicDuck/grug-far.nvim](https://dotfyle.com/plugins/MagicDuck/grug-far.nvim) — Find and replace with previews
+- [MeanderingProgrammer/render-markdown.nvim](https://dotfyle.com/plugins/MeanderingProgrammer/render-markdown.nvim) — Markdown rendered beautifully
+- [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter) — Syntax highlighting and text objects
+- [saghen/blink.cmp](https://dotfyle.com/plugins/saghen/blink.cmp) — Lightning-fast completion engine
+- [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig) — Language server setup
+- [mfussenegger/nvim-dap](https://dotfyle.com/plugins/mfussenegger/nvim-dap) — Debugging support
+- [stevearc/conform.nvim](https://dotfyle.com/plugins/stevearc/conform.nvim) — Code formatting
 
 ## Install Guide
 
@@ -81,9 +82,10 @@ Built on [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim), [LazyVim]
 
 You'll need a few things on your system. This should take ~5 minutes to install:
 
- > Requires **Neovim 0.11+**. Always review the code before installing a configuration.
+> Requires **Neovim 0.11+**. Always review the code before installing a configuration.
 
 **Core Requirements:**
+
 - Neovim 0.11+
 - Git
 - Ripgrep (for search)
@@ -124,6 +126,7 @@ npm install -g @ampcode/cli      # AMP CLI
 Replace your Neovim config with HYPERfix in one command:
 
 **Linux/macOS:**
+
 ```bash
 # Back up your current config (optional but smart)
 mv ~/.config/nvim ~/.config/nvim.backup
@@ -136,6 +139,7 @@ nvim
 ```
 
 **Windows (PowerShell):**
+
 ```powershell
 # Back up your current config
 Move-Item $env:APPDATA\nvim $env:APPDATA\nvim.backup -ErrorAction SilentlyContinue
@@ -175,7 +179,7 @@ Once installed:
 
 1. **Open Neovim**: `nvim`
 2. **Explore keymaps**: Press `<leader>?` (spacebar + question mark)
-3. **Open the file explorer**: `<leader>e` 
+3. **Open the file explorer**: `<leader>e`
 4. **Search for files**: `<leader><space>` (try `<leader>f` for more find options)
 5. **Explore the help documents or config files**: `<leader>h`
 
@@ -198,7 +202,7 @@ HYPERfix pairs well with **[AMP](https://ampcode.com/)**, an AI assistant that u
 
 The included `AGENTS.md` file provides guidelines for AI-assisted customization — ensuring transparency, verification, and that you stay in control of your config.
 
-*For in-editor AI suggestions, **[Sidekick.nvim](https://github.com/folke/Sidekick.nvim)** integrates well with HYPERfix.*
+_For in-editor AI suggestions, **[Sidekick.nvim](https://github.com/folke/Sidekick.nvim)** integrates well with HYPERfix._
 
 ## Philosophy & Design
 
@@ -211,6 +215,7 @@ Neurodivergent brains often struggle with **cognitive load** and **context-switc
 - **Too many plugins fighting each other?** Decision paralysis
 
 HYPERfix solves this by:
+
 1. Keeping each piece **single-responsibility** (one file = one feature)
 2. Making every decision **explicit** (comments explain WHAT/WHY/HOW)
 3. Removing **unnecessary complexity** (we say "no" to plugins that don't earn their spot)
@@ -281,6 +286,6 @@ GNU General Public License v3.0 — See [LICENSE](LICENSE) for details.
 
 **Made with ⚔️ and 💚 by someone who understands that neurodivergent brains are a feature, not a bug.**
 
-> *Time passes, people move... Like a river's flow, it never ends... A childish mind will turn to noble ambition... Young love will become deep affection... The clear water's surface reflects growth...*
+> _Time passes, people move... Like a river's flow, it never ends... A childish mind will turn to noble ambition... Young love will become deep affection... The clear water's surface reflects growth..._
 >
 > Shiek

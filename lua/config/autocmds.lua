@@ -154,20 +154,17 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- =============================================================================
--- Wrap & Spell: Enable for Text Files
--- =============================================================================
--- WHAT: Enables word wrap and spell-checking for text-based files
--- WHY:  Makes writing prose more comfortable (wrapped lines, spell hints)
--- HOW:  Triggers on FileType for markdown, text, git commits, etc.
---       and enables both wrap and spell locally
--- =============================================================================
-vim.api.nvim_create_autocmd('FileType', {
-  group = augroup('wrap_spell'),
-  pattern = { 'text', 'plaintex', 'typst', 'gitcommit', 'markdown' },
+-- Disable colorcolumn when wrap is on
+-- ----------------------------------------------------------------------------
+vim.api.nvim_create_autocmd('OptionSet', {
+  group = augroup('wrap_colorcolumn'),
+  pattern = 'wrap',
   callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-    vim.opt_local.colorcolumn = '' -- Disable colorcolumn for wrapped text
+    if vim.wo[0].wrap then
+      vim.opt_local.colorcolumn = ''
+    else
+      vim.opt_local.colorcolumn = '81'
+    end
   end,
 })
 

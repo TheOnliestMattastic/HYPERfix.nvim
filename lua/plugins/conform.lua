@@ -30,7 +30,8 @@ return {
     notify_on_error = true,
     -- Per-filetype formatter configuration
     formatters_by_ft = {
-      lua = { 'stylua' }, -- Lua: stylua formatter
+      lua = { 'stylua' },      -- Lua: stylua formatter
+      markdown = { 'prettier' }, -- Markdown: prettier formatter
     },
   },
 }
