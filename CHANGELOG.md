@@ -4,6 +4,28 @@ All notable changes to HYPERfix.nvim are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2025-12-20
+
+### ✨ Added
+
+- **Markdown formatting** — Prettier integration for Conform
+- **LSP inlay hints** — Function parameters and type hints inline for better code readability
+- **C/C++ semantic tokens** — Clangd configuration with inlay hints enabled
+- **Auto-install formatters** — Mason now auto-installs prettier, black, shfmt, and clang-format
+- **Diagnostics toggle** — `<leader>uv` to show/hide virtual text diagnostics for focus
+
+### 🔧 Fixed
+
+- **Autocmd event** — Fixed wrap/colorcolumn toggle using `OptionSet` event instead of non-existent `Wrap` event
+- **Blink.cmp configuration** — Corrected completion list selection structure (table with `preselect`/`auto_insert` instead of string)
+- **Completion behavior** — Improved with auto-select and auto-insert of first match for faster workflow
+
+### 🛠️ Infrastructure
+
+- **CI workflow** — Removed stylua check due to missing luarocks dependency; kept startup validation
+
+---
+
 ## [1.0.0] - 2025-12-18
 
 ### ✨ Added
