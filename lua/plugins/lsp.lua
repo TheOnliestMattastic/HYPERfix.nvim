@@ -62,21 +62,30 @@ return {
           })
 
           vim.api.nvim_create_autocmd('LspDetach', {
-            group = vim.api.nvim_create_augroup(
-              'hyperfix-lsp-detach',
-              { clear = true }
-            ),
-            callback = function(event2)
-              vim.lsp.buf.clear_references()
-              vim.api.nvim_clear_autocmds({
-                group = 'hyperfix-lsp-highlight',
-                buffer = event2.buf,
-              })
-            end,
+           group = vim.api.nvim_create_augroup(
+             'hyperfix-lsp-detach',
+             { clear = true }
+           ),
+           callback = function(event2)
+             vim.lsp.buf.clear_references()
+             vim.api.nvim_clear_autocmds({
+               group = 'hyperfix-lsp-highlight',
+               buffer = event2.buf,
+             })
+           end,
           })
-        end
-      end,
-    })
+          end
+
+          -- Enable inlay hints (function parameters, types)
+          if client_supports_method(
+          client,
+          vim.lsp.protocol.Methods.textDocument_inlayHint,
+          event.buf
+          ) then
+          vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+          end
+          end,
+          })
 
     -- =======================================================================
     -- Diagnostic Config: error display, signs, and inline messages
@@ -127,12 +136,23 @@ return {
           },
         },
       },
+      clangd = {
+        init_options = {
+          clangdSettings = {
+            InlayHints = { Enabled = true }, -- Enable parameter/type hints
+          },
+        },
+      },
     }
 
     -- Extract server names and add formatters (tools, not LSPs)
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
-      'stylua', -- Lua formatter (managed by mason-tool-installer)
+      'stylua',        -- Lua formatter
+      'prettier',      -- Web/Markdown formatter
+      'black',         -- Python formatter
+      'shfmt',         -- Shell formatter
+      'clang-format',  -- C/C++ formatter
     })
     require('mason-tool-installer').setup({
       ensure_installed = ensure_installed, -- Auto-install tools

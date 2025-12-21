@@ -168,6 +168,22 @@ map('n',    '<leader>nl',   '<cmd>Lazy<cr>',  { desc = '[L]azy' })
 -- stylua: ignore end
 
 -- =============================================================================
+-- DIAGNOSTICS TOGGLE
+-- =============================================================================
+-- WHAT: Toggle virtual text diagnostics on/off
+-- WHY:  Reduces visual clutter when you need focus or enables diagnostics when needed
+-- HOW:  Uses vim.diagnostic.config to toggle virtual_text on current buffer
+-- =============================================================================
+map('n', '<leader>uv', function()
+  local config = vim.diagnostic.config()
+  local vtext = config.virtual_text
+  -- Toggle: if enabled, disable; if disabled, enable with default settings
+  vim.diagnostic.config({ virtual_text = not vtext })
+  local status = not vtext and 'enabled' or 'disabled'
+  Snacks.notify.info('Virtual text diagnostics ' .. status)
+end, { desc = 'Toggle [V]irtual Text Diagnostics' })
+
+-- =============================================================================
 -- APPLICATION MANAGEMENT
 -- =============================================================================
 -- WHAT: Quit group keymaps with session support

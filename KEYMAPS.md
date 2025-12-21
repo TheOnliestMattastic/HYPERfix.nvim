@@ -153,6 +153,7 @@
 | `<leader>ca` | Normal, Visual         | Code action        |
 | `<leader>cf` | Normal, Visual, Select | Format buffer      |
 | `<leader>\H` | Normal                 | Toggle inlay hints |
+| `<leader>uv` | Normal                 | Toggle virtual text diagnostics |
 
 ## Treesitter
 
