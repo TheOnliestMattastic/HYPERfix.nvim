@@ -21,9 +21,9 @@ return {
   formats = {
     key = function(item)
       return {
-        { '[', hl = 'special' },
-        { item.key, hl = 'key' },
-        { ']', hl = 'special' },
+        { "[", hl = "special" },
+        { item.key, hl = "key" },
+        { "]", hl = "special" },
       }
     end,
   },
@@ -33,10 +33,10 @@ return {
     -- =========================================================================
     -- PRIORITY 1: Include cbonsai animation (best visual experience)
     -- -------------------------------------------------------------------------
-    if vim.fn.executable('cbonsai') == 1 then
+    if vim.fn.executable("cbonsai") == 1 then
       table.insert(sections, {
-        section = 'terminal',
-        cmd = 'cbonsai -li -b 3 -M 3 -L 16',
+        section = "terminal",
+        cmd = "cbonsai -li -b 3 -M 3 -L 16",
         height = 12,
         padding = 0,
       })
@@ -49,29 +49,29 @@ return {
       --      with what the user has installed
       -- HOW: Check for fortune, cowsay, bat, lolcat in priority order
       -- -----------------------------------------------------------------------
-      local has_fortune = vim.fn.executable('fortune') == 1
-      local has_cowsay = vim.fn.executable('cowsay') == 1
-      local has_bat = vim.fn.executable('bat') == 1
-      local has_lolcat = vim.fn.executable('lolcat') == 1
+      local has_fortune = vim.fn.executable("fortune") == 1
+      local has_cowsay = vim.fn.executable("cowsay") == 1
+      local has_bat = vim.fn.executable("bat") == 1
+      local has_lolcat = vim.fn.executable("lolcat") == 1
 
       -- Only include terminal section if user has at least one alternative package
       if has_fortune or has_cowsay or has_bat or has_lolcat then
         -- Start with fortune if available, otherwise a thank you message
-        local cmd = has_fortune and 'fortune -s'
+        local cmd = has_fortune and "fortune -s"
           or 'echo "Thank you for using HYPERfix.nvim!"'
 
         -- Add cowsay if available (converts output to ASCII art speech bubble)
-        if has_cowsay then cmd = cmd .. ' | cowsay' end
+        if has_cowsay then cmd = cmd .. " | cowsay" end
 
         -- Add color: prefer bat (syntax highlighting), fall back to lolcat
         if has_bat then
-          cmd = cmd .. ' | bat -pp -l ps1'
+          cmd = cmd .. " | bat -pp -l ps1"
         elseif has_lolcat then
-          cmd = cmd .. ' | lolcat'
+          cmd = cmd .. " | lolcat"
         end
 
         table.insert(sections, {
-          section = 'terminal',
+          section = "terminal",
           cmd = cmd,
           height = 12,
           padding = 0,
@@ -82,23 +82,23 @@ return {
 
     -- Core dashboard sections (always included)
     table.insert(sections, {
-      section = 'header',
+      section = "header",
       padding = 1,
     })
     table.insert(sections, {
-      icon = '🧚',
-      title = 'Bookmarks',
-      section = 'keys',
+      icon = "🧚",
+      title = "Bookmarks",
+      section = "keys",
       indent = 3,
     })
     table.insert(sections, {
-      icon = '🧚‍♀️',
-      title = 'Recent Files',
-      section = 'recent_files',
+      icon = "🧚‍♀️",
+      title = "Recent Files",
+      section = "recent_files",
       limit = 3,
       indent = 3,
     })
-    table.insert(sections, { section = 'startup' })
+    table.insert(sections, { section = "startup" })
 
     return sections
   end)(),

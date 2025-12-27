@@ -1,40 +1,40 @@
 -- =============================================================================
 -- NVIM-DAP: Debugging Support
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Debug Adapter Protocol integration for code debugging
 -- WHY:  Step through code, inspect variables, set breakpoints without leaving editor
 -- HOW:  Lazy-loads on file read; mason-nvim-dap auto-installs debug adapters
 -- NOTE: Lua debugging requires manual setup; other languages via Mason
--- KEYMAPS: <leader>db (breakpoint), <leader>dc (continue), <leader>di (step), <leader>dd (toggle UI)
 -- REFERENCE: https://github.com/mfussenegger/nvim-dap, https://github.com/rcarriga/nvim-dap-ui
+-- KEYMAPS: <leader>db (breakpoint), <leader>dc (continue), <leader>di (step), <leader>dd (toggle UI)
 -- RELATED: lua/plugins/mason.lua
--- =============================================================================
+-- -----------------------------------------------------------------------------
 return {
   {
-    'mfussenegger/nvim-dap',
+    "mfussenegger/nvim-dap",
     lazy = true,
-    event = 'BufRead',
+    event = "BufRead",
     dependencies = {
-      'rcarriga/nvim-dap-ui',
-      'nvim-neotest/nvim-nio',
+      "rcarriga/nvim-dap-ui",
+      "nvim-neotest/nvim-nio",
       {
-        'jay-babu/mason-nvim-dap.nvim',
-        dependencies = 'williamboman/mason.nvim',
-        cmd = { 'DapInstall', 'DapUninstall' },
+        "jay-babu/mason-nvim-dap.nvim",
+        dependencies = "williamboman/mason.nvim",
+        cmd = { "DapInstall", "DapUninstall" },
       },
     },
     config = function()
-      local dap = require('dap')
-      local ui = require('dapui')
+      local dap = require("dap")
+      local ui = require("dapui")
 
-      require('mason-nvim-dap').setup({
+      require("mason-nvim-dap").setup({
         ensure_installed = {},
         automatic_installation = true,
         handlers = {
           -- ===================================================================
           -- DEFAULT HANDLER: All other adapters (auto-configured by mason)
-          -- ===================================================================
-          function(config) require('mason-nvim-dap').default_setup(config) end,
+          -- -------------------------------------------------------------------
+          function(config) require("mason-nvim-dap").default_setup(config) end,
         },
       })
 
@@ -45,10 +45,10 @@ return {
       -- WHY:  Lua debugging requires local-lua-debugger, which requires setup
       -- HOW:  Provides a stub adapter that gracefully informs user of setup
       -- NOTE: Users can install lua debugger if needed (complex setup required)
-      -- =======================================================================
+      -- -----------------------------------------------------------------------
       dap.adapters.lua = {
-        type = 'executable',
-        command = 'lua-dbg', -- Install via: luarocks install lua-dbg
+        type = "executable",
+        command = "lua-dbg", -- Install via: luarocks install lua-dbg
         args = {},
       }
 
@@ -59,14 +59,14 @@ return {
       -- WHY:  Provides placeholder until user installs Lua debugger
       -- HOW:  Creates a debug config that specifies the adapter and entry point
       -- NOTE: Users should install lua-dbg via luarocks for full functionality
-      -- =======================================================================
+      -- -----------------------------------------------------------------------
       dap.configurations.lua = {
         {
-          type = 'lua',
-          request = 'launch',
-          name = 'Lua (requires lua-dbg)',
+          type = "lua",
+          request = "launch",
+          name = "Lua (requires lua-dbg)",
           program = {
-            lua = 'lua',
+            lua = "lua",
             args = {},
           },
           stopOnEntry = false,
@@ -85,15 +85,15 @@ return {
       -- Keymaps
       -- -----------------------------------------------------------------------
       vim.keymap.set(
-        'n',
-        '<leader>db',
+        "n",
+        "<leader>db",
         dap.toggle_breakpoint,
-        { desc = '[B]reakpoint' }
+        { desc = "[B]reakpoint" }
       )
-      vim.keymap.set('n', '<leader>dc', dap.continue, { desc = '[C]ontinue' })
-      vim.keymap.set('n', '<leader>di', dap.step_into, { desc = 'Step [I]nto' })
-      vim.keymap.set('n', '<leader>do', dap.step_over, { desc = 'Step [O]ver' })
-      vim.keymap.set('n', '<leader>dd', ui.toggle, { desc = '[D]AP Menu' })
+      vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "[C]ontinue" })
+      vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "Step [I]nto" })
+      vim.keymap.set("n", "<leader>do", dap.step_over, { desc = "Step [O]ver" })
+      vim.keymap.set("n", "<leader>dd", ui.toggle, { desc = "[D]AP Menu" })
     end,
   },
 }

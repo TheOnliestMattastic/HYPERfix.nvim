@@ -6,12 +6,13 @@
 -- HOW:  Set vim.g values for mapleader, LSP root detection, etc.
 -- NOTE: These must be set before loading plugins that depend on them
 -- =============================================================================
+-- stylua: ignore start
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = '\\'
+vim.g.mapleader                  = " "
+vim.g.maplocalleader             = "\\"
 
-vim.g.ai_cmp = true
-vim.g.root_spec = { 'lsp', { '.git', 'lua' }, 'cwd' }
+vim.g.ai_cmp                     = true
+vim.g.root_spec                  = { "lsp", { ".git", "lua" }, "cwd" }
 vim.g.markdown_recommended_style = 0
 
 -- =============================================================================
@@ -21,14 +22,14 @@ vim.g.markdown_recommended_style = 0
 -- HOW:  Disable swapfiles, enable undofile with high undo levels
 -- =============================================================================
 
-local opt = vim.opt
+local opt       = vim.opt
 
-opt.swapfile = false
-opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
-opt.undofile = true
-opt.undolevels = 10000
-opt.updatetime = 200 -- Save swap file and trigger CursorHold
-opt.backup = false -- Don't use backup files
+opt.swapfile    = false
+opt.undodir     = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile    = true
+opt.undolevels  = 10000
+opt.updatetime  = 200 -- Save swap file and trigger CursorHold
+opt.backup      = false -- Don't use backup files
 opt.writebackup = false -- Don't use backup files
 
 -- =============================================================================
@@ -39,18 +40,18 @@ opt.writebackup = false -- Don't use backup files
 -- HOW:  Set line spacing, colors, cursor visibility, highlight columns
 -- =============================================================================
 
-opt.background = 'dark'
-opt.termguicolors = true -- True color support
-opt.guifont = 'AtkynsonMonoNerdFont:h14' -- Optimized for readability
-opt.linespace = 4 -- Atkinson Mono + 4px linespace is WCAG AAA compliant
-opt.colorcolumn = '81' -- Show column at 81 chars
-opt.cursorline = true -- Enable highlighting of the current line
-opt.cursorcolumn = false -- Disable highlighting of the current column
-opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
-opt.number = true -- Print line number
+opt.background     = "dark"
+opt.termguicolors  = true -- True color support
+opt.guifont        = "AtkynsonMonoNerdFont:h14" -- Optimized for readability
+opt.linespace      = 4 -- Atkinson Mono + 4px linespace is WCAG AAA compliant
+opt.colorcolumn    = "81" -- Show column at 81 chars
+opt.cursorline     = true -- Enable highlighting of the current line
+opt.cursorcolumn   = false -- Disable highlighting of the current column
+opt.conceallevel   = 2 -- Hide * markup for bold and italic, but not markers with substitutions
+opt.number         = true -- Print line number
 opt.relativenumber = true -- Relative line numbers
-opt.ruler = false -- Disable the default ruler
-opt.guicursor = ''
+opt.ruler          = false -- Disable the default ruler
+opt.guicursor      = ""
 
 -- =============================================================================
 -- Options (Indentation & Tabs)
@@ -60,11 +61,11 @@ opt.guicursor = ''
 -- HOW:  Use spaces, set width to 2, enable smart indent
 -- =============================================================================
 
-opt.expandtab = true -- Use spaces instead of tabs
-opt.tabstop = 2 -- Number of spaces tabs count for
+opt.expandtab   = true -- Use spaces instead of tabs
+opt.tabstop     = 2 -- Number of spaces tabs count for
 opt.softtabstop = 2 -- Number of spaces tabs count for in insert mode
-opt.shiftwidth = 2 -- Size of an indent
-opt.shiftround = true -- Round indent
+opt.shiftwidth  = 2 -- Size of an indent
+opt.shiftround  = true -- Round indent
 opt.smartindent = true -- Insert indents automatically
 
 -- =============================================================================
@@ -75,13 +76,13 @@ opt.smartindent = true -- Insert indents automatically
 -- HOW:  Enable case-sensitive search with smart case, preview substitutions
 -- =============================================================================
 
-opt.hlsearch = false -- Highlight all matches on previous search pattern
-opt.incsearch = true -- Incremental search
+opt.hlsearch   = false -- Highlight all matches on previous search pattern
+opt.incsearch  = true -- Incremental search
 opt.ignorecase = true -- Ignore case
-opt.smartcase = true -- Don't ignore case with capitals
-opt.inccommand = 'nosplit' -- preview incremental substitute
-opt.grepformat = '%f:%l:%c:%m'
-opt.grepprg = 'rg --vimgrep'
+opt.smartcase  = true -- Don't ignore case with capitals
+opt.inccommand = "nosplit" -- preview incremental substitute
+opt.grepformat = "%f:%l:%c:%m"
+opt.grepprg    = "rg --vimgrep"
 
 -- =============================================================================
 -- Options (Window & Split Behavior)
@@ -89,16 +90,16 @@ opt.grepprg = 'rg --vimgrep'
 -- WHAT: Configure window splitting and navigation
 -- =============================================================================
 
-opt.splitbelow = true -- Put new windows below current
-opt.splitright = true -- Put new windows right of current
-opt.splitkeep = 'screen'
-opt.scrolloff = 999 -- keep cursor in the middle of the screen
-opt.sidescroll = 8 -- Columns to scroll horizontally
+opt.splitbelow    = true -- Put new windows below current
+opt.splitright    = true -- Put new windows right of current
+opt.splitkeep     = "screen"
+opt.scrolloff     = 999 -- keep cursor in the middle of the screen
+opt.sidescroll    = 8 -- Columns to scroll horizontally
 opt.sidescrolloff = 16 -- Columns of context
-opt.winminwidth = 5 -- Minimum window width
-opt.smoothscroll = true
-opt.wrap = false -- Disable line wrap
-opt.linebreak = true -- Wrap lines at convenient points
+opt.winminwidth   = 5 -- Minimum window width
+opt.smoothscroll  = true
+opt.wrap          = false -- Disable line wrap
+opt.linebreak     = true -- Wrap lines at convenient points
 
 -- =============================================================================
 -- Options (Completion & Menu)
@@ -108,10 +109,11 @@ opt.linebreak = true -- Wrap lines at convenient points
 -- HOW:  Set popup size, blend, and completion options
 -- =============================================================================
 
-opt.completeopt = 'menu,menuone,noselect'
-opt.pumheight = 10 -- Maximum number of entries in a popup
-opt.pumblend = 10 -- Popup blend
+opt.completeopt = "menu,menuone,noselect"
+opt.pumheight   = 10 -- Maximum number of entries in a popup
+opt.pumblend    = 10 -- Popup blend
 
+-- stylua: ignore end
 -- =============================================================================
 -- Options (Folding)
 -- =============================================================================
@@ -120,12 +122,12 @@ opt.pumblend = 10 -- Popup blend
 -- HOW:  Use indent-based folding with custom fold characters
 -- =============================================================================
 
-opt.foldmethod = 'indent'
+opt.foldmethod = "indent"
 opt.foldlevel = 99
-opt.foldtext = ''
+opt.foldtext = ""
 opt.fillchars = {
-  foldopen = '󱄰',
-  foldclose = '󱄱',
+  foldopen = "󱄰",
+  foldclose = "󱄱",
 }
 
 -- =============================================================================
@@ -138,10 +140,10 @@ opt.fillchars = {
 
 opt.list = true -- Show some invisible characters (tabs...)
 opt.listchars = {
-  tab = '▸ ',
-  trail = '·',
-  extends = '❯',
-  precedes = '❮',
+  tab = "▸ ",
+  trail = "·",
+  extends = "❯",
+  precedes = "❮",
 }
 
 -- =============================================================================
@@ -151,12 +153,13 @@ opt.listchars = {
 -- WHY:  Improves editing experience and text quality
 -- HOW:  Set format options, confirm on exit, virtualedit for block mode
 -- =============================================================================
+-- stylua: ignore start
 
-opt.formatoptions = 'jcroqlnt'
-opt.confirm = true -- Confirm to save changes before exiting modified buffer
-opt.virtualedit = 'block' -- Allow cursor to move where there is no text in visual block mode
-opt.mouse = 'a' -- Enable mouse mode
-opt.clipboard = 'unnamedplus' -- Sync with system clipboard
+opt.formatoptions = "jcroqlnt"
+opt.confirm       = true -- Confirm to save changes before exiting modified buffer
+opt.virtualedit   = "block" -- Allow cursor to move where there is no text in visual block mode
+opt.mouse         = "a" -- Enable mouse mode
+opt.clipboard     = "unnamedplus" -- Sync with system clipboard
 
 -- =============================================================================
 -- Options (Modes & Status)
@@ -166,7 +169,7 @@ opt.clipboard = 'unnamedplus' -- Sync with system clipboard
 -- HOW:  Hide native mode indicator, use global statusline
 -- =============================================================================
 
-opt.showmode = false -- Dont show mode since we have a statusline
+opt.showmode   = false -- Dont show mode since we have a statusline
 opt.laststatus = 3 -- global statusline
 
 -- =============================================================================
@@ -177,9 +180,10 @@ opt.laststatus = 3 -- global statusline
 -- HOW:  Set longer timeoutlen for which-key, updatetime for CursorHold
 -- =============================================================================
 
-opt.timeoutlen = 1250
-opt.jumpoptions = 'view'
+opt.timeoutlen  = 1250
+opt.jumpoptions = "view"
 
+-- stylua: ignore end
 -- =============================================================================
 -- Options (Messages & Feedback)
 -- =============================================================================
@@ -202,14 +206,14 @@ opt.shortmess:append({
 -- =============================================================================
 
 opt.sessionoptions = {
-  'buffers',
-  'curdir',
-  'tabpages',
-  'winsize',
-  'help',
-  'globals',
-  'skiprtp',
-  'folds',
+  "buffers",
+  "curdir",
+  "tabpages",
+  "winsize",
+  "help",
+  "globals",
+  "skiprtp",
+  "folds",
 }
 
 -- =============================================================================
@@ -219,7 +223,7 @@ opt.sessionoptions = {
 -- HOW:  Use longest match first, then full completion
 -- =============================================================================
 
-opt.wildmode = 'longest:full,full' -- Command-line completion mode
+opt.wildmode = "longest:full,full" -- Command-line completion mode
 
 -- =============================================================================
 -- Options (Spelling)
@@ -227,4 +231,4 @@ opt.wildmode = 'longest:full,full' -- Command-line completion mode
 -- WHAT: Configure spell checking language
 -- =============================================================================
 
-opt.spelllang = { 'en' }
+opt.spelllang = { "en" }

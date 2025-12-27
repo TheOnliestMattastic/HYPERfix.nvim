@@ -1,6 +1,6 @@
 -- Made with 'mini.colors' module of https://nvim-mini.org/mini.nvim
 
-if vim.g.colors_name ~= nil then vim.cmd('highlight clear') end
+if vim.g.colors_name ~= nil then vim.cmd("highlight clear") end
 vim.g.colors_name = nil
 
 -- Highlight groups
@@ -203,7 +203,11 @@ hi(0, "BlinkCmpMenuSelection", { link = "PmenuSel" })
 hi(0, "BlinkCmpScrollBarGutter", { link = "PmenuSbar" })
 hi(0, "BlinkCmpScrollBarThumb", { link = "PmenuThumb" })
 hi(0, "BlinkCmpSignatureHelp", { link = "NormalFloat" })
-hi(0, "BlinkCmpSignatureHelpActiveParameter", { link = "LspSignatureActiveParameter" })
+hi(
+  0,
+  "BlinkCmpSignatureHelpActiveParameter",
+  { link = "LspSignatureActiveParameter" }
+)
 hi(0, "BlinkCmpSignatureHelpBorder", { link = "NormalFloat" })
 hi(0, "BlinkCmpSource", { link = "PmenuExtra" })
 hi(0, "Bold", { bold = true })
@@ -1113,7 +1117,11 @@ hi(0, "IncSearch", { bg = "#ffda88", fg = "#122030" })
 hi(0, "Include", { link = "PreProc" })
 hi(0, "IndentBlanklineChar", { fg = "#4d5d70", nocombine = true })
 hi(0, "IndentBlanklineContextChar", { fg = "#a1ceff", nocombine = true })
-hi(0, "IndentBlanklineContextStart", { nocombine = true, sp = "#a1ceff", underline = true })
+hi(
+  0,
+  "IndentBlanklineContextStart",
+  { nocombine = true, sp = "#a1ceff", underline = true }
+)
 hi(0, "IndentBlanklineIndent1", { fg = "#a8c5ff", nocombine = true })
 hi(0, "IndentBlanklineIndent2", { fg = "#7ffbdd", nocombine = true })
 hi(0, "IndentBlanklineIndent3", { fg = "#ffda88", nocombine = true })
@@ -1133,7 +1141,11 @@ hi(0, "LazyH1", { bg = "#4d5d70", bold = true, fg = "#a1ceff" })
 hi(0, "LeapBackdrop", { link = "Comment" })
 hi(0, "LeapLabel", { bold = true, fg = "#ffda88", nocombine = true })
 hi(0, "LeapLabelSelected", { bold = true, fg = "#7ffbdd", nocombine = true })
-hi(0, "LeapMatch", { bold = true, fg = "#c5f19c", nocombine = true, underline = true })
+hi(
+  0,
+  "LeapMatch",
+  { bold = true, fg = "#c5f19c", nocombine = true, underline = true }
+)
 hi(0, "LineNr", { fg = "#4d5d70" })
 hi(0, "LineNrAbove", { link = "LineNr" })
 hi(0, "LineNrBelow", { link = "LineNr" })
@@ -1273,8 +1285,16 @@ hi(0, "MiniIndentscopeSymbol", { fg = "#a1ceff" })
 hi(0, "MiniIndentscopeSymbolOff", { fg = "#ffb8d6" })
 hi(0, "MiniJump", { sp = "#a1ceff", undercurl = true })
 hi(0, "MiniJump2dDim", { fg = "#4d5d70" })
-hi(0, "MiniJump2dSpot", { bg = "#000715", bold = true, fg = "#bfffbe", nocombine = true })
-hi(0, "MiniJump2dSpotAhead", { bg = "#000715", fg = "#aeffae", nocombine = true })
+hi(
+  0,
+  "MiniJump2dSpot",
+  { bg = "#000715", bold = true, fg = "#bfffbe", nocombine = true }
+)
+hi(
+  0,
+  "MiniJump2dSpotAhead",
+  { bg = "#000715", fg = "#aeffae", nocombine = true }
+)
 hi(0, "MiniJump2dSpotUnique", { link = "MiniJump2dSpot" })
 hi(0, "MiniMapNormal", { bg = "#071524", fg = "#5cb25e" })
 hi(0, "MiniMapSymbolCount", { fg = "#5cb25e" })
@@ -1319,20 +1339,56 @@ hi(0, "MiniStatuslineDevinfo", { bg = "#2f3e4f", fg = "#7fd680" })
 hi(0, "MiniStatuslineFileinfo", { link = "MiniStatuslineDevinfo" })
 hi(0, "MiniStatuslineFilename", { bg = "#122030", fg = "#7fd680" })
 hi(0, "MiniStatuslineInactive", { link = "StatusLineNC" })
-hi(0, "MiniStatuslineModeCommand", { bg = "#ffda88", bold = true, fg = "#122030" })
-hi(0, "MiniStatuslineModeInsert", { bg = "#93e5ff", bold = true, fg = "#122030" })
-hi(0, "MiniStatuslineModeNormal", { bg = "#a2faa2", bold = true, fg = "#122030" })
-hi(0, "MiniStatuslineModeOther", { bg = "#7ffbdd", bold = true, fg = "#122030" })
-hi(0, "MiniStatuslineModeReplace", { bg = "#ffb8d6", bold = true, fg = "#122030" })
-hi(0, "MiniStatuslineModeVisual", { bg = "#c5f19c", bold = true, fg = "#122030" })
+hi(
+  0,
+  "MiniStatuslineModeCommand",
+  { bg = "#ffda88", bold = true, fg = "#122030" }
+)
+hi(
+  0,
+  "MiniStatuslineModeInsert",
+  { bg = "#93e5ff", bold = true, fg = "#122030" }
+)
+hi(
+  0,
+  "MiniStatuslineModeNormal",
+  { bg = "#a2faa2", bold = true, fg = "#122030" }
+)
+hi(
+  0,
+  "MiniStatuslineModeOther",
+  { bg = "#7ffbdd", bold = true, fg = "#122030" }
+)
+hi(
+  0,
+  "MiniStatuslineModeReplace",
+  { bg = "#ffb8d6", bold = true, fg = "#122030" }
+)
+hi(
+  0,
+  "MiniStatuslineModeVisual",
+  { bg = "#c5f19c", bold = true, fg = "#122030" }
+)
 hi(0, "MiniSurround", { link = "IncSearch" })
 hi(0, "MiniTablineCurrent", { bg = "#122030", bold = true, fg = "#a1ceff" })
 hi(0, "MiniTablineFill", { link = "MiniTablineHidden" })
 hi(0, "MiniTablineHidden", { bg = "#071524", fg = "#7fd680" })
-hi(0, "MiniTablineModifiedCurrent", { bg = "#a1ceff", bold = true, fg = "#122030" })
+hi(
+  0,
+  "MiniTablineModifiedCurrent",
+  { bg = "#a1ceff", bold = true, fg = "#122030" }
+)
 hi(0, "MiniTablineModifiedHidden", { bg = "#7fd680", fg = "#071524" })
-hi(0, "MiniTablineModifiedVisible", { bg = "#7fd680", bold = true, fg = "#071524" })
-hi(0, "MiniTablineTabpagesection", { bg = "#c5f19c", bold = true, fg = "#122030" })
+hi(
+  0,
+  "MiniTablineModifiedVisible",
+  { bg = "#7fd680", bold = true, fg = "#071524" }
+)
+hi(
+  0,
+  "MiniTablineTabpagesection",
+  { bg = "#c5f19c", bold = true, fg = "#122030" }
+)
 hi(0, "MiniTablineTrunc", { bg = "#071524", bold = true, fg = "#a1ceff" })
 hi(0, "MiniTablineVisible", { bg = "#071524", bold = true, fg = "#7fd680" })
 hi(0, "MiniTestEmphasis", { bold = true })
@@ -1426,14 +1482,30 @@ hi(0, "NvimIdentifierKey", { link = "NvimIdentifier" })
 hi(0, "NvimIdentifierName", { link = "NvimIdentifier" })
 hi(0, "NvimIdentifierScope", { link = "NvimIdentifier" })
 hi(0, "NvimIdentifierScopeDelimiter", { link = "NvimIdentifier" })
-hi(0, "NvimInternalError", { bg = "#ff0000", ctermbg = 9, ctermfg = 9, fg = "#ff0000" })
+hi(
+  0,
+  "NvimInternalError",
+  { bg = "#ff0000", ctermbg = 9, ctermfg = 9, fg = "#ff0000" }
+)
 hi(0, "NvimInvalid", { link = "Error" })
 hi(0, "NvimInvalidAnd", { link = "NvimInvalidBinaryOperator" })
 hi(0, "NvimInvalidArrow", { link = "NvimInvalidDelimiter" })
 hi(0, "NvimInvalidAssignment", { link = "NvimInvalid" })
-hi(0, "NvimInvalidAssignmentWithAddition", { link = "NvimInvalidAugmentedAssignment" })
-hi(0, "NvimInvalidAssignmentWithConcatenation", { link = "NvimInvalidAugmentedAssignment" })
-hi(0, "NvimInvalidAssignmentWithSubtraction", { link = "NvimInvalidAugmentedAssignment" })
+hi(
+  0,
+  "NvimInvalidAssignmentWithAddition",
+  { link = "NvimInvalidAugmentedAssignment" }
+)
+hi(
+  0,
+  "NvimInvalidAssignmentWithConcatenation",
+  { link = "NvimInvalidAugmentedAssignment" }
+)
+hi(
+  0,
+  "NvimInvalidAssignmentWithSubtraction",
+  { link = "NvimInvalidAugmentedAssignment" }
+)
 hi(0, "NvimInvalidAugmentedAssignment", { link = "NvimInvalidAssignment" })
 hi(0, "NvimInvalidBinaryMinus", { link = "NvimInvalidBinaryOperator" })
 hi(0, "NvimInvalidBinaryOperator", { link = "NvimInvalidOperator" })
@@ -1474,7 +1546,11 @@ hi(0, "NvimInvalidNumberPrefix", { link = "NvimInvalidNumber" })
 hi(0, "NvimInvalidOperator", { link = "NvimInvalid" })
 hi(0, "NvimInvalidOptionName", { link = "NvimInvalidIdentifier" })
 hi(0, "NvimInvalidOptionScope", { link = "NvimInvalidIdentifierScope" })
-hi(0, "NvimInvalidOptionScopeDelimiter", { link = "NvimInvalidIdentifierScopeDelimiter" })
+hi(
+  0,
+  "NvimInvalidOptionScopeDelimiter",
+  { link = "NvimInvalidIdentifierScopeDelimiter" }
+)
 hi(0, "NvimInvalidOptionSigil", { link = "NvimInvalidIdentifier" })
 hi(0, "NvimInvalidOr", { link = "NvimInvalidBinaryOperator" })
 hi(0, "NvimInvalidParenthesis", { link = "NvimInvalidDelimiter" })
@@ -1564,10 +1640,26 @@ hi(0, "PmenuMatchSel", { blend = 0, bold = true, reverse = true })
 hi(0, "PmenuSbar", { link = "Pmenu" })
 hi(0, "PmenuSel", { blend = 0, reverse = true })
 hi(0, "PmenuThumb", { bg = "#4d5d70" })
-hi(0, "PounceAccept", { bg = "#ffda88", bold = true, fg = "#122030", nocombine = true })
-hi(0, "PounceAcceptBest", { bg = "#c5f19c", bold = true, fg = "#122030", nocombine = true })
-hi(0, "PounceGap", { bg = "#4d5d70", bold = true, fg = "#122030", nocombine = true })
-hi(0, "PounceMatch", { bg = "#a2faa2", bold = true, fg = "#122030", nocombine = true })
+hi(
+  0,
+  "PounceAccept",
+  { bg = "#ffda88", bold = true, fg = "#122030", nocombine = true }
+)
+hi(
+  0,
+  "PounceAcceptBest",
+  { bg = "#c5f19c", bold = true, fg = "#122030", nocombine = true }
+)
+hi(
+  0,
+  "PounceGap",
+  { bg = "#4d5d70", bold = true, fg = "#122030", nocombine = true }
+)
+hi(
+  0,
+  "PounceMatch",
+  { bg = "#a2faa2", bold = true, fg = "#122030", nocombine = true }
+)
 hi(0, "PreCondit", { link = "PreProc" })
 hi(0, "PreProc", { fg = "#a8c5ff" })
 hi(0, "Question", { fg = "#93e5ff" })

@@ -1,6 +1,6 @@
 -- =============================================================================
 -- BLINK.CMP: Lightning-Fast Code Completion
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Intelligent completion with LSP, snippets, paths, and ripgrep searches
 -- WHY:  Rust-powered fuzzy matching is faster and more accurate than built-in completion
 -- HOW:  Lazy-loads on first insert; integrates LSP, LuaSnip, lazydev, and ripgrep
@@ -8,13 +8,13 @@
 -- KEYMAPS: C-space (show), C-e (hide), C-y (accept), C-n/p (navigate), C-f/b (scroll docs)
 -- REFERENCE: https://github.com/saghen/blink.cmp
 -- RELATED: lua/plugins/lsp.lua, lua/plugins/lazydev.lua
--- =============================================================================
+-- -----------------------------------------------------------------------------
 return {
-  'saghen/blink.cmp',
+  "saghen/blink.cmp",
   lazy = true,
-  version = '1.*',
+  version = "1.*",
   dependencies = {
-    'folke/lazydev.nvim', -- Neovim API completions & type hints
+    "folke/lazydev.nvim", -- Neovim API completions & type hints
 
     -- =========================================================================
     -- Snippet Engine: LuaSnip
@@ -24,15 +24,15 @@ return {
     -- HOW:  Loads community snippets from friendly-snippets on startup
     -- -------------------------------------------------------------------------
     {
-      'L3MON4D3/LuaSnip',
-      version = '2.*',
-      build = 'make install_jsregexp', -- Required for regex support in snippets
+      "L3MON4D3/LuaSnip",
+      version = "2.*",
+      build = "make install_jsregexp", -- Required for regex support in snippets
       opts = {},
       dependencies = {
         {
-          'rafamadriz/friendly-snippets',
+          "rafamadriz/friendly-snippets",
           config = function()
-            require('luasnip.loaders.from_vscode').lazy_load()
+            require("luasnip.loaders.from_vscode").lazy_load()
           end,
         },
       },
@@ -47,16 +47,16 @@ return {
     -- NOTE: Configurable prefix length to avoid excessive searches
     -- -------------------------------------------------------------------------
     {
-      'mikavilpas/blink-ripgrep.nvim',
-      version = '*',
+      "mikavilpas/blink-ripgrep.nvim",
+      version = "*",
     },
   },
   opts = {
     keymap = {
-      preset = 'default', -- Standard completion keybinds (C-n/C-p navigate)
+      preset = "default", -- Standard completion keybinds (C-n/C-p navigate)
     },
     appearance = {
-      nerd_font_variant = 'mono', -- Use monospace Nerd Font icons
+      nerd_font_variant = "mono", -- Use monospace Nerd Font icons
     },
     completion = {
       -- Disable auto-show docs to reduce visual noise (user can view with C-y)
@@ -70,24 +70,24 @@ return {
       },
     },
     sources = {
-      default = { 'buffer', 'lsp', 'path', 'snippets', 'lazydev', 'ripgrep' },
+      default = { "buffer", "lsp", "path", "snippets", "lazydev", "ripgrep" },
       providers = {
         lazydev = {
-          module = 'lazydev.integrations.blink',
+          module = "lazydev.integrations.blink",
           score_offset = 100, -- Boost Neovim API completions in priority
         },
         ripgrep = {
-          module = 'blink-ripgrep',
-          name = 'Ripgrep',
+          module = "blink-ripgrep",
+          name = "Ripgrep",
           opts = {
             -- Smart: prefer git grep, fallback to ripgrep
-            backend = { use = 'gitgrep-or-ripgrep' },
+            backend = { use = "gitgrep-or-ripgrep" },
           },
         },
       },
     },
-    snippets = { preset = 'luasnip' },
-    fuzzy = { implementation = 'prefer_rust_with_warning' }, -- Use Rust impl if available
+    snippets = { preset = "luasnip" },
+    fuzzy = { implementation = "prefer_rust_with_warning" }, -- Use Rust impl if available
     signature = { enabled = true }, -- Show function signatures while typing
   },
 }
