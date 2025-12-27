@@ -4,6 +4,17 @@ All notable changes to HYPERfix.nvim are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2025-12-27
+
+### 🔧 Fixed
+
+- **Code comment standardization** — Refactored all config files to follow consistent WHAT/WHY/HOW pattern for clarity and learning
+- **Lint plugin integration** — Added dedicated `lint.lua` plugin file for nvim-lint configuration
+- **Configuration cleanup** — Removed duplicate stylua config from `.stylua.toml`
+- **Formatter/linter consolidation** — Improved consistency across plugin specifications
+
+---
+
 ## [1.0.1] - 2025-12-20
 
 ### ✨ Added
