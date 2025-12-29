@@ -1,6 +1,6 @@
 -- =============================================================================
 -- AUTOCOMMANDS
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Autocommands automatically trigger actions in response to events
 --       (e.g., when you open a file, save it, switch focus, resize window)
 --
@@ -17,7 +17,7 @@
 --       - callback: function to execute when event fires
 --
 -- REFERENCE: https://neovim.io/doc/user/autocmd.html
--- =============================================================================
+-- -----------------------------------------------------------------------------
 
 local function augroup(name)
   return vim.api.nvim_create_augroup("hyperfix_" .. name, { clear = true })
@@ -25,14 +25,19 @@ end
 
 -- =============================================================================
 -- Checktime: Reload File on External Changes
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Detects when a file changes on disk and reloads it in your buffer
 -- WHY:  Keeps your buffer in sync if another process modifies the file
 --       (prevents "file changed" conflicts)
 -- HOW:  Triggers on FocusGained (window refocuses), TermClose, TermLeave
 --       and runs :checktime to reload if needed
--- =============================================================================
-vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+-- -----------------------------------------------------------------------------
+
+vim.api.nvim_create_autocmd({
+  "FocusGained",
+  "TermClose",
+  "TermLeave",
+}, {
   group = augroup("checktime"),
   callback = function()
     if vim.o.buftype ~= "nofile" then vim.cmd("checktime") end
@@ -41,11 +46,12 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 
 -- =============================================================================
 -- Highlight on Yank: Visual Feedback When Copying
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Briefly highlights text you just yanked (copied)
 -- WHY:  Provides visual feedback so you know the selection worked
 -- HOW:  Triggers on TextYankPost and calls vim's built-in highlight.on_yank()
--- =============================================================================
+-- -----------------------------------------------------------------------------
+
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = augroup("highlight_yank"),
   callback = function() (vim.hl or vim.highlight).on_yank() end,
@@ -53,11 +59,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- =============================================================================
 -- Resize Splits: Auto-Balance Window Layout
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Automatically resizes splits when the Neovim window is resized
 -- WHY:  Keeps your window layout proportional and balanced after resizing
 -- HOW:  Triggers on VimResized and runs wincmd = (equal width/height)
--- =============================================================================
+-- -----------------------------------------------------------------------------
+
 vim.api.nvim_create_autocmd({ "VimResized" }, {
   group = augroup("resize_splits"),
   callback = function()
@@ -69,13 +76,14 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 
 -- =============================================================================
 -- Last Location: Jump to Where You Left Off
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Reopens a file at the cursor position where you last closed it
 -- WHY:  Speeds up workflow by skipping manual navigation back to where
 --       you were working
 -- HOW:  Triggers on BufReadPost, restores the " mark (last position)
 --       if it's valid (excluding git commits and other special files)
--- =============================================================================
+-- -----------------------------------------------------------------------------
+
 vim.api.nvim_create_autocmd("BufReadPost", {
   group = augroup("last_loc"),
   callback = function(event)
@@ -98,14 +106,15 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- =============================================================================
 -- Close With 'q': Quick Exit for Help/Info/Output Buffers
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Maps 'q' key to close help, info panels, and output windows
 -- WHY:  Provides a consistent, intuitive way to exit read-only buffers
 --       (easier than remembering :close or :quit)
 -- HOW:  Triggers on FileType for specific filetypes (help, lspinfo, etc.)
 --       and maps 'q' to close + delete the buffer
 -- NOTE: Marks these buffers as unlisted so they don't clutter buffer list
--- =============================================================================
+-- -----------------------------------------------------------------------------
+
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("close_with_q"),
   pattern = {
@@ -142,11 +151,12 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- =============================================================================
 -- Man Unlisted: Hide Man Pages from Buffer List
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Hides man page buffers from the buffer list
 -- WHY:  Keeps your buffer list clean when viewing man pages inline
 -- HOW:  Triggers on FileType "man" and sets buflisted = false
--- =============================================================================
+-- -----------------------------------------------------------------------------
+
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("man_unlisted"),
   pattern = { "man" },
@@ -156,6 +166,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- =============================================================================
 -- Disable colorcolumn when wrap is on
 -- ----------------------------------------------------------------------------
+
 vim.api.nvim_create_autocmd("OptionSet", {
   group = augroup("wrap_colorcolumn"),
   pattern = "wrap",
@@ -170,12 +181,13 @@ vim.api.nvim_create_autocmd("OptionSet", {
 
 -- =============================================================================
 -- JSON Conceal: Show All JSON Content
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Disables concealing for JSON files so nothing is hidden
 -- WHY:  JSON files should always show all content (no hidden characters)
 --       Default conceallevel would hide quotes/brackets
 -- HOW:  Triggers on FileType for json/jsonc/json5 and sets conceallevel = 0
--- =============================================================================
+-- -----------------------------------------------------------------------------
+
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = augroup("json_conceal"),
   pattern = { "json", "jsonc", "json5" },
@@ -184,13 +196,14 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 -- =============================================================================
 -- Auto Create Directory: Create Parent Dirs on Save
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Automatically creates parent directories when saving a file
 -- WHY:  Prevents "parent directory doesn't exist" errors when saving
 --       to a path with missing intermediate directories
 -- HOW:  Triggers on BufWritePre and creates directory structure with mkdir
 -- NOTE: Skips remote files (ssh://, http://, etc.)
--- =============================================================================
+-- -----------------------------------------------------------------------------
+
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   group = augroup("auto_create_dir"),
   callback = function(event)

@@ -49,14 +49,6 @@
 
 ## Text Editing
 
-### Undo Break-points (Insert Mode)
-
-| Keymap | Mode   | Action                       |
-| ------ | ------ | ---------------------------- |
-| `,`    | Insert | Comma + undo break-point     |
-| `.`    | Insert | Period + undo break-point    |
-| `;`    | Insert | Semicolon + undo break-point |
-
 ### Smart Closing Punctuation Skip (Insert Mode)
 
 | Keymap  | Mode   | Action                                            |
@@ -115,9 +107,9 @@
 
 ## Flash (Smart Navigation)
 
-| Keymap | Mode                     | Action                          |
-| ------ | ------------------------ | ------------------------------- |
-| `s`    | Normal, Visual, Operator | Flash search (jump to location) |
+| Keymap      | Mode                     | Action                          |
+| ----------- | ------------------------ | ------------------------------- |
+| `<leader>/` | Normal, Visual, Operator | Flash search (jump to location) |
 
 ## Grug-far (Search & Replace)
 
@@ -147,12 +139,11 @@
 
 ### LSP Code Actions & Formatting
 
-| Keymap       | Mode                   | Action             |
-| ------------ | ---------------------- | ------------------ |
-| `<leader>cr` | Normal                 | Rename symbol      |
-| `<leader>ca` | Normal, Visual         | Code action        |
-| `<leader>cf` | Normal, Visual, Select | Format buffer      |
-| `<leader>\H` | Normal                 | Toggle inlay hints |
+| Keymap       | Mode                   | Action                          |
+| ------------ | ---------------------- | ------------------------------- |
+| `<leader>cr` | Normal                 | Rename symbol                   |
+| `<leader>ca` | Normal, Visual         | Code action                     |
+| `<leader>cf` | Normal, Visual, Select | Format buffer                   |
 | `<leader>uv` | Normal                 | Toggle virtual text diagnostics |
 
 ## Treesitter
@@ -165,12 +156,6 @@
 | `gvn`  | Normal | Expand to next node     |
 | `gvs`  | Normal | Expand to scope         |
 | `gvp`  | Normal | Shrink to previous node |
-
-### Treesitter Context
-
-| Keymap | Mode   | Action                          |
-| ------ | ------ | ------------------------------- |
-| `\t`   | Normal | Toggle treesitter context panel |
 
 ## Mini.nvim
 
@@ -251,7 +236,7 @@
 | Keymap            | Mode   | Action                           |
 | ----------------- | ------ | -------------------------------- |
 | `<leader><space>` | Normal | Smart find (auto-detect context) |
-| `<leader>/`       | Normal | Grep search                      |
+| `<leader>?`       | Normal | Grep search                      |
 | `<leader>:`       | Normal | Command history                  |
 | `<leader>.`       | Normal | Scratch buffer selector          |
 
@@ -311,6 +296,7 @@
 | `<leader>sc` | Normal | Commands              |
 | `<leader>sd` | Normal | Diagnostics           |
 | `<leader>sD` | Normal | Buffer diagnostics    |
+| `<leader>sg` | Normal | Grep                  |
 | `<leader>sh` | Normal | Search history        |
 | `<leader>sH` | Normal | Highlights            |
 | `<leader>si` | Normal | Icons                 |
