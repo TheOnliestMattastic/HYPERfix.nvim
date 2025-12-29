@@ -236,7 +236,6 @@
 | Keymap            | Mode   | Action                           |
 | ----------------- | ------ | -------------------------------- |
 | `<leader><space>` | Normal | Smart find (auto-detect context) |
-| `<leader>?`       | Normal | Grep search                      |
 | `<leader>:`       | Normal | Command history                  |
 | `<leader>.`       | Normal | Scratch buffer selector          |
 
