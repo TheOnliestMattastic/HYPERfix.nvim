@@ -32,7 +32,7 @@ return {
         -- ---------------------------------------------------------------------
         {
           "<leader>?",
-          expand = function() require("which-key").show({ global = true }) end,
+          function() require("which-key").show({ global = true }) end,
           desc = "Keymaps",
           icon = "󱕴",
         },
