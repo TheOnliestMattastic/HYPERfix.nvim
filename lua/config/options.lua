@@ -1,26 +1,25 @@
 -- =============================================================================
 -- Globals
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Global variables for Neovim behavior
 -- WHY:  Configure behavior that affects the entire editor
 -- HOW:  Set vim.g values for mapleader, LSP root detection, etc.
 -- NOTE: These must be set before loading plugins that depend on them
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- stylua: ignore start
 
 vim.g.mapleader                  = " "
 vim.g.maplocalleader             = "\\"
-
 vim.g.ai_cmp                     = true
 vim.g.root_spec                  = { "lsp", { ".git", "lua" }, "cwd" }
 vim.g.markdown_recommended_style = 0
 
 -- =============================================================================
 -- Options (Undo & History)
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Configure long-term undo history and backup behavior
 -- HOW:  Disable swapfiles, enable undofile with high undo levels
--- =============================================================================
+-- -----------------------------------------------------------------------------
 
 local opt       = vim.opt
 
@@ -34,11 +33,11 @@ opt.writebackup = false -- Don't use backup files
 
 -- =============================================================================
 -- Options (Display & Visual)
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Configure visual display, colors, and rendering
 -- WHY:  Improves readability and accessibility (WCAG AAA compliant)
 -- HOW:  Set line spacing, colors, cursor visibility, highlight columns
--- =============================================================================
+-- -----------------------------------------------------------------------------
 
 opt.background     = "dark"
 opt.termguicolors  = true -- True color support
@@ -55,11 +54,11 @@ opt.guicursor      = ""
 
 -- =============================================================================
 -- Options (Indentation & Tabs)
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Configure tab behavior and indentation
 -- WHY:  Ensures consistent formatting across files
 -- HOW:  Use spaces, set width to 2, enable smart indent
--- =============================================================================
+-- -----------------------------------------------------------------------------
 
 opt.expandtab   = true -- Use spaces instead of tabs
 opt.tabstop     = 2 -- Number of spaces tabs count for
@@ -70,11 +69,11 @@ opt.smartindent = true -- Insert indents automatically
 
 -- =============================================================================
 -- Options (Search & Replace)
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Configure search behavior and substitution preview
 -- WHY:  Improves search experience with better feedback
 -- HOW:  Enable case-sensitive search with smart case, preview substitutions
--- =============================================================================
+-- -----------------------------------------------------------------------------
 
 opt.hlsearch   = false -- Highlight all matches on previous search pattern
 opt.incsearch  = true -- Incremental search
@@ -86,9 +85,9 @@ opt.grepprg    = "rg --vimgrep"
 
 -- =============================================================================
 -- Options (Window & Split Behavior)
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Configure window splitting and navigation
--- =============================================================================
+-- -----------------------------------------------------------------------------
 
 opt.splitbelow    = true -- Put new windows below current
 opt.splitright    = true -- Put new windows right of current
@@ -103,57 +102,55 @@ opt.linebreak     = true -- Wrap lines at convenient points
 
 -- =============================================================================
 -- Options (Completion & Menu)
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Configure completion menu appearance and behavior
 -- WHY:  Better control over autocompletion UX
 -- HOW:  Set popup size, blend, and completion options
--- =============================================================================
+-- -----------------------------------------------------------------------------
 
 opt.completeopt = "menu,menuone,noselect"
 opt.pumheight   = 10 -- Maximum number of entries in a popup
 opt.pumblend    = 10 -- Popup blend
 
--- stylua: ignore end
 -- =============================================================================
 -- Options (Folding)
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Configure code folding display and behavior
 -- WHY:  Improves navigation in large files
 -- HOW:  Use indent-based folding with custom fold characters
--- =============================================================================
+-- -----------------------------------------------------------------------------
 
 opt.foldmethod = "indent"
-opt.foldlevel = 99
-opt.foldtext = ""
-opt.fillchars = {
-  foldopen = "󱄰",
-  foldclose = "󱄱",
+opt.foldlevel  = 99
+opt.foldtext   = ""
+opt.fillchars  = {
+  foldopen     = "󱄰",
+  foldclose    = "󱄱",
 }
 
 -- =============================================================================
 -- Options (Whitespace & Special Characters)
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Configure display of invisible characters
 -- WHY:  Makes whitespace visible to catch formatting issues
 -- HOW:  Show tabs, trailing spaces, and line extends/precedes
--- =============================================================================
+-- -----------------------------------------------------------------------------
 
-opt.list = true -- Show some invisible characters (tabs...)
+opt.list      = true -- Show some invisible characters (tabs...)
 opt.listchars = {
-  tab = "▸ ",
-  trail = "·",
-  extends = "❯",
-  precedes = "❮",
+  tab         = "▸ ",
+  trail       = "·",
+  extends     = "❯",
+  precedes    = "❮",
 }
 
 -- =============================================================================
 -- Options (Formatting & Input)
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Configure text formatting and user input handling
 -- WHY:  Improves editing experience and text quality
 -- HOW:  Set format options, confirm on exit, virtualedit for block mode
--- =============================================================================
--- stylua: ignore start
+-- -----------------------------------------------------------------------------
 
 opt.formatoptions = "jcroqlnt"
 opt.confirm       = true -- Confirm to save changes before exiting modified buffer
@@ -163,34 +160,33 @@ opt.clipboard     = "unnamedplus" -- Sync with system clipboard
 
 -- =============================================================================
 -- Options (Modes & Status)
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Configure mode display and status information
 -- WHY:  Status info is shown via statusline plugin, not native display
 -- HOW:  Hide native mode indicator, use global statusline
--- =============================================================================
+-- -----------------------------------------------------------------------------
 
 opt.showmode   = false -- Dont show mode since we have a statusline
 opt.laststatus = 3 -- global statusline
 
 -- =============================================================================
 -- Options (Timing & Key Sequences)
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Configure timing for key sequences and updates
 -- WHY:  Provides time to think before triggering commands
 -- HOW:  Set longer timeoutlen for which-key, updatetime for CursorHold
--- =============================================================================
+-- -----------------------------------------------------------------------------
 
 opt.timeoutlen  = 1250
 opt.jumpoptions = "view"
 
--- stylua: ignore end
 -- =============================================================================
 -- Options (Messages & Feedback)
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Configure which messages and warnings are shown
 -- WHY:  Reduces visual clutter while keeping necessary feedback
 -- HOW:  Use shortmess to suppress certain notifications
--- =============================================================================
+-- -----------------------------------------------------------------------------
 
 opt.shortmess:append({
   W = true, -- Don't print "written" message
@@ -201,9 +197,9 @@ opt.shortmess:append({
 
 -- =============================================================================
 -- Options (Session Management)
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Configure what information is saved in sessions
--- =============================================================================
+-- -----------------------------------------------------------------------------
 
 opt.sessionoptions = {
   "buffers",
@@ -218,17 +214,17 @@ opt.sessionoptions = {
 
 -- =============================================================================
 -- Options (Command-Line)
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Configure command-line completion behavior
 -- HOW:  Use longest match first, then full completion
--- =============================================================================
+-- -----------------------------------------------------------------------------
 
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 
 -- =============================================================================
 -- Options (Spelling)
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Configure spell checking language
--- =============================================================================
+-- -----------------------------------------------------------------------------
 
 opt.spelllang = { "en" }

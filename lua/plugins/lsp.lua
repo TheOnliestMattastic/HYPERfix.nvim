@@ -19,6 +19,10 @@ return {
     "saghen/blink.cmp",
     "onsails/lspkind.nvim",
   },
+
+  -- ---------------------------------------------------------------------------
+  -- config
+  -- ---------------------------------------------------------------------------
   config = function()
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup(
@@ -35,7 +39,9 @@ return {
           end
         end
 
+        -- ---------------------------------------------------------------------
         -- Highlight references under cursor (hover highlighting)
+        -- ---------------------------------------------------------------------
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if
           client
@@ -49,6 +55,7 @@ return {
             "hyperfix-lsp-highlight",
             { clear = false }
           )
+
           vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
             buffer = event.buf,
             group = highlight_augroup,
@@ -75,24 +82,13 @@ return {
             end,
           })
         end
-
-        -- Enable inlay hints (function parameters, types)
-        if
-          client_supports_method(
-            client,
-            vim.lsp.protocol.Methods.textDocument_inlayHint,
-            event.buf
-          )
-        then
-          vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
-        end
       end,
     })
 
-    -- =======================================================================
+    -- =========================================================================
     -- Diagnostic Config: error display, signs, and inline messages
     -- NOTE: See :help vim.diagnostic.Opts
-    -- -----------------------------------------------------------------------
+    -- -------------------------------------------------------------------------
     vim.diagnostic.config({
       severity_sort = true, -- Sort by error > warn > info > hint
       float = { border = "rounded", source = "if_many" }, -- Hover window styling
@@ -106,6 +102,7 @@ return {
           [vim.diagnostic.severity.HINT] = "󱁞 ",
         },
       } or {},
+
       -- Inline error messages at end of line
       virtual_text = {
         source = "if_many", -- Show source only if multiple diagnostics on line
@@ -125,7 +122,9 @@ return {
     -- Merge blink.cmp's LSP capabilities with server config
     local capabilities = require("blink.cmp").get_lsp_capabilities()
 
+    -- -------------------------------------------------------------------------
     -- Language server-specific settings
+    -- -------------------------------------------------------------------------
     local servers = {
       lua_ls = {
         settings = {
@@ -147,7 +146,9 @@ return {
       },
     }
 
-    -- Extract server names and add formatters (tools, not LSPs)
+    -- -------------------------------------------------------------------------
+    -- Extract server names and add formatters
+    -- -------------------------------------------------------------------------
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       "stylua", -- Lua formatter
@@ -162,7 +163,9 @@ return {
       ensure_installed = ensure_installed, -- Auto-install tools
     })
 
+    -- -------------------------------------------------------------------------
     -- Auto-install LSPs and setup with lspconfig
+    -- -------------------------------------------------------------------------
     require("mason-lspconfig").setup({
       ensure_installed = {}, -- Empty: install all, not just listed servers
       automatic_installation = true, -- Auto-install on server attach
@@ -182,19 +185,11 @@ return {
       },
     })
 
-    -- =========================================================================
+    -- -------------------------------------------------------------------------
     -- lspkind.nvim setup
     -- -------------------------------------------------------------------------
     require("lspkind").init({
-
-      -- defines how annotations are shown
-      -- default: symbol
-      -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
       mode = "symbol_text",
-
-      -- default symbol map
-      -- can be either 'default' (requires nerd-fonts font) or
-      -- 'codicons' for codicon preset (requires vscode-codicons font)
       preset = "default",
     })
   end,

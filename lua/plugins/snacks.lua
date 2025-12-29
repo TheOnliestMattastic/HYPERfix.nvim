@@ -20,9 +20,7 @@ return {
   -- OPTIONS CONFIGURATION
   -- ---------------------------------------------------------------------------
   opts = {
-    -- =========================================================================
     -- Dashboard: Home screen on startup
-    -- -------------------------------------------------------------------------
     dashboard = {
       enabled = true,
       preset = { header = dashboard.header },
@@ -30,17 +28,13 @@ return {
       formats = dashboard.formats,
     },
 
-    -- =========================================================================
     -- Picker: Fuzzy finder / file/buffer/grep picker
-    -- -------------------------------------------------------------------------
     picker = {
       enabled = true,
       sources = { explorer = { enabled = false } },
     },
 
-    -- =========================================================================
     -- Styles: Notification and UI styling
-    -- -------------------------------------------------------------------------
     styles = {
       enabled = true,
       notification = { wo = { wrap = true } },
@@ -82,18 +76,13 @@ return {
   -- KEYMAPS
   -- ---------------------------------------------------------------------------
   keys = {
-    -- =========================================================================
-    -- Top Level: Global navigation & utilities
+    -- -------------------------------------------------------------------------
+    -- GLOBAL: Top-level navigation & utilities
     -- -------------------------------------------------------------------------
     {
       "<leader><space>",
       function() Snacks.picker.smart() end,
       desc = "Smart Search",
-    },
-    {
-      "<leader>/",
-      function() Snacks.picker.grep() end,
-      desc = "Grep",
     },
     {
       "<leader>:",
@@ -111,13 +100,13 @@ return {
       desc = "[T]erminal",
     },
 
-    -- =========================================================================
-    -- Buffer: Buffer operations
+    -- -------------------------------------------------------------------------
+    -- BUFFER: Buffer operations
     -- -------------------------------------------------------------------------
     {
       "<leader>bb",
       function() Snacks.picker.buffers() end,
-      desc = "Select [B]uffer",
+      desc = "[B]uffer",
     },
     {
       "<leader>bg",
@@ -127,7 +116,7 @@ return {
     {
       "<leader>bq",
       function() Snacks.bufdelete() end,
-      desc = "[Q]uit Buffer ",
+      desc = "[Q]uit Buffer",
     },
     {
       "<leader>bS",
@@ -135,8 +124,8 @@ return {
       desc = "[S]elect Scratch Buffer",
     },
 
-    -- =========================================================================
-    -- Find/File: File & project navigation
+    -- -------------------------------------------------------------------------
+    -- FILE: File & project navigation
     -- -------------------------------------------------------------------------
     {
       "<leader>ff",
@@ -165,8 +154,8 @@ return {
       mode = { "n", "x" },
     },
 
-    -- =========================================================================
-    -- Git: Git operations & GitHub integration
+    -- -------------------------------------------------------------------------
+    -- GIT: Git operations & GitHub integration
     -- -------------------------------------------------------------------------
     {
       "<leader>gb",
@@ -176,7 +165,7 @@ return {
     {
       "<leader>gB",
       function() Snacks.gitbrowse() end,
-      desc = "Open [B]rowser",
+      desc = "[B]rowser",
       mode = { "n", "v" },
     },
     {
@@ -187,12 +176,12 @@ return {
     {
       "<leader>gf",
       function() Snacks.picker.git_files() end,
-      desc = "Git [F]iles",
+      desc = "[F]iles",
     },
     {
       "<leader>gF",
       function() Snacks.picker.git_log_file() end,
-      desc = "Git Log [F]ile",
+      desc = "Log [F]ile",
     },
     {
       "<leader>gg",
@@ -202,32 +191,32 @@ return {
     {
       "<leader>gi",
       function() Snacks.picker.gh_issue() end,
-      desc = "GitHub [I]ssues (open)",
+      desc = "[I]ssues (open)",
     },
     {
       "<leader>gI",
       function() Snacks.picker.gh_issue({ state = "all" }) end,
-      desc = "GitHub [I]ssues (all)",
+      desc = "[I]ssues (all)",
     },
     {
       "<leader>gl",
       function() Snacks.picker.git_log() end,
-      desc = "Git [L]og",
+      desc = "[L]og",
     },
     {
       "<leader>gL",
       function() Snacks.picker.git_log_line() end,
-      desc = "Git Log [L]ine",
+      desc = "Log [L]ine",
     },
     {
       "<leader>gp",
       function() Snacks.picker.gh_pr() end,
-      desc = "GitHub [P]ull Requests (open)",
+      desc = "[P]ull Requests (open)",
     },
     {
       "<leader>gP",
       function() Snacks.picker.gh_pr({ state = "all" }) end,
-      desc = "GitHub [P]ull Requests (all)",
+      desc = "[P]ull Requests (all)",
     },
     {
       "<leader>gs",
@@ -240,8 +229,8 @@ return {
       desc = "[S]tash",
     },
 
-    -- =========================================================================
-    -- Help: Documentation & configuration
+    -- -------------------------------------------------------------------------
+    -- HELP: Documentation & configuration
     -- -------------------------------------------------------------------------
     {
       "<leader>ha",
@@ -291,8 +280,8 @@ return {
       end,
     },
 
-    -- =========================================================================
-    -- Search: Search & inspection utilities
+    -- -------------------------------------------------------------------------
+    -- SEARCH: Search & inspection utilities
     -- -------------------------------------------------------------------------
     {
       "<leader>sc",
@@ -308,6 +297,11 @@ return {
       "<leader>sD",
       function() Snacks.picker.diagnostics_buffer() end,
       desc = "Buffer [D]iagnostics",
+    },
+    {
+      "<leader>sg",
+      function() Snacks.picker.grep() end,
+      desc = "[G]rep",
     },
     {
       "<leader>sh",
@@ -375,7 +369,7 @@ return {
       desc = "LSP Workspace [S]ymbols",
     },
 
-    -- =========================================================================
+    -- -------------------------------------------------------------------------
     -- UI: Interface toggles & settings
     -- -------------------------------------------------------------------------
     {
@@ -394,8 +388,8 @@ return {
       desc = "[Z]oom",
     },
 
-    -- =========================================================================
-    -- Other: Navigation & reference jumping
+    -- -------------------------------------------------------------------------
+    -- NAVIGATION: Navigation & reference jumping
     -- -------------------------------------------------------------------------
     {
       "]]",
@@ -415,8 +409,8 @@ return {
       desc = "[D]ashboard",
     },
 
-    -- =========================================================================
-    -- LSP: Language server operations
+    -- -------------------------------------------------------------------------
+    -- LSP: Language server picker operations (definitions, references, etc.)
     -- -------------------------------------------------------------------------
     {
       "gd",
@@ -429,10 +423,9 @@ return {
       desc = "[D]eclaration",
     },
     {
-      "gr",
-      function() Snacks.picker.lsp_references() end,
-      nowait = true,
-      desc = "[R]eferences",
+      "gi",
+      function() Snacks.picker.lsp_incoming_calls() end,
+      desc = "Calls [I]ncoming",
     },
     {
       "gI",
@@ -440,41 +433,46 @@ return {
       desc = "[I]mplementation",
     },
     {
-      "gy",
-      function() Snacks.picker.lsp_type_definitions() end,
-      desc = "T[y]pe Definition",
-    },
-    {
-      "gi",
-      function() Snacks.picker.lsp_incoming_calls() end,
-      desc = "Calls [I]ncoming",
-    },
-    {
       "go",
       function() Snacks.picker.lsp_outgoing_calls() end,
       desc = "Calls [O]utgoing",
+    },
+    {
+      "gR",
+      function() Snacks.picker.lsp_references() end,
+      nowait = true,
+      desc = "[R]eferences",
+    },
+    {
+      "gy",
+      function() Snacks.picker.lsp_type_definitions() end,
+      desc = "T[y]pe Definition",
     },
     {
       "<leader>cl",
       function() Snacks.picker.lsp_config() end,
       desc = "[L]sp Info",
     },
+
+    -- -------------------------------------------------------------------------
+    -- LSP ACTIONS: LSP buffer operations
+    -- -------------------------------------------------------------------------
     {
       "<leader>ca",
       vim.lsp.buf.code_action,
-      desc = "Code [A]ction",
+      desc = "[A]ction",
       mode = { "n", "x" },
     },
     {
       "<leader>cc",
       vim.lsp.codelens.run,
-      desc = "Run [C]odelens",
+      desc = "[C]odelens",
       mode = { "n", "x" },
     },
     {
       "<leader>cC",
       vim.lsp.codelens.refresh,
-      desc = "Refresh & Display [C]odelens",
+      desc = "Refresh [C]odelens",
       mode = { "n" },
     },
     {
@@ -484,16 +482,14 @@ return {
     },
   },
 
-  -- ===========================================================================
+  -- ---------------------------------------------------------------------------
   -- INIT: Setup & configuration (runs at VeryLazy)
   -- ---------------------------------------------------------------------------
   init = function()
     vim.api.nvim_create_autocmd("User", {
       pattern = "VeryLazy",
       callback = function()
-        -- =====================================================================
         -- Debug Utilities: Global functions for pretty debugging
-        -- ---------------------------------------------------------------------
         _G.dd = function(...) Snacks.debug.inspect(...) end
         _G.bt = function() Snacks.debug.backtrace() end
 
@@ -504,10 +500,18 @@ return {
           vim.print = _G.dd
         end
 
-        -- =====================================================================
+        -- ---------------------------------------------------------------------
         -- Toggle Mappings: Create toggles for UI features (with <leader>u)
         -- ---------------------------------------------------------------------
         Snacks.toggle.animate():map("<leader>ua")
+        Snacks.toggle.diagnostics({ name = "[D]iagnostics" }):map("<leader>ud")
+        Snacks.toggle.dim():map("<leader>uD", { desc = "Dim" })
+        Snacks.toggle.indent():map("<leader>ug", { desc = "Indent Guides" })
+        Snacks.toggle.line_number({ name = "[L]ine number" }):map("<leader>ul")
+        Snacks.toggle.inlay_hints({ name = "Inlay [H]ints" }):map("<leader>uh")
+        Snacks.toggle.option("spell", { name = "[S]pelling" }):map("<leader>us")
+        Snacks.toggle.scroll():map("<leader>uS")
+        Snacks.toggle.option("wrap", { name = "[W]rap" }):map("<leader>uw")
 
         Snacks.toggle
           .option("conceallevel", {
@@ -517,27 +521,13 @@ return {
           })
           :map("<leader>uc")
 
-        Snacks.toggle.diagnostics({ name = "[D]iagnostics" }):map("<leader>ud")
-
-        Snacks.toggle.dim():map("<leader>uD", { desc = "Dim" })
-        Snacks.toggle.indent():map("<leader>ug", { desc = "Indent Guides" })
-
         Snacks.toggle
           .option("relativenumber", { name = "Re[l]ative Number" })
           :map("<leader>uL")
 
-        Snacks.toggle.line_number({ name = "[L]ine number" }):map("<leader>ul")
-
         Snacks.toggle
           .treesitter({ name = "[T]reesitter Highlights" })
           :map("<leader>uT")
-
-        Snacks.toggle.inlay_hints({ name = "Inlay [H]ints" }):map("<leader>uh")
-
-        Snacks.toggle.option("spell", { name = "[S]pelling" }):map("<leader>us")
-
-        Snacks.toggle.scroll():map("<leader>uS")
-        Snacks.toggle.option("wrap", { name = "[W]rap" }):map("<leader>uw")
       end,
     })
   end,

@@ -9,7 +9,6 @@
 -- KEYMAPS: <leader>? to show all keymaps
 -- RELATED: lua/config/keymaps.lua, lua/config/options.lua (timeoutlen setting)
 -- -----------------------------------------------------------------------------
-
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
@@ -18,7 +17,6 @@ return {
     preset = "helix", -- Use helix-style keybinding help UI
     delay = 0,
     defaults = {},
-    -- Nerd Font icons for visual clarity
     icons = {
       breadcrumb = "󰯙 ", -- Active key combo breadcrumb
       separator = "", -- Key/label separator
@@ -34,7 +32,9 @@ return {
         -- ---------------------------------------------------------------------
         {
           "<leader>?",
-          icon = "󱕴", -- Show keymaps
+          function() require("which-key").show({ global = true }) end,
+          desc = "Keymaps",
+          icon = "󱕴",
         },
         {
           "<leader>e",
@@ -47,7 +47,7 @@ return {
         },
         {
           "<leader>/",
-          desc = "Grep",
+          desc = "Flash Search",
           icon = "󰍈",
         },
         {
@@ -72,6 +72,14 @@ return {
         {
           "<leader><tab>",
           group = "[TAB]",
+          icon = "",
+        },
+        {
+          "<leader><tab>q",
+          icon = "",
+        },
+        {
+          "<leader><tab><tab>",
           icon = "",
         },
         {
@@ -136,11 +144,6 @@ return {
           icon = "󱡮",
         },
         {
-          "gs",
-          group = "[S]urround",
-          icon = "󰟫",
-        },
-        {
           "z",
           group = "Fold",
           icon = "󱉋",
@@ -163,13 +166,6 @@ return {
           icon = "󰮕",
         },
       },
-    },
-  },
-  keys = {
-    {
-      "<leader>?",
-      function() require("which-key").show({ global = false }) end,
-      desc = "Keymaps",
     },
   },
   config = function(_, opts)

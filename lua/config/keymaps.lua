@@ -1,18 +1,19 @@
 -- =============================================================================
 -- KEYMAPS: Custom Vim key bindings and remaps
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Define custom keyboard shortcuts for common editor actions
 -- WHY:  Faster workflow with mnemonic patterns (<leader>f = find, <leader>g = git)
 -- HOW:  Use vim.keymap.set() with mode, key, action, and description
 -- NOTE: Full reference in KEYMAPS.md; most keymaps come from plugins
 -- REFERENCE: KEYMAPS.md for complete keymap documentation
--- =============================================================================
+-- -----------------------------------------------------------------------------
 
 local map = vim.keymap.set
 -- =============================================================================
 -- Window navigation
 -- -----------------------------------------------------------------------------
 -- stylua: ignore start
+
 map("n", "<C-h>",              "<C-w>h",               { desc = "Window Left" })
 map("n", "<C-j>",              "<C-w>j",               { desc = "Window Down" })
 map("n", "<C-k>",              "<C-w>k",               { desc = "Window Up" })
@@ -21,19 +22,19 @@ map("n", "<C-l>",              "<C-w>l",               { desc = "Window Right" }
 -- =============================================================================
 -- BUFFER MANAGEMENT
 -- -----------------------------------------------------------------------------
+
 map("n", "<leader>bn",         "<cmd>bnext<cr>",       { desc = "[N]ext Buffer" })
 map("n", "<leader>bp",         "<cmd>bprevious<cr>",   { desc = "[P]rev Buffer" })
 
 -- =============================================================================
 -- TAB MANAGEMENT
 -- -----------------------------------------------------------------------------
-map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>",      { desc = "New [T]ab" })
-map("n", "<leader><tab>n",     "<cmd>tabnext<cr>",     { desc = "[N]ext" })
+
+map("n", "<leader><tab><tab>", "<cmd>tabnext<cr>",     { desc = "[TAB] over" })
+map("n", "<leader><tab>n",     "<cmd>tabnew<cr>",      { desc = "[N]ew" })
 map("n", "<leader><tab>p",     "<cmd>tabprevious<cr>", { desc = "[P]rev" })
-map("n", "<leader><tab>f",     "<cmd>tabfirst<cr>",    { desc = "[F]irst" })
-map("n", "<leader><tab>l",     "<cmd>tablast<cr>",     { desc = "[L]ast" })
 map("n", "<leader><tab>q",     "<cmd>tabclose<cr>",    { desc = "[Q]uit" })
-map("n", "<leader><tab>o",     "<cmd>tabonly<cr>",     { desc = "Close [O]thers" })
+map("n", "<leader><tab>o",     "<cmd>tabonly<cr>",     { desc = "[O]nly" })
 -- stylua: ignore end
 
 -- =============================================================================
@@ -43,6 +44,7 @@ map("n", "<leader><tab>o",     "<cmd>tabonly<cr>",     { desc = "Close [O]thers"
 -- WHY: Lines that wrap shouldn't count as multiple "down" presses (gj/gk)
 -- HOW: Uses expression mapping to choose between j/gj based on count
 -- -----------------------------------------------------------------------------
+
 map(
   { "n", "x" },
   "j",
@@ -77,6 +79,7 @@ map(
 -- REFERENCE: https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 -- NOTE: 'zv' in normal mode opens folds to show matched line
 -- -----------------------------------------------------------------------------
+
 map(
   "n",
   "n",
@@ -121,23 +124,25 @@ map(
 -- WHY: Allows undoing text after specific punctuation without losing everything
 -- HOW: <c-g>u creates an undo point without moving cursor
 -- -----------------------------------------------------------------------------
+
 map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
 -- =============================================================================
 -- SMART CLOSING PUNCTUATION SKIP
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Skip past closing punctuation in insert mode
 -- WHY:  Streamlines workflow—jump over ) } ] ' " without arrow keys
 -- HOW:  Checks if next character is closing punctuation, moves cursor forward
--- =============================================================================
+-- -----------------------------------------------------------------------------
+
 map("i", "<C-;>", function()
   local line = vim.api.nvim_get_current_line()
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
   local next_char = line:sub(col + 1, col + 1)
 
-  if next_char:match("[)%]}'\" ]") then
+  if next_char:match("[%)%]%}%\"%']") then
     vim.api.nvim_win_set_cursor(0, { row, col + 1 })
   end
 end, { noremap = true, silent = true, desc = "Skip past closing punctuation" })
@@ -145,8 +150,10 @@ end, { noremap = true, silent = true, desc = "Skip past closing punctuation" })
 -- =============================================================================
 -- FILE MANAGEMENT
 -- -----------------------------------------------------------------------------
+
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "[N]ew File" })
+map("n", "<leader>fs", "<cmd>w<cr><esc>", { desc = "[S]ave File" })
 
 -- =============================================================================
 -- INDENTATION
@@ -154,24 +161,28 @@ map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "[N]ew File" })
 -- WHAT: Re-indent selection when using < or > in visual mode
 -- HOW: gv reselects previous visual selection after the indent
 -- -----------------------------------------------------------------------------
+
 map("x", "<", "<gv")
 map("x", ">", ">gv")
 
 -- =============================================================================
 -- PLUGIN MANAGEMENT
 -- -----------------------------------------------------------------------------
+
 map("n", "<leader>nl", "<cmd>Lazy<cr>", { desc = "[L]azy" })
 
 -- =============================================================================
 -- DIAGNOSTICS TOGGLE
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Toggle virtual text diagnostics on/off
 -- WHY:  Reduces visual clutter when you need focus or enables diagnostics when needed
 -- HOW:  Uses vim.diagnostic.config to toggle virtual_text on current buffer
--- =============================================================================
+-- -----------------------------------------------------------------------------
+
 map("n", "<leader>uv", function()
   local config = vim.diagnostic.config()
-  local vtext = config.virtual_text
+  local vtext
+  if config then vtext = config.virtual_text end
   -- Toggle: if enabled, disable; if disabled, enable with default settings
   vim.diagnostic.config({ virtual_text = not vtext })
   local status = not vtext and "enabled" or "disabled"
@@ -180,15 +191,16 @@ end, { desc = "Toggle [V]irtual Text Diagnostics" })
 
 -- =============================================================================
 -- APPLICATION MANAGEMENT
--- =============================================================================
+-- -----------------------------------------------------------------------------
 -- WHAT: Quit group keymaps with session support
 -- WHY: Save sessions and prompt for unsaved changes before quitting
 -- HOW: <leader>qq = quit all, <leader>qw = save all & quit, <leader>qQ = force quit
 --      <leader>qs = save session, <leader>qr = restore session (picker)
--- =============================================================================
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "[Q]uit All" })
+-- -----------------------------------------------------------------------------
 
+map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "[Q]uit All" })
 map("n", "<leader>qw", "<cmd>wqa<cr>", { desc = "[W]rite & Quit" })
+map("n", "<leader>qQ", "<cmd>q!<cr>", { desc = "Force [Q]uit" })
 
 map("n", "<leader>qW", function()
   local sessions = require("mini.sessions")
@@ -212,8 +224,6 @@ map("n", "<leader>qW", function()
     vim.cmd("wqa")
   end
 end, { desc = "[W]rite to Session & Quit" })
-
-map("n", "<leader>qQ", "<cmd>q!<cr>", { desc = "Force [Q]uit" })
 
 map("n", "<leader>qs", function()
   local sessions = require("mini.sessions")
@@ -260,6 +270,7 @@ map(
 -- =============================================================================
 -- COMMENTING
 -- -----------------------------------------------------------------------------
+
 map(
   "n",
   "gco",
