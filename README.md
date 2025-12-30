@@ -91,6 +91,7 @@ You'll need a few things on your system. This should take ~5 minutes to install:
 - Ripgrep (for search)
 - fd (for file finding)
 - **AMP CLI** (for AI-assisted configuration) — optional, but recommended
+- Nerd Font: Download Atkinson Mono from https://www.nerdfonts.com — optional
 
 ```bash
 # macOS (Homebrew)
@@ -101,7 +102,6 @@ npm install -g @ampcode/cli      # AMP CLI for AI-assisted config
 # Ubuntu/Debian
 sudo apt install neovim git ripgrep fd-find
 npm install -g @ampcode/cli      # AMP CLI
-# Font: Download Atkinson Mono from https://www.nerdfonts.com (optional)
 
 # Fedora/RHEL
 sudo dnf install neovim git ripgrep fd
@@ -132,7 +132,7 @@ Replace your Neovim config with HYPERfix in one command:
 mv ~/.config/nvim ~/.config/nvim.backup
 
 # Clone HYPERfix
-git clone https://github.com/your-username/HYPERfix.nvim ~/.config/nvim
+git clone https://github.com/TheOnliestMattastic/HYPERfix.nvim ~/.config/nvim
 
 # Launch Neovim and let lazy.nvim install everything
 nvim
@@ -145,7 +145,7 @@ nvim
 Move-Item $env:APPDATA\nvim $env:APPDATA\nvim.backup -ErrorAction SilentlyContinue
 
 # Clone HYPERfix
-git clone https://github.com/your-username/HYPERfix.nvim $env:APPDATA\nvim
+git clone https://github.com/TheOnliestMattastic/HYPERfix.nvim $env:APPDATA\nvim
 
 # Launch Neovim
 nvim
@@ -192,7 +192,7 @@ HYPERfix is meant to be cloned/forked and modified. Here's where to make changes
 - **Keymaps**: `lua/config/keymaps.lua`
 - **Editor settings**: `lua/config/options.lua`
 - **Plugins**: `lua/plugins/` (one plugin per file; if you don't like one, just delete it)
-- **Colorscheme**: `lua/plugins/mini.lua` (uncomment the `mini.hues` module: lines 98-103)
+- **Colorscheme**: `lua/plugins/mini.lua` (uncomment the `mini.hues` module)
 
 Every file has comments explaining the WHAT/WHY/HOW. If something feels opinionated, you can change it.
 
@@ -264,10 +264,10 @@ The Kokiri colorscheme is designed for dark terminals. If colors look off:
 
 ## Contributing
 
-This is a personal project, but I welcome feedback:
+Feedback and contributions are welcome:
 
 - Found a bug? Open an issue with a minimal reproducible example
-- Have an accessibility suggestion? I'd love to hear it
+- Have an accessibility suggestion? Please share it
 - Want to improve documentation? PRs welcome
 
 ## License
@@ -283,8 +283,6 @@ GNU General Public License v3.0 — See [LICENSE](LICENSE) for details.
 - The Neovim community for being endlessly helpful and kind
 
 ---
-
-**Made with ⚔️ and 💚 by someone who understands that neurodivergent brains are a feature, not a bug.**
 
 > _Time passes, people move... Like a river's flow, it never ends... A childish mind will turn to noble ambition... Young love will become deep affection... The clear water's surface reflects growth..._
 >
