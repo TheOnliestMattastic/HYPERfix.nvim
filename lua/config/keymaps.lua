@@ -177,7 +177,8 @@ end, { noremap = true, silent = true, desc = "Skip past punctuation or keywords"
 -- HOW:  Maps Shift+Backspace to Esc in insert mode
 -- NOTE: Works well alongside CAPS LOCK detection (see J keymap below)
 -- =============================================================================
-
+map("i", "<S-BS>", "<Esc>", { noremap = true, silent = true, desc = "Exit Insert Mode" })
+map("i", "<C-h>", "<Esc>",   { noremap = true, silent = true, desc = "Exit Insert Mode" })
 map("i", "<S-BS>", "<Esc>", { noremap = true, silent = true, desc = "Exit Insert Mode" })
 
 -- =============================================================================
