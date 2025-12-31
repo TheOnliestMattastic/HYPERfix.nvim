@@ -4,6 +4,20 @@ All notable changes to HYPERfix.nvim are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.3] - 2025-12-31
+
+### ✨ Added
+
+- **Smart keyword skipping** — `<C-;>` now skips language keywords (lua: `then`, `do`, `end`, `else`, `elseif`) in addition to closing punctuation; filetype-aware for easy extension to other languages
+- **Insert mode exit** — `<S-BS>` (Shift+Backspace) to exit insert mode faster than Esc
+- **CAPS LOCK detection** — Overrode `J` keymap to warn when likely CAPS LOCK is on instead of joining lines (use `:join` if you need the original behavior)
+
+### 📚 Documentation
+
+- **KEYMAPS.md update** — Added new keymaps to "Smart Skip", "Insert Mode Control", and "Normal Mode Utilities" sections
+
+---
+
 ## [1.0.2] - 2025-12-27
 
 ### 🔧 Fixed

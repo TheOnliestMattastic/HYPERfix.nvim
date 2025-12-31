@@ -130,26 +130,73 @@ map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
 -- =============================================================================
--- SMART CLOSING PUNCTUATION SKIP
+-- SMART SKIP: Punctuation & Keywords
 -- -----------------------------------------------------------------------------
--- WHAT: Skip past closing punctuation in insert mode
--- WHY:  Streamlines workflow—jump over ) } ] ' " without arrow keys
--- HOW:  Checks if next character is closing punctuation, moves cursor forward
+-- WHAT: Skip past closing punctuation or language keywords in insert mode
+-- WHY:  Streamlines workflow—jump over ) } ] ' " or then/do/end without arrows
+-- HOW:  Checks punctuation first, then keywords by filetype; moves cursor past match
+-- NOTE: Keywords are organized by filetype for easy extension (see table below)
 -- -----------------------------------------------------------------------------
+
+local skip_keywords_by_filetype = {
+  lua = { "then", "do", "end", "else", "elseif" },
+  -- TODO: add python, javascript, etc.
+}
 
 map("i", "<C-;>", function()
   local line = vim.api.nvim_get_current_line()
   local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-  local next_char = line:sub(col + 1, col + 1)
+  local remaining = line:sub(col + 1)
 
-  if next_char:match("[%)%]%}%\"%']") then
+  -- Try punctuation first
+  if remaining:match("^[%)%]%}%\"%']") then
     vim.api.nvim_win_set_cursor(0, { row, col + 1 })
+    return
   end
-end, { noremap = true, silent = true, desc = "Skip past closing punctuation" })
+
+  -- Try keywords for current filetype
+  local ft = vim.bo.filetype
+  local keywords = skip_keywords_by_filetype[ft] or {}
+
+  for _, keyword in ipairs(keywords) do
+    -- Match keyword followed by a word boundary (non-alphanumeric or end of line)
+    local match_start, match_end = remaining:find("^" .. keyword .. "($|%W)")
+    if match_start then
+      -- We only want to advance past the keyword itself, not the boundary character
+      vim.api.nvim_win_set_cursor(0, { row, col + #keyword })
+      return
+    end
+  end
+end, { noremap = true, silent = true, desc = "Skip past punctuation or keywords" })
+
+-- =============================================================================
+-- EXIT INSERT MODE
+-- =============================================================================
+-- WHAT: Exit insert mode with Shift+Backspace
+-- WHY:  Faster than Esc; easier to reach after typing
+-- HOW:  Maps Shift+Backspace to Esc in insert mode
+-- NOTE: Works well alongside CAPS LOCK detection (see J keymap below)
+-- =============================================================================
+map("i", "<S-BS>", "<Esc>", { noremap = true, silent = true, desc = "Exit Insert Mode" })
+map("i", "<C-h>", "<Esc>",   { noremap = true, silent = true, desc = "Exit Insert Mode" })
+map("i", "<S-BS>", "<Esc>", { noremap = true, silent = true, desc = "Exit Insert Mode" })
+
+-- =============================================================================
+-- CAPS LOCK DETECTION
+-- =============================================================================
+-- WHAT: Warn when J is pressed (likely CAPS LOCK is on)
+-- WHY:  Prevents accidental line joins; CAPS LOCK is often forgotten after exiting insert mode
+-- HOW:  Overrides J with a notification function instead of joining lines
+-- NOTE: Use :join or :j command if you actually need to join lines
+-- =============================================================================
+
+map("n", "J", function()
+  Snacks.notify.warn("CAPS LOCK may be on—press <S-BS> to exit insert mode properly!")
+end, { noremap = true, silent = true, desc = "CAPS LOCK Detection" })
 
 -- =============================================================================
 -- FILE MANAGEMENT
--- -----------------------------------------------------------------------------
+-- =============================================================================
 
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "[N]ew File" })

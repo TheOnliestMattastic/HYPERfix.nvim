@@ -49,11 +49,23 @@
 
 ## Text Editing
 
-### Smart Closing Punctuation Skip (Insert Mode)
+### Smart Skip (Insert Mode)
 
-| Keymap  | Mode   | Action                                            |
-| ------- | ------ | ------------------------------------------------- |
-| `<C-;>` | Insert | Skip past closing punctuation `)` `}` `]` `'` `"` |
+| Keymap  | Mode   | Action                                                      |
+| ------- | ------ | ----------------------------------------------------------- |
+| `<C-;>` | Insert | Skip past closing punctuation `)` `}` `]` `'` `"` or keywords |
+
+### Insert Mode Control
+
+| Keymap   | Mode   | Action                  |
+| -------- | ------ | ----------------------- |
+| `<S-BS>` | Insert | Exit insert mode        |
+
+### Normal Mode Utilities
+
+| Keymap | Mode   | Action                                   |
+| ------ | ------ | ---------------------------------------- |
+| `J`    | Normal | CAPS LOCK detection (warns instead of join) |
 
 ### Visual Mode Indentation
 
