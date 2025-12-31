@@ -36,6 +36,8 @@ HYPERfix is built around principles that help **ADHD, autism, dyslexia, and othe
 - **Clear visual hierarchy** — 4px line spacing + WCAG AAA contrast ratios
 - **Thoughtful pacing** — Longer timeouts (1250) for key sequences—time to think
 - **Mnemonic keymaps** — `<leader>f` = find, `<leader>g` = git. Patterns you can predict
+- **Smart text insertion** — Skip closing punctuation and language keywords (`<C-;>` for punctuation/keywords, `<S-BS>` to exit insert mode)
+- **CAPS LOCK detection** — Overridden `J` warns you if CAPS LOCK is on (a common mistake after exiting insert mode)
 - **Explicit documentation** — Every code block explains WHAT/WHY/HOW
 - **Graceful degradation** — Missing optional tools won't break your editor
 
