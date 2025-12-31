@@ -143,31 +143,35 @@ local skip_keywords_by_filetype = {
   -- TODO: add python, javascript, etc.
 }
 
-map("i", "<C-;>", function()
-  local line = vim.api.nvim_get_current_line()
-  local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-  local remaining = line:sub(col + 1)
+map(
+  "i",
+  "<C-;>",
+  function()
+    local line = vim.api.nvim_get_current_line()
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local remaining = line:sub(col + 1)
 
-  -- Try punctuation first
-  if remaining:match("^[%)%]%}%\"%']") then
-    vim.api.nvim_win_set_cursor(0, { row, col + 1 })
-    return
-  end
-
-  -- Try keywords for current filetype
-  local ft = vim.bo.filetype
-  local keywords = skip_keywords_by_filetype[ft] or {}
-
-  for _, keyword in ipairs(keywords) do
-    -- Match keyword followed by a word boundary (non-alphanumeric or end of line)
-    local match_start, match_end = remaining:find("^" .. keyword .. "($|%W)")
-    if match_start then
-      -- We only want to advance past the keyword itself, not the boundary character
-      vim.api.nvim_win_set_cursor(0, { row, col + #keyword })
+    -- Try punctuation first
+    if remaining:match("^[%)%]%}%\"%']") then
+      vim.api.nvim_win_set_cursor(0, { row, col + 1 })
       return
     end
-  end
-end, { noremap = true, silent = true, desc = "Skip past punctuation or keywords" })
+
+    -- Try keywords for current filetype
+    local ft = vim.bo.filetype
+    local keywords = skip_keywords_by_filetype[ft] or {}
+
+    for _, keyword in ipairs(keywords) do
+      -- Match keyword followed by optional whitespace
+      local match = remaining:match("^" .. keyword .. "%s*")
+      if match then
+        vim.api.nvim_win_set_cursor(0, { row, col + #match })
+        return
+      end
+    end
+  end,
+  { noremap = true, silent = true, desc = "Skip past punctuation or keywords" }
+)
 
 -- =============================================================================
 -- EXIT INSERT MODE
@@ -177,7 +181,12 @@ end, { noremap = true, silent = true, desc = "Skip past punctuation or keywords"
 -- HOW:  Maps Shift+Backspace to Esc in insert mode
 -- NOTE: Works well alongside CAPS LOCK detection (see J keymap below)
 -- =============================================================================
-map("i", "<C-h>", "<Esc>",   { noremap = true, silent = true, desc = "Exit Insert Mode" })
+map(
+  "i",
+  "<C-h>",
+  "<Esc>",
+  { noremap = true, silent = true, desc = "Exit Insert Mode" }
+)
 
 -- =============================================================================
 -- CAPS LOCK DETECTION
@@ -188,9 +197,12 @@ map("i", "<C-h>", "<Esc>",   { noremap = true, silent = true, desc = "Exit Inser
 -- NOTE: Use :join or :j command if you actually need to join lines
 -- =============================================================================
 
-map("n", "J", function()
-  Snacks.notify.warn("CAPS LOCK may be on—press!")
-end, { noremap = true, silent = true, desc = "CAPS LOCK Detection" })
+map(
+  "n",
+  "J",
+  function() Snacks.notify.warn("CAPS LOCK may be on—press!") end,
+  { noremap = true, silent = true, desc = "CAPS LOCK Detection" }
+)
 
 -- =============================================================================
 -- FILE MANAGEMENT
