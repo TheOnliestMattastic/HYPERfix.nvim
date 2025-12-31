@@ -159,10 +159,11 @@ map("i", "<C-;>", function()
   local keywords = skip_keywords_by_filetype[ft] or {}
 
   for _, keyword in ipairs(keywords) do
-    -- Match keyword followed by optional whitespace
-    local match = remaining:match("^" .. keyword .. "%s*")
-    if match then
-      vim.api.nvim_win_set_cursor(0, { row, col + #match })
+    -- Match keyword followed by a word boundary (non-alphanumeric or end of line)
+    local match_start, match_end = remaining:find("^" .. keyword .. "($|%W)")
+    if match_start then
+      -- We only want to advance past the keyword itself, not the boundary character
+      vim.api.nvim_win_set_cursor(0, { row, col + #keyword })
       return
     end
   end
