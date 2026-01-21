@@ -80,7 +80,7 @@ return {
     -- GLOBAL: Top-level navigation & utilities
     -- -------------------------------------------------------------------------
     {
-      "<leader><space>",
+      "<leader>/",
       function() Snacks.picker.smart() end,
       desc = "Smart Search",
     },

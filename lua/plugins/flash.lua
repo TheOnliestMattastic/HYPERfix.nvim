@@ -24,7 +24,7 @@ return {
   opts = {},
   keys = {
     {
-      "<leader>/",
+      "<leader><space>",
       mode = { "n", "x", "o" },
       function() require("flash").jump() end,
       desc = "Flash Search",

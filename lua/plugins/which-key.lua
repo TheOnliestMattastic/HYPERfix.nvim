@@ -41,12 +41,12 @@ return {
           icon = "󰨁", -- File explorer toggle
         },
         {
-          "<leader><space>",
+          "<leader>/",
           desc = "Smart Search",
           icon = "󰬯",
         },
         {
-          "<leader>/",
+          "<leader><space>",
           desc = "Flash Search",
           icon = "󰍈",
         },
