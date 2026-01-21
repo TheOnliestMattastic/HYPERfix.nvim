@@ -24,6 +24,9 @@ return {
       render_modes = true,
       pipe_table = { preset = "heavy" }, -- Changed from 'heavy' to boolean
       completions = { lsp = { enabled = true } },
+      html = { enabled = false },
+      latex = { enabled = false },
+      yaml = { enabled = false },
     },
     ft = { "markdown", "norg", "rmd", "org", "codecompanion" },
     config = function(_, opts)

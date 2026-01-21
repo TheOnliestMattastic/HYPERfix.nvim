@@ -119,9 +119,9 @@
 
 ## Flash (Smart Navigation)
 
-| Keymap      | Mode                     | Action                          |
-| ----------- | ------------------------ | ------------------------------- |
-| `<leader>/` | Normal, Visual, Operator | Flash search (jump to location) |
+| Keymap            | Mode                     | Action                          |
+| ----------------- | ------------------------ | ------------------------------- |
+| `<leader><space>` | Normal, Visual, Operator | Flash search (jump to location) |
 
 ## Grug-far (Search & Replace)
 
@@ -245,11 +245,11 @@
 
 ### Smart Picker (Global Search)
 
-| Keymap            | Mode   | Action                           |
-| ----------------- | ------ | -------------------------------- |
-| `<leader><space>` | Normal | Smart find (auto-detect context) |
-| `<leader>:`       | Normal | Command history                  |
-| `<leader>.`       | Normal | Scratch buffer selector          |
+| Keymap      | Mode   | Action                           |
+| ----------- | ------ | -------------------------------- |
+| `<leader>/` | Normal | Smart find (auto-detect context) |
+| `<leader>:` | Normal | Command history                  |
+| `<leader>.` | Normal | Scratch buffer selector          |
 
 ### Buffer Management
 
