@@ -314,7 +314,7 @@ return {
       mode = { "n", "t" },
     },
     {
-      "<leader>qd",
+      "<leader>qD",
       function() Snacks.dashboard() end,
       desc = "Dashboard",
     },
@@ -346,7 +346,7 @@ return {
     {
       "gy",
       function() Snacks.picker.lsp_type_definitions() end,
-      desc = "T[y]pe Definition",
+      desc = "Type Definition",
     },
   },
 
