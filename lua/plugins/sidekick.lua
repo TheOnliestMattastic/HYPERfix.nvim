@@ -9,15 +9,7 @@
 -- REFERENCE: https://github.com/folke/sidekick.nvim
 -- -----------------------------------------------------------------------------
 return {
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    opts = {
-      suggestion = { enabled = false }, -- Managed by sidekick or blink
-      panel = { enabled = false },
-    },
-  },
+
   {
     "folke/sidekick.nvim",
     cmd = { "Sidekick" },
@@ -28,6 +20,17 @@ return {
       },
       cli = {
         mux = { enabled = false }, -- Disabled to allow terminal emulator to handle multiplexing
+      },
+    },
+    dependencies = {
+      {
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        event = "InsertEnter",
+        opts = {
+          suggestion = { enabled = false }, -- Managed by sidekick or blink
+          panel = { enabled = false },
+        },
       },
     },
     keys = {
