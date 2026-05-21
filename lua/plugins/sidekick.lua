@@ -27,7 +27,7 @@ return {
         diff = { inline = "words" },
       },
       cli = {
-        mux = { enabled = false }, -- User uses Wezterm without tmux/zellij
+        mux = { enabled = false }, -- Disabled to allow terminal emulator to handle multiplexing
       },
     },
     keys = {
