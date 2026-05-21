@@ -58,7 +58,7 @@ return {
       if has_fortune or has_cowsay or has_bat or has_lolcat then
         -- Start with fortune if available, otherwise a thank you message
         local cmd = has_fortune and "fortune -s"
-          or 'echo "Thank you for using HYPERfix.nvim!"'
+          or 'echo "Thank you for using HyperFix.nvim!"'
 
         -- Add cowsay if available (converts output to ASCII art speech bubble)
         if has_cowsay then cmd = cmd .. " | cowsay" end

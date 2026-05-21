@@ -16,13 +16,13 @@ return {
   cmd = { "ConformInfo" },
   keys = {
     {
-      "<leader>cf",
+      "<leader>cc",
       function()
         -- Format with fallback to LSP if conform formatter unavailable
         require("conform").format({ async = true, lsp_format = "fallback" })
       end,
       mode = "",
-      desc = "[F]ormat",
+      desc = "Format Code",
     },
   },
   opts = {

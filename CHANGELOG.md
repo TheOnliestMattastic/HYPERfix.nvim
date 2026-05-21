@@ -1,14 +1,29 @@
 # Changelog
 
-All notable changes to HYPERfix.nvim are documented in this file.
+All notable changes to HyperFix.nvim are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.0.0] - 2026-05-21
 
-### 🔄 Changed
+### 🚀 Major Changes
 
-- **Keymap swap** — Flash Search now uses `<leader><space>`, Smart Search now uses `<leader>/`; more intuitive given Smart Search's broader utility
+- **Renamed to HyperFix.nvim** — Updated project identity to a more standardized and polished format
+- **Integrated sidekick.nvim** — Replaced legacy `amp-ai` with Folke's `sidekick.nvim`, featuring GitHub Copilot Next Edit Suggestions (NES) and an integrated AI CLI terminal
+- **Mnemonic-Centric Keybinding System** — Complete reorganization of leader mappings into intuitive categories (Files, Buffers, Search, Git, Code, AI, UI, Quit)
+- **Double-Tap Logic** — Optimized common actions with double-tap mnemonics: `<leader>gg` (LazyGit), `<leader>cc` (Format Code), `<leader>ss` (Smart Search), `<leader>qq` (Quit All)
+- **Redundant Plugin Cleanup** — Slimmed down the configuration by removing `dap.lua`, `trouble.lua`, and `grug-far.lua` for a more focused, minimalistic experience
+
+### ✨ Added
+
+- **Thematic Visuals** — Integrated Legend of Zelda visual anchors.
+- **Explorer Redundancy** — Added `<leader>\` as a secondary, fast access key for the File Explorer (`mini.files`)
+
+### 🔧 Fixed
+
+- **Visual Consistency** — Cleaned up all `which-key` menus and descriptions, removing legacy bracketed mnemonics for a professional UI
+- **Behavioral Cleanup** — Removed rapid `jk`/`kj` escape mappings to prevent accidental mode switches
+- **Standardized Comments** — Final sweep of ADHD-friendly WHAT/WHY/HOW comments across all configuration files
 
 ---
 

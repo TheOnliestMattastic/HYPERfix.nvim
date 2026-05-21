@@ -12,7 +12,7 @@
 return {
   "mason-org/mason.nvim",
   lazy = true,
-  keys = { { "<leader>nm", "<cmd>Mason<cr>", desc = "[M]ason" } },
+  keys = { { "<leader>qm", "<cmd>Mason<cr>", desc = "Mason" } },
   opts = {
     ui = {
       icons = {

@@ -77,10 +77,10 @@ return {
   -- ---------------------------------------------------------------------------
   keys = {
     -- -------------------------------------------------------------------------
-    -- GLOBAL: Top-level navigation & utilities
+    -- SMART/FAST SEARCH (<leader>ss)
     -- -------------------------------------------------------------------------
     {
-      "<leader>/",
+      "<leader>ss",
       function() Snacks.picker.smart() end,
       desc = "Smart Search",
     },
@@ -97,173 +97,191 @@ return {
     {
       "<leader>t",
       function() Snacks.terminal() end,
-      desc = "[T]erminal",
+      desc = "Terminal",
     },
 
     -- -------------------------------------------------------------------------
-    -- BUFFER: Buffer operations
+    -- BUFFER: Buffer operations (<leader>b)
     -- -------------------------------------------------------------------------
     {
       "<leader>bb",
       function() Snacks.picker.buffers() end,
-      desc = "[B]uffer",
+      desc = "Buffer List",
     },
     {
       "<leader>bg",
       function() Snacks.picker.grep_buffers() end,
-      desc = "[G]rep Buffers",
+      desc = "Grep Buffers",
     },
     {
-      "<leader>bq",
+      "<leader>bd",
       function() Snacks.bufdelete() end,
-      desc = "[Q]uit Buffer",
+      desc = "Delete Buffer",
     },
     {
       "<leader>bS",
       function() Snacks.scratch.select() end,
-      desc = "[S]elect Scratch Buffer",
+      desc = "Select Scratch Buffer",
     },
 
     -- -------------------------------------------------------------------------
-    -- FILE: File & project navigation
+    -- FILE: File & project navigation (<leader>f)
     -- -------------------------------------------------------------------------
     {
       "<leader>ff",
       function() Snacks.picker.files() end,
-      desc = "Find [F]iles",
+      desc = "Find Files",
     },
     {
       "<leader>fp",
       function() Snacks.picker.projects() end,
-      desc = "Find [P]rojects",
+      desc = "Find Projects",
     },
     {
       "<leader>fr",
       function() Snacks.picker.recent() end,
-      desc = "Find [R]ecent",
+      desc = "Find Recent",
     },
     {
       "<leader>fR",
       function() Snacks.rename.rename_file() end,
-      desc = "[R]ename File",
-    },
-    {
-      "<leader>fw",
-      function() Snacks.picker.grep_word() end,
-      desc = "Find/Grep [W]ord",
-      mode = { "n", "x" },
+      desc = "Rename File",
     },
 
     -- -------------------------------------------------------------------------
-    -- GIT: Git operations & GitHub integration
+    -- GIT: Git operations (<leader>g)
     -- -------------------------------------------------------------------------
-    {
-      "<leader>gb",
-      function() Snacks.picker.git_branches() end,
-      desc = "[B]ranches",
-    },
-    {
-      "<leader>gB",
-      function() Snacks.gitbrowse() end,
-      desc = "[B]rowser",
-      mode = { "n", "v" },
-    },
-    {
-      "<leader>gd",
-      function() Snacks.picker.git_diff() end,
-      desc = "[D]iff (Hunks)",
-    },
-    {
-      "<leader>gf",
-      function() Snacks.picker.git_files() end,
-      desc = "[F]iles",
-    },
-    {
-      "<leader>gF",
-      function() Snacks.picker.git_log_file() end,
-      desc = "Log [F]ile",
-    },
     {
       "<leader>gg",
       function() Snacks.lazygit() end,
-      desc = "Lazy[g]it",
-    },
-    {
-      "<leader>gi",
-      function() Snacks.picker.gh_issue() end,
-      desc = "[I]ssues (open)",
-    },
-    {
-      "<leader>gI",
-      function() Snacks.picker.gh_issue({ state = "all" }) end,
-      desc = "[I]ssues (all)",
-    },
-    {
-      "<leader>gl",
-      function() Snacks.picker.git_log() end,
-      desc = "[L]og",
-    },
-    {
-      "<leader>gL",
-      function() Snacks.picker.git_log_line() end,
-      desc = "Log [L]ine",
-    },
-    {
-      "<leader>gp",
-      function() Snacks.picker.gh_pr() end,
-      desc = "[P]ull Requests (open)",
-    },
-    {
-      "<leader>gP",
-      function() Snacks.picker.gh_pr({ state = "all" }) end,
-      desc = "[P]ull Requests (all)",
+      desc = "LazyGit",
     },
     {
       "<leader>gs",
       function() Snacks.picker.git_status() end,
-      desc = "[S]tatus",
+      desc = "Git Status",
     },
     {
-      "<leader>gS",
-      function() Snacks.picker.git_stash() end,
-      desc = "[S]tash",
+      "<leader>gl",
+      function() Snacks.picker.git_log() end,
+      desc = "Git Log",
+    },
+    {
+      "<leader>gd",
+      function() Snacks.picker.git_diff() end,
+      desc = "Git Diff (Hunks)",
+    },
+    {
+      "<leader>gb",
+      function() Snacks.picker.git_branches() end,
+      desc = "Git Branches",
+    },
+    {
+      "<leader>gB",
+      function() Snacks.gitbrowse() end,
+      desc = "Git Browser",
+      mode = { "n", "v" },
     },
 
     -- -------------------------------------------------------------------------
-    -- HELP: Documentation & configuration
+    -- SEARCH: Extended search (<leader>s)
     -- -------------------------------------------------------------------------
     {
-      "<leader>ha",
-      function() Snacks.picker.autocmds() end,
-      desc = "Explore [A]utocmds",
+      "<leader>sg",
+      function() Snacks.picker.grep() end,
+      desc = "Grep Search",
     },
     {
-      "<leader>hc",
-      function()
-        Snacks.picker.files({
-          cwd = vim.fn.stdpath("config"),
-        })
-      end,
-      desc = "HYPERfix [C]onfig Files",
+      "<leader>sw",
+      function() Snacks.picker.grep_word() end,
+      desc = "Grep Word",
+      mode = { "n", "x" },
     },
+    {
+      "<leader>sh",
+      function() Snacks.picker.search_history() end,
+      desc = "Search History",
+    },
+    {
+      "<leader>sr",
+      function() Snacks.picker.resume() end,
+      desc = "Resume Search",
+    },
+    {
+      "<leader>su",
+      function() Snacks.picker.undo() end,
+      desc = "Undo History",
+    },
+
+    -- -------------------------------------------------------------------------
+    -- CODE: LSP & Diagnostics (<leader>c)
+    -- -------------------------------------------------------------------------
+    {
+      "<leader>ca",
+      vim.lsp.buf.code_action,
+      desc = "Code Action",
+      mode = { "n", "x" },
+    },
+    {
+      "<leader>cr",
+      vim.lsp.buf.rename,
+      desc = "Rename Symbol",
+    },
+    {
+      "<leader>cs",
+      function() Snacks.picker.lsp_symbols() end,
+      desc = "LSP Symbols",
+    },
+    {
+      "<leader>cd",
+      function() Snacks.picker.diagnostics() end,
+      desc = "Diagnostics",
+    },
+    {
+      "<leader>cl",
+      function() Snacks.picker.lsp_config() end,
+      desc = "LSP Info",
+    },
+
+    -- -------------------------------------------------------------------------
+    -- UI: Interface toggles (<leader>u)
+    -- -------------------------------------------------------------------------
+    {
+      "<leader>uz",
+      function() Snacks.zen() end,
+      desc = "Zen Mode",
+    },
+    {
+      "<leader>uZ",
+      function() Snacks.zen.zoom() end,
+      desc = "Zoom Window",
+    },
+
+    -- -------------------------------------------------------------------------
+    -- HELP: Documentation (<leader>h)
+    -- -------------------------------------------------------------------------
     {
       "<leader>hh",
       function() Snacks.picker.help() end,
-      desc = "[H]elp Pages",
+      desc = "Help Pages",
     },
     {
       "<leader>hk",
       function() Snacks.picker.keymaps() end,
-      desc = "[K]eymaps",
+      desc = "Keymaps",
     },
+
+    -- -------------------------------------------------------------------------
+    -- NOTIFICATIONS (<leader>n)
+    -- -------------------------------------------------------------------------
     {
       "<leader>nn",
       function() Snacks.picker.notifications() end,
-      desc = "[N]otification History",
+      desc = "Notification History",
     },
     {
       "<leader>nN",
-      desc = "[N]eovim News",
+      desc = "Neovim News",
       function()
         Snacks.win({
           file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
@@ -281,115 +299,7 @@ return {
     },
 
     -- -------------------------------------------------------------------------
-    -- SEARCH: Search & inspection utilities
-    -- -------------------------------------------------------------------------
-    {
-      "<leader>sc",
-      function() Snacks.picker.commands() end,
-      desc = "[C]ommands",
-    },
-    {
-      "<leader>sd",
-      function() Snacks.picker.diagnostics() end,
-      desc = "[D]iagnostics",
-    },
-    {
-      "<leader>sD",
-      function() Snacks.picker.diagnostics_buffer() end,
-      desc = "Buffer [D]iagnostics",
-    },
-    {
-      "<leader>sg",
-      function() Snacks.picker.grep() end,
-      desc = "[G]rep",
-    },
-    {
-      "<leader>sh",
-      function() Snacks.picker.search_history() end,
-      desc = "[H]istory",
-    },
-    {
-      "<leader>sH",
-      function() Snacks.picker.highlights() end,
-      desc = "[H]ighlights",
-    },
-    {
-      "<leader>si",
-      function() Snacks.picker.icons() end,
-      desc = "[I]cons",
-    },
-    {
-      "<leader>sj",
-      function() Snacks.picker.jumps() end,
-      desc = "[J]umps",
-    },
-    {
-      "<leader>sl",
-      function() Snacks.picker.lines() end,
-      desc = "[L]ines",
-    },
-    {
-      "<leader>sL",
-      function() Snacks.picker.loclist() end,
-      desc = "[L]ocation",
-    },
-    {
-      "<leader>sm",
-      function() Snacks.picker.marks() end,
-      desc = "[M]arks",
-    },
-    {
-      "<leader>sx",
-      function() Snacks.picker.registers() end,
-      desc = "Register Inde[x]",
-    },
-    {
-      "<leader>sR",
-      function() Snacks.picker.resume() end,
-      desc = "[R]esume Search",
-    },
-    {
-      "<leader>su",
-      function() Snacks.picker.undo() end,
-      desc = "[U]ndo History",
-    },
-    {
-      "<leader>sq",
-      function() Snacks.picker.qflist() end,
-      desc = "[Q]uickfix",
-    },
-    {
-      "<leader>ss",
-      function() Snacks.picker.lsp_symbols() end,
-      desc = "LSP [S]ymbols",
-    },
-    {
-      "<leader>sS",
-      function() Snacks.picker.lsp_workspace_symbols() end,
-      desc = "LSP Workspace [S]ymbols",
-    },
-
-    -- -------------------------------------------------------------------------
-    -- UI: Interface toggles & settings
-    -- -------------------------------------------------------------------------
-    {
-      "<leader>uC",
-      function() Snacks.picker.colorschemes() end,
-      desc = "[C]olorschemes",
-    },
-    {
-      "<leader>uz",
-      function() Snacks.zen() end,
-      desc = "[Z]en Mode",
-    },
-    {
-      "<leader>uZ",
-      function() Snacks.zen.zoom() end,
-      desc = "[Z]oom",
-    },
-
-    -- -------------------------------------------------------------------------
-    -- NAVIGATION: Navigation & reference jumping
+    -- NAVIGATION
     -- -------------------------------------------------------------------------
     {
       "]]",
@@ -404,81 +314,39 @@ return {
       mode = { "n", "t" },
     },
     {
-      "<leader>qD",
+      "<leader>qd",
       function() Snacks.dashboard() end,
-      desc = "[D]ashboard",
+      desc = "Dashboard",
     },
 
     -- -------------------------------------------------------------------------
-    -- LSP: Language server picker operations (definitions, references, etc.)
+    -- LSP NAVIGATION (Standard g-prefixes)
     -- -------------------------------------------------------------------------
     {
       "gd",
       function() Snacks.picker.lsp_definitions() end,
-      desc = "[D]efinition",
+      desc = "Definition",
     },
     {
       "gD",
       function() Snacks.picker.lsp_declarations() end,
-      desc = "[D]eclaration",
-    },
-    {
-      "gi",
-      function() Snacks.picker.lsp_incoming_calls() end,
-      desc = "Calls [I]ncoming",
+      desc = "Declaration",
     },
     {
       "gI",
       function() Snacks.picker.lsp_implementations() end,
-      desc = "[I]mplementation",
-    },
-    {
-      "go",
-      function() Snacks.picker.lsp_outgoing_calls() end,
-      desc = "Calls [O]utgoing",
+      desc = "Implementation",
     },
     {
       "gR",
       function() Snacks.picker.lsp_references() end,
       nowait = true,
-      desc = "[R]eferences",
+      desc = "References",
     },
     {
       "gy",
       function() Snacks.picker.lsp_type_definitions() end,
       desc = "T[y]pe Definition",
-    },
-    {
-      "<leader>cl",
-      function() Snacks.picker.lsp_config() end,
-      desc = "[L]sp Info",
-    },
-
-    -- -------------------------------------------------------------------------
-    -- LSP ACTIONS: LSP buffer operations
-    -- -------------------------------------------------------------------------
-    {
-      "<leader>ca",
-      vim.lsp.buf.code_action,
-      desc = "[A]ction",
-      mode = { "n", "x" },
-    },
-    {
-      "<leader>cc",
-      vim.lsp.codelens.run,
-      desc = "[C]odelens",
-      mode = { "n", "x" },
-    },
-    {
-      "<leader>cC",
-      vim.lsp.codelens.refresh,
-      desc = "Refresh [C]odelens",
-      mode = { "n" },
-    },
-    {
-      "<leader>cr",
-      vim.lsp.buf.rename,
-      desc = "[R]ename",
     },
   },
 
@@ -504,29 +372,29 @@ return {
         -- Toggle Mappings: Create toggles for UI features (with <leader>u)
         -- ---------------------------------------------------------------------
         Snacks.toggle.animate():map("<leader>ua")
-        Snacks.toggle.diagnostics({ name = "[D]iagnostics" }):map("<leader>ud")
+        Snacks.toggle.diagnostics({ name = "Diagnostics" }):map("<leader>ud")
         Snacks.toggle.dim():map("<leader>uD", { desc = "Dim" })
         Snacks.toggle.indent():map("<leader>ug", { desc = "Indent Guides" })
-        Snacks.toggle.line_number({ name = "[L]ine number" }):map("<leader>ul")
-        Snacks.toggle.inlay_hints({ name = "Inlay [H]ints" }):map("<leader>uh")
-        Snacks.toggle.option("spell", { name = "[S]pelling" }):map("<leader>us")
+        Snacks.toggle.line_number({ name = "Line Numbers" }):map("<leader>ul")
+        Snacks.toggle.inlay_hints({ name = "Inlay Hints" }):map("<leader>uh")
+        Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
         Snacks.toggle.scroll():map("<leader>uS")
-        Snacks.toggle.option("wrap", { name = "[W]rap" }):map("<leader>uw")
+        Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
 
         Snacks.toggle
           .option("conceallevel", {
-            name = "[C]onceal",
+            name = "Conceal",
             off = 0,
             on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2,
           })
           :map("<leader>uc")
 
         Snacks.toggle
-          .option("relativenumber", { name = "Re[l]ative Number" })
+          .option("relativenumber", { name = "Relative Numbers" })
           :map("<leader>uL")
 
         Snacks.toggle
-          .treesitter({ name = "[T]reesitter Highlights" })
+          .treesitter({ name = "Treesitter Highlights" })
           :map("<leader>uT")
       end,
     })

@@ -8,7 +8,7 @@
  █       █   █       █  ██████  ▀██▀  ██▄▄█▀ ██▄▄   ██▄▄██▄ ██▄▄  ██ ▀█▄█▀
 █  ▄▄▄▄▄  █ █  ▄▄▄▄▄  █ ██  ██   ██   ██     ██▄▄▄▄ ██   ██ ██    ██ ██ ██
 ========================================================================== --]]
--- WHAT: HYPERfix.nvim entry point - loads configuration in order
+-- WHAT: HyperFix.nvim entry point - loads configuration in order
 -- WHY: Ensures predictable startup: options, plugins, keymaps
 -- HOW: Requires Lua modules in dependency order
 -- NOTE: Colorscheme set before lazy.nvim to avoid initial flash

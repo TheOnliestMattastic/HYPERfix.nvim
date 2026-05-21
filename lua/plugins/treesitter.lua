@@ -40,7 +40,7 @@ return {
         opts = function()
           local tsc = require("treesitter-context")
           Snacks.toggle({
-            name = "[T]reesitter Context",
+            name = "Treesitter Context",
             get = tsc.enabled,
             set = function(state)
               if state then

@@ -89,29 +89,12 @@ return {
       {
         "]t",
         function() require("todo-comments").jump_next() end,
-        desc = "Next [T]odo Comment",
+        desc = "Next Todo Comment",
       },
       {
         "[t",
         function() require("todo-comments").jump_prev() end,
-        desc = "Prev [T]odo Comment",
-      },
-
-      -- =====================================================================
-      -- Trouble Integration: Sidebar view of all todos
-      -- =====================================================================
-      -- WHAT: Show all project todos in Trouble (sidebar UI) with filtering
-      -- WHY:  Get an overview of all todos organized in a sidebar window
-      -- HOW:  Trouble parses todo-comments output and displays in a list
-      {
-        "<leader>xt",
-        "<cmd>Trouble todo toggle<cr>",
-        desc = "[T]odo",
-      },
-      {
-        "<leader>xT",
-        "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>",
-        desc = "[T]odo/Fix/Fixme",
+        desc = "Prev Todo Comment",
       },
 
       -- =====================================================================
@@ -125,12 +108,12 @@ return {
       {
         "<leader>st",
         function() Snacks.picker.grep({ pattern = "TODO|HACK|NOTE|PERF|TEST" }) end,
-        desc = "[T]odo",
+        desc = "Todo",
       },
       {
         "<leader>sT",
         function() Snacks.picker.grep({ pattern = "TODO|FIX|FIXME" }) end,
-        desc = "[T]odo/Fix/Fixme",
+        desc = "Todo/Fix/Fixme",
       },
     },
   },

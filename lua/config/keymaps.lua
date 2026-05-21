@@ -23,18 +23,18 @@ map("n", "<C-l>",              "<C-w>l",               { desc = "Window Right" }
 -- BUFFER MANAGEMENT
 -- -----------------------------------------------------------------------------
 
-map("n", "<leader>bn",         "<cmd>bnext<cr>",       { desc = "[N]ext Buffer" })
-map("n", "<leader>bp",         "<cmd>bprevious<cr>",   { desc = "[P]rev Buffer" })
+map("n", "<leader>bn",         "<cmd>bnext<cr>",       { desc = "Next Buffer" })
+map("n", "<leader>bp",         "<cmd>bprevious<cr>",   { desc = "Prev Buffer" })
 
 -- =============================================================================
 -- TAB MANAGEMENT
 -- -----------------------------------------------------------------------------
 
-map("n", "<leader><tab><tab>", "<cmd>tabnext<cr>",     { desc = "[TAB] over" })
-map("n", "<leader><tab>n",     "<cmd>tabnew<cr>",      { desc = "[N]ew" })
-map("n", "<leader><tab>p",     "<cmd>tabprevious<cr>", { desc = "[P]rev" })
-map("n", "<leader><tab>q",     "<cmd>tabclose<cr>",    { desc = "[Q]uit" })
-map("n", "<leader><tab>o",     "<cmd>tabonly<cr>",     { desc = "[O]nly" })
+map("n", "<leader><tab><tab>", "<cmd>tabnext<cr>",     { desc = "Next Tab" })
+map("n", "<leader><tab>n",     "<cmd>tabnew<cr>",      { desc = "New Tab" })
+map("n", "<leader><tab>p",     "<cmd>tabprevious<cr>", { desc = "Prev Tab" })
+map("n", "<leader><tab>q",     "<cmd>tabclose<cr>",    { desc = "Close Tab" })
+map("n", "<leader><tab>o",     "<cmd>tabonly<cr>",     { desc = "Only Tab" })
 -- stylua: ignore end
 
 -- =============================================================================
@@ -209,8 +209,8 @@ map(
 -- =============================================================================
 
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
-map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "[N]ew File" })
-map("n", "<leader>fs", "<cmd>w<cr><esc>", { desc = "[S]ave File" })
+map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+map("n", "<leader>fs", "<cmd>w<cr><esc>", { desc = "Save File" })
 
 -- =============================================================================
 -- INDENTATION
@@ -226,7 +226,7 @@ map("x", ">", ">gv")
 -- PLUGIN MANAGEMENT
 -- -----------------------------------------------------------------------------
 
-map("n", "<leader>nl", "<cmd>Lazy<cr>", { desc = "[L]azy" })
+map("n", "<leader>ql", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- =============================================================================
 -- DIAGNOSTICS TOGGLE
@@ -244,7 +244,7 @@ map("n", "<leader>uv", function()
   vim.diagnostic.config({ virtual_text = not vtext })
   local status = not vtext and "enabled" or "disabled"
   Snacks.notify.info("Virtual text diagnostics " .. status)
-end, { desc = "Toggle [V]irtual Text Diagnostics" })
+end, { desc = "Toggle Virtual Text Diagnostics" })
 
 -- =============================================================================
 -- APPLICATION MANAGEMENT
@@ -255,9 +255,9 @@ end, { desc = "Toggle [V]irtual Text Diagnostics" })
 --      <leader>qs = save session, <leader>qr = restore session (picker)
 -- -----------------------------------------------------------------------------
 
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "[Q]uit All" })
-map("n", "<leader>qw", "<cmd>wqa<cr>", { desc = "[W]rite & Quit" })
-map("n", "<leader>qQ", "<cmd>q!<cr>", { desc = "Force [Q]uit" })
+map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+map("n", "<leader>qw", "<cmd>wqa<cr>", { desc = "Write & Quit" })
+map("n", "<leader>qQ", "<cmd>q!<cr>", { desc = "Force Quit" })
 
 map("n", "<leader>qW", function()
   local sessions = require("mini.sessions")
@@ -280,7 +280,7 @@ map("n", "<leader>qW", function()
     sessions.write()
     vim.cmd("wqa")
   end
-end, { desc = "[W]rite to Session & Quit" })
+end, { desc = "Write to Session & Quit" })
 
 map("n", "<leader>qs", function()
   local sessions = require("mini.sessions")
@@ -301,20 +301,20 @@ map("n", "<leader>qs", function()
       end
     end)
   end
-end, { desc = "[S]ave Session" })
+end, { desc = "Save Session" })
 
 map(
   "n",
   "<leader>qr",
   function() require("mini.sessions").select() end,
-  { desc = "[R]estore Session" }
+  { desc = "Restore Session" }
 )
 
 map(
   "n",
   "<leader>qd",
   function() require("mini.sessions").select("delete") end,
-  { desc = "[D]elete Session" }
+  { desc = "Delete Session" }
 )
 
 map(

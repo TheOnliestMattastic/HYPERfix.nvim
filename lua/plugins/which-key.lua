@@ -37,11 +37,12 @@ return {
           icon = "󱕴",
         },
         {
-          "<leader>e",
-          icon = "󰨁", -- File explorer toggle
+          "<leader>\\",
+          desc = "Explorer",
+          icon = "",
         },
         {
-          "<leader>/",
+          "<leader>ss",
           desc = "Smart Search",
           icon = "󰬯",
         },
@@ -62,8 +63,8 @@ return {
         },
         {
           "<leader>t",
-          desc = "[T]erminal",
-          icon = "󱃏",
+          desc = "Terminal",
+          icon = "",
         },
 
         -- =====================================================================
@@ -71,66 +72,58 @@ return {
         -- ---------------------------------------------------------------------
         {
           "<leader><tab>",
-          group = "[TAB]",
-          icon = "",
+          group = "Tabs",
+          icon = "",
         },
         {
-          "<leader><tab>q",
-          icon = "",
+          "<leader>a",
+          group = "AI",
+          icon = "󱨚",
         },
         {
-          "<leader><tab><tab>",
-          icon = "",
+          "<leader>b",
+          group = "Buffers",
+          icon = "󰯃",
         },
         {
           "<leader>c",
-          group = "[C]ode",
+          group = "Code",
           icon = "󰓥",
         },
         {
-          "<leader>d",
-          group = "[D]ebug",
-          icon = "󱇫",
-        },
-        {
           "<leader>f",
-          group = "[F]ile/Find",
-          icon = "󰆌",
+          group = "Files",
+          icon = "󱄯",
         },
         {
           "<leader>g",
-          group = "[G]it",
+          group = "Git",
           icon = "󰊢",
         },
         {
           "<leader>h",
-          group = "[H]elp",
+          group = "Help",
           icon = "",
         },
         {
           "<leader>n",
-          group = "[N]otification",
+          group = "Notifications",
           icon = "󰷠",
         },
         {
           "<leader>q",
-          group = "[Q]uit/Session",
+          group = "Quit & Sessions",
           icon = "󰋣",
         },
         {
           "<leader>s",
-          group = "[S]earch",
+          group = "Search",
           icon = "",
         },
         {
           "<leader>u",
-          group = "[U]I",
+          group = "UI",
           icon = "󱞠",
-        },
-        {
-          "<leader>x",
-          group = "Inde[x]",
-          icon = "󰴮",
         },
 
         -- =====================================================================
@@ -140,7 +133,7 @@ return {
         { "]", group = "Next" },
         {
           "g",
-          group = "[G]oto",
+          group = "Goto",
           icon = "󱡮",
         },
         {
@@ -153,14 +146,8 @@ return {
         -- Dynamic Groups (auto-expanded based on buffer state)
         -- ---------------------------------------------------------------------
         {
-          "<leader>b",
-          group = "[B]uffer",
-          expand = function() return require("which-key.extras").expand.buf() end,
-          icon = "󰯃",
-        },
-        {
           "<leader>w",
-          group = "[W]indows",
+          group = "Windows",
           proxy = "<c-w>", -- Proxy to Vim's window commands
           expand = function() return require("which-key.extras").expand.win() end,
           icon = "󰮕",
